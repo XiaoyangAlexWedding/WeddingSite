@@ -65,6 +65,13 @@
             margin-bottom: 30px;
         }
 
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
         .btn {
             display: inline-block;
             background-color: #b22222;
@@ -76,12 +83,26 @@
             font-size: 1.1em;
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(178, 34, 34, 0.3);
+            width: 80%; /* Makes the buttons uniform in size */
+            box-sizing: border-box;
         }
 
         .btn:hover {
             background-color: #8b0000;
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(178, 34, 34, 0.4);
+        }
+
+        .btn-gold {
+            background-color: #d4af37;
+            color: #b22222;
+            box-shadow: 0 4px 6px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-gold:hover {
+            background-color: #c5a030;
+            color: #8b0000;
+            box-shadow: 0 6px 12px rgba(212, 175, 55, 0.4);
         }
 
         /* A subtle floating animation */
@@ -105,7 +126,10 @@
             (Website is putting on its makeup...)
         </p>
 
-        <a href="/guestinfo/" class="btn">💌 Send Us Your Address</a>
+        <div class="button-group">
+            <a href="/guestinfo/" class="btn">💌 Send Us Your Address</a>
+            <a href="registry.html" class="btn btn-gold">🎁 Registry & Gifts</a>
+        </div>
     </div>
 
 </body>
