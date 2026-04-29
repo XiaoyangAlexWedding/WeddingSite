@@ -203,4 +203,105 @@ const Details = () =>
             <div className="when">2 PM </div>
             <div className="addr" style={{ marginTop: 12 }}>
               Providence Academy<br />
-              400 E Evergreen Blvd, Vancouver
+              400 E Evergreen Blvd, Vancouver, WA 98660<br />
+              <em>Wedding Ceremony</em>
+            </div>
+          </div>
+
+          <div>
+            <div className="detail-illus"><Botanical variant="pavilion" size={88} /></div>
+            <h3>The Reception</h3>
+            <div className="where">晚 宴 · Lan Su 兰 苏 园</div>
+            <div className="when">Saturday · October 17, 2026</div>
+            <div className="when">4PM</div>
+            <div className="addr" style={{ marginTop: 12 }}>
+              Lan Su Chinese Garden<br />
+              239 NW Everett St, Portland, Oregon<br />
+              Tea Ceremony · Dinner · Dancing
+            </div>
+          </div>
+        </div>
+      </Reveal>
+
+      <Reveal>
+        <div style={{ textAlign: "center", marginTop: 64 }}>
+          <div className="eyebrow" style={{ marginBottom: 12 }}>Counting down · 倒 计 时</div>
+          <Countdown />
+        </div>
+      </Reveal>
+    </div>
+  </section>;
+
+
+/* ---------- Dress Guide ---------- */
+const DressGuide = () =>
+<section id="dress">
+    <div className="shell">
+      <Reveal>
+        <div className="eyebrow" style={{ textAlign: "center" }}>What to wear</div>
+        <h2 className="section-title">Dress Guide</h2>
+        <div className="section-title-cn">着 装 指 南</div>
+      </Reveal>
+
+      <Reveal>
+        <div className="shell-narrow" style={{ padding: 0 }}>
+          <div className="dress-item">
+            <div className="dress-icon"><Botanical variant="rose" size={44} /></div>
+            <div>
+              <h4>Dress Code</h4>
+              <p>We invite you to celebrate in style — our dress code is <em>Formal</em>. Long dresses, suits, or your most-loved evening look.</p>
+              <p className="cn">着装：正式 · 欢迎您以最美的样子出席</p>
+            </div>
+          </div>
+
+          <div className="dress-item">
+            <div className="dress-icon"><Botanical variant="floral" size={44} /></div>
+            <div>
+              <h4>Color Accents</h4>
+              <p>We'd love to see guests in rich jewel tones, muted autumn shades, soft earth tones, or garden-inspired neutrals. We've included some examples for inspiration below.</p>
+              <p className="cn">着装色调：宝石色 · 秋日色 · 大地色 · 自然柔和色</p>
+              <div className="swatches">
+                <div className="swatch" style={{ background: "#1F4D3A" }} title="Forest green"></div>
+                <div className="swatch" style={{ background: "#064E57" }} title="Deep teal"></div>
+                <div className="swatch" style={{ background: "#6E1F35" }} title="Wine"></div>
+                <div className="swatch" style={{ background: "#C1664A" }} title="Terracotta"></div>
+                <div className="swatch" style={{ background: "#6F4E37" }} title="Mocha"></div>
+                <div className="swatch" style={{ background: "#9AA68C" }} title="Sage"></div>
+                <div className="swatch" style={{ background: "#5F728C" }} title="Slate blue"></div>
+              </div>
+            </div>
+          </div>
+
+          <div className="dress-item">
+            <div className="dress-icon"><Botanical variant="branch" size={44} /></div>
+            <div>
+              <h4>Cultural &amp; Traditional Attire</h4>
+              <p>Traditional or cultural attire is highly welcomed and warmly encouraged. Cheongsams, hanfu, sherwanis — wear what feels like home.</p>
+              <p className="cn">欢迎穿着传统民族服饰 · 旗袍、汉服皆可</p>
+            </div>
+          </div>
+
+          <div className="dress-item">
+            <div className="dress-icon"><Botanical variant="leaf" size={44} /></div>
+            <div>
+              <h4>Footwear Note</h4>
+              <p>The garden pathways are made of a beautiful but uneven mosaic of river stones. For your safety and comfort, please avoid pointy stilettos — wedges, block heels, or stylish flats are recommended.</p>
+              <p className="cn">花园小径由不平整的鹅卵石铺就 · 建议穿着粗跟鞋或时尚平底鞋</p>
+            </div>
+          </div>
+
+          <div className="dress-item">
+            <div className="dress-icon"><Botanical variant="sprig" size={44} /></div>
+            <div>
+              <h4>Weather &amp; Comfort</h4>
+              <p>The garden area will be roofed in case of rain, but October evenings in Portland can turn cool — please bring a formal jacket, wrap, or shawl to keep you warm through the celebration.</p>
+              <p className="cn">建议携带正装外套或披肩 · 以备夜晚降温</p>
+            </div>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </section>;
+
+
+Object.assign(window, { Reveal, Hero, HeroPhoto, Countdown, Story, Details, DressGuide });
