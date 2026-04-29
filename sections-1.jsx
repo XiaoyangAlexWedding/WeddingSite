@@ -154,28 +154,32 @@ const Story = () =>
               How it began
             </h2>
             <div className="section-rule"></div>
-            <p>We met on New Year's Eve, 2018 — two strangers at a party that turned into seven years, three cities, and one ridiculously stubborn houseplant. Houston, San Jose, and now Sacramento have each shaped us in their own way.
-
-
-
-          </p>
+            
+            <p>We met on New Year's Eve, 2018 — two strangers at a party that turned into seven years, three cities, and two furry friends. Houston, Sunnyvale, and now Sacramento have each shaped us in their own way.</p>
 
             <div className="story-chapter">
               <div className="year">2018 · HOUSTON</div>
               <h4>The party that started it all</h4>
-              <p>A New Year's Eve </p>
+              <p>A New Year's Eve party at the Secret Group — not exactly Xiaoyang's usual scene. Erol and Alex had just finished moving and were out chasing a balloon money drop; Xiaoyang and Jiajie had pivoted from a last-minute change in plans to a night out. Xiaoyang arrived in true form, sporting an antenna headband that broadcast her energy and spontaneity to the entire room. Alex, drawn in immediately, offered to buy her a drink — one he'd eventually find himself sipping warm two hours later. The night took a turn toward the wonderfully nerdy: an impromptu international ping pong tournament at Neil's Bahr. Team USA pulled off the upset, but more importantly, the seeds of future diplomatic relations had been planted.</p>
             </div>
 
             <div className="story-chapter">
-              <div className="year">2021 · SAN JOSE</div>
+              <div className="year">2021 · SUNNYVALE, CA</div>
               <h4>Building a life together</h4>
-              <p>Two cross-country moves, one apartment with too many bookshelves, and weekends spent finding our favorite coffee shop.</p>
+              <p>With her PhD in hand, Xiaoyang headed west and the two embarked on a cross-country move — now a party of three, thanks to Luigi, their spirited three-legged cat. Coco joined the family just in time for their first Christmas in Sunnyvale, rounding out the crew. Together they dove headfirst into Northern California life: kayaking, hiking, road trips, and eventually a camper van that opened up the whole Pacific Northwest and Central Valley. When they weren't exploring their backyard, they were crossing oceans — China, Japan, and Korea all got a visit.</p>
             </div>
 
             <div className="story-chapter">
-              <div className="year">2025 · Sacramento</div>
+              <div className="year">2025 · SUNNYVALE, CA</div>
               <h4>The proposal</h4>
-              <p>A quiet morning, a question we'd both known the answer to for years, and a yes that felt inevitable.</p>
+              <p>Alex had been quietly planning for a while — surprising Xiaoyang with a visit to a jewelry store where the two picked out her ring together. She just didn't know when he'd actually pop the question. That moment came during one of their favorite rituals, a produce run to Felipe's Market. A quiet question, an answer they'd both known for years, and a yes that felt completely inevitable.</p>
+            </div>
+
+            <div className="story-chapter">
+              <div className="year">2026 · SACRAMENTO</div>
+              <h4>The next chapter</h4>
+              <p>Xiaoyang, Alex, and the cats loaded up the van and set their sights on Sacramento. Now happily settled in, the two are deep in wedding mode — and counting down the days until they get to celebrate with everyone in October.</p>
+                </div>
             </div>
           </div>
         </div>
