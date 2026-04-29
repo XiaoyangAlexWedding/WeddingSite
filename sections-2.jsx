@@ -49,16 +49,30 @@ const Travel = () =>
             <h4>Portland International (PDX)</h4>
             <p>~25 minutes from the venue by car. Rideshare and rental cars available curbside.</p>
           </div>
-          <div className="travel-card">
+        <div className="travel-card">
             <div className="label">Hotel Block · 酒店</div>
             <h4>The Benson Portland</h4>
-            <p className="addr-line">Curio Collection by Hilton<br />309 SW Broadway, Portland, OR 97205</p>
-            <p>Group rate under "Li-Joachim Wedding." Booking link in your invitation.</p>
+            <p className="addr-line" style={{ marginBottom: 16 }}>
+              Curio Collection by Hilton<br />
+              309 SW Broadway, Portland, OR 97205
+            </p>
+            <p style={{ marginBottom: 8 }}>
+              Group rate is <strong>$159/night</strong> for a King Urban View or Two Queen Urban View <em>(Note: the final price may appear differently until checkout)</em>.
+            </p>
+            <p style={{ marginBottom: 16 }}>
+              <a href="https://group.curiocollection.com/293rd7" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600 }}>
+                Book your room online here →
+              </a>
+            </p>
+            <p style={{ fontSize: 13, color: "var(--ink-soft)", fontStyle: "italic", margin: 0, lineHeight: 1.5, borderTop: "1px solid var(--rule)", paddingTop: 12 }}>
+              <strong>Booking issues?</strong> Contact Danny Feist, Reservation Coordinator:<br />
+              <a href="mailto:DFeist@bensonhotel.com" style={{ fontSize: 13, fontWeight: "normal" }}>DFeist@bensonhotel.com</a> &nbsp;·&nbsp; 503.228.2000 x 161
+            </p>
           </div>
           <div className="travel-card">
             <div className="label">Shuttle · 接 驳 车</div>
             <h4>Providence ↔ Lan Su</h4>
-            <p>A complimentary shuttle will take guests from the ceremony at Providence to the reception at Lan Su Chinese Garden — about a 15-minute ride. Departs right after the ceremony.</p>
+            <p>A complimentary shuttle will take guests from the hotel to the ceremony at Providence and from Providence to the reception at Lan Su Chinese Garden — about a 15-minute ride. Departs right after the ceremony.</p>
           </div>
         </div>
       </Reveal>
