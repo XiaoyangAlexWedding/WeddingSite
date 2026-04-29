@@ -352,11 +352,11 @@ const Footer = ({ onNavigate }) =>
       <Reveal>
         <div className="footer-monogram">X &amp; A</div>
         <div className="divider"><Botanical variant="sprig" size={24} /></div>
-        <div className="footer-meta" style={{ marginTop: 24 }}>Xiaoyang Li &nbsp;·&nbsp; Alex Joachim</div>
+        <div className="footer-meta" style={{ marginTop: 24 }}>Xiaoyang Li &nbsp;·&nbsp; Alexander Joachim</div>
         <div className="footer-meta" style={{ marginTop: 8 }}>17 · 10 · 2026 &nbsp;·&nbsp; Portland, Oregon</div>
         <div className="footer-hash">#XiaoyangAndAlex</div>
         <div className="footer-meta" style={{ marginTop: 32, fontSize: 12 }}>
-          <a href="mailto:hello@xiaoyangandalex.com">XIAOYANGALEX.WEDDING</a>
+          <a href="mailto:xiaoalex.joachli@gmail.com">XIAOYANGALEX.WEDDING</a>
         </div>
         <div className="footer-meta" style={{ marginTop: 32, fontSize: 11, opacity: 0.6, letterSpacing: "0.3em" }}>
           With love · 用 爱 相 守
