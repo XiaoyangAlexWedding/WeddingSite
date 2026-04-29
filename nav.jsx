@@ -71,7 +71,7 @@ const Nav = ({ active, onNavigate }) => {
         >
           RSVP
         </a>
-        */}
+      */}
       </div>
     </nav>
   );
