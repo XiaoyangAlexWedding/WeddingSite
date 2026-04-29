@@ -62,7 +62,7 @@ const Nav = ({ active, onNavigate }) => {
             {it.label}
           </a>
         ))}
-        <a
+       // <a
           href="#rsvp"
           onClick={(e) => handle(e, "rsvp")}
           className={`nav-rsvp ${active === "rsvp" ? "active" : ""}`}
