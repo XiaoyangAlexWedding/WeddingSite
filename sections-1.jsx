@@ -313,7 +313,6 @@ const Story = () =>
                 </div>
             </div>
           </div>
-        </div>
       </Reveal>
     </div>
   </section>;
