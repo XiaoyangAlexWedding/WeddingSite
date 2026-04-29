@@ -7,11 +7,11 @@ const NAV_ITEMS = [
   { id: "story", label: "Our Story" },
   { id: "details", label: "Details" },
   { id: "dress", label: "Dress" },
-  { id: "schedule", label: "Schedule" },
+ // { id: "schedule", label: "Schedule" },
   { id: "travel", label: "Travel" },
   { id: "gallery", label: "Gallery" },
   { id: "registry", label: "Registry" },
-  { id: "faq", label: "FAQ" },
+ // { id: "faq", label: "FAQ" },
 ];
 
 const Nav = ({ active, onNavigate }) => {
