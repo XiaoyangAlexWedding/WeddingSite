@@ -230,7 +230,7 @@ const Registry = () =>
             <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
               Help us toast somewhere new — a coffee in Lisbon, a sunset in Kyoto.
             </p>
-            <a href="#">honeyfund.com/li-joachim →</a>
+            <a href="#">Feature Coming Soon →</a>
           </div>
         </div>
 
@@ -243,7 +243,7 @@ const Registry = () =>
             <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
               A few small things to make our Sacramento apartment feel a little more like ours.
             </p>
-            <a href="#">crateandbarrel.com/li-joachim →</a>
+            <a href="#">Feature Coming Soon →</a>
           </div>
         </div>
 
@@ -256,7 +256,7 @@ const Registry = () =>
             <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
               For family abroad — a traditional 红包 by WeChat or Zelle is warmly received.
             </p>
-            <a href="#">Request transfer details →</a>
+            <a href="#">Feature Coming Soon→</a>
           </div>
         </div>
       </Reveal>
