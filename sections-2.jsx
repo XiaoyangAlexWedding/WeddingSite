@@ -229,7 +229,7 @@ const Registry = () =>
           <div>
             <h4>Home Registry</h4>
             <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
-             We chose not to create a traditional registry — instead, we'd love for you to contribute to a chapter of our life together. Whether it's our kitchen, our living room, a cozy bedroom retreat, or our entertainment setup, feel free to Zelle us toward whatever feels right, and leave a note in the comments letting us know which part of our home you'd like to help build.
+             For the moment we may not have a traditional registry, if you're patient, we may in the future — if you're in a rush, we'd love for you to contribute to a chapter of our life together. Whether it's our kitchen, our living room, a cozy bedroom retreat, or our entertainment setup, feel free to Zelle us toward whatever feels right, and leave a note in the comments letting us know which part of our home you'd like to help build.
             </p>
             <a href="assets/Alex Zelle.jfif">Request Transfer Details</a>
           </div>
