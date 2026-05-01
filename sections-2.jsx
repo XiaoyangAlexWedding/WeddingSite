@@ -221,20 +221,6 @@ const Registry = () =>
           Your presence is the greatest gift. If you'd like to give something more, we've gathered a small list — and a couple of links for those traveling far.
         </p>
 
-        {/* HONEYMOON FUND (Kept the botanical icon here) */}
-        <div className="registry-row">
-          <div className="registry-qr">
-            <Botanical variant="floral" size={80} />
-          </div>
-          <div>
-            <h4>The Honeymoon Fund</h4>
-            <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
-              Help us toast somewhere new — a coffee in Lisbon, a sunset in Kyoto.
-            </p>
-            <a href="#">honeyfund.com/li-joachim →</a>
-          </div>
-        </div>
-
         {/* HOME REGISTRY (Updated with QR code) */}
         <div className="registry-row">
           <div className="registry-qr">
@@ -249,7 +235,21 @@ const Registry = () =>
           </div>
         </div>
 
-        {/* WECHAT & ZELLE (Updated with QR code) */}
+           {/* HONEYMOON FUND (Kept the botanical icon here) */}
+        <div className="registry-row">
+          <div className="registry-qr">
+            <img src="assets/Xiaoyang Zelle.jfif" alt="WeChat and Zelle QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
+          </div>
+          <div>
+            <h4>The Honeymoon Fund</h4>
+            <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
+              Help us toast somewhere new — a coffee in Lisbon, a sunset in Kyoto.
+            </p>
+            <a href="assets/Xiaoyang Zelle.jfif">Request Transfer Details →</a>
+          </div>
+        </div>
+
+        {/* WECHAT(Updated with QR code) */}
         <div className="registry-row">
           <div className="registry-qr">
             <img src="assets/Xiaoyang Wechat.jfif" alt="WeChat and Zelle QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
