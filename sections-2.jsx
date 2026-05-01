@@ -238,7 +238,7 @@ const Registry = () =>
         {/* HOME REGISTRY (Updated with QR code) */}
         <div className="registry-row">
           <div className="registry-qr">
-            <img src="assets/home-qr.png" alt="Home Registry QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
+            <img src="assets/Alex Zelle.jiff" alt="Home Registry QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
           </div>
           <div>
             <h4>Home Registry</h4>
@@ -252,12 +252,12 @@ const Registry = () =>
         {/* WECHAT & ZELLE (Updated with QR code) */}
         <div className="registry-row">
           <div className="registry-qr">
-            <img src="assets/wechat-zelle-qr.png" alt="WeChat and Zelle QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
+            <img src="assets/Xiaoyang Wechat.jfif" alt="WeChat and Zelle QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
           </div>
           <div>
             <h4>WeChat &amp; Zelle 红包</h4>
             <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
-              For family abroad — a traditional 红包 by WeChat or Zelle is warmly received.
+              For family abroad — a traditional 红包 by WeChat is warmly received.
             </p>
             <a href="#">Request transfer details →</a>
           </div>
