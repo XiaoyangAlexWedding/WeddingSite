@@ -243,7 +243,7 @@ const Registry = () =>
           <div>
             <h4>Home Registry</h4>
             <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
-              We didn't create a true regsitry. Please consider which element of our life you'd like to contribute to and leave it in the comments, cooking, entertainment, living room, bedroom, furniture etc.
+             We chose not to create a traditional registry — instead, we'd love for you to contribute to a chapter of our life together. Whether it's our kitchen, our living room, a cozy bedroom retreat, or our entertainment setup, feel free to Zelle us toward whatever feels right, and leave a note in the comments letting us know which part of our home you'd like to help build.
             </p>
             <a href="assets/Alex Zelle.jfif">Request Transfer Details</a>
           </div>
