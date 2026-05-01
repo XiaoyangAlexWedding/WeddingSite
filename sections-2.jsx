@@ -79,94 +79,17 @@ const Travel = () =>
 
       <Reveal>
         <div className="travel-map">
-          <svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map of wedding locations in Portland">
-            {/* base */}
-            <rect width="800" height="520" fill="#f0e4d2" />
-            {/* subtle paper grain via crosshatch */}
-            <g stroke="#d9c4a6" strokeWidth="0.5" opacity="0.4">
-              {Array.from({ length: 26 }).map((_, i) => <line key={`h${i}`} x1="0" y1={i * 20} x2="800" y2={i * 20} />
-            )}
-              {Array.from({ length: 40 }).map((_, i) =>
-            <line key={`v${i}`} x1={i * 20} y1="0" x2={i * 20} y2="520" />
-            )}
-            </g>
+          
+          <iframe 
+            src="https://www.google.com/maps/d/u/0/embed?mid=1nLR6raRxSCf0YJpbVlEh-2ZD1cZ4URY&ehbc=2E312F&noprof=1" 
+            width="100%" 
+            height="480" 
+            style={{ border: 0, display: "block" }} 
+            allowFullScreen="" 
+            loading="lazy" 
+            title="Wedding Locations Map"
+          ></iframe>
 
-            {/* Columbia River — flows roughly E-W across north */}
-            <path
-            d="M 0 130 Q 120 110, 240 125 T 480 135 Q 600 140, 720 120 L 800 115 L 800 165 Q 680 180, 560 170 T 320 165 Q 180 155, 60 175 L 0 180 Z"
-            fill="#a9c8d4"
-            opacity="0.7" />
-
-            {/* Willamette River — flows N-S through downtown */}
-            <path
-            d="M 360 165 Q 345 240, 360 320 Q 370 400, 350 520 L 410 520 Q 430 400, 420 320 Q 405 240, 420 165 Z"
-            fill="#a9c8d4"
-            opacity="0.7" />
-
-            {/* highway hints */}
-            <g stroke="#c9a48a" strokeWidth="2" fill="none" opacity="0.55" strokeDasharray="6 5">
-              <path d="M 380 0 L 385 165 M 395 165 L 388 520" />
-              <path d="M 0 280 L 350 295 M 420 290 L 800 305" />
-            </g>
-
-            {/* WA/OR border (river center line) */}
-            <text x="60" y="148" fontSize="11" fill="#5a4538" fontStyle="italic" letterSpacing="1.5">WASHINGTON</text>
-            <text x="60" y="200" fontSize="11" fill="#5a4538" fontStyle="italic" letterSpacing="1.5">OREGON</text>
-
-            {/* compass */}
-            <g transform="translate(740 60)">
-              <circle r="22" fill="#faf3e9" stroke="#8a4a35" strokeWidth="1" />
-              <path d="M 0 -16 L 4 0 L 0 4 L -4 0 Z" fill="#8a4a35" />
-              <path d="M 0 16 L 4 0 L 0 -4 L -4 0 Z" fill="#c9a48a" />
-              <text x="0" y="-26" textAnchor="middle" fontSize="10" fill="#8a4a35" fontWeight="600">N</text>
-            </g>
-
-            {/* PINS — coords mapped from lat/lon to viewBox
-            lat range 45.50 (y=520) → 45.65 (y=0); lon range -122.74 (x=0) → -122.55 (x=800) */}
-
-            {/* Providence Academy — Vancouver, WA (45.633, -122.671) */}
-            <g transform="translate(290 65)">
-              <circle r="18" fill="#fff" stroke="#b86b4b" strokeWidth="2" opacity="0.4" />
-              <path d="M 0 -18 C -10 -18, -16 -10, -16 -2 C -16 8, 0 22, 0 22 C 0 22, 16 8, 16 -2 C 16 -10, 10 -18, 0 -18 Z" fill="#b86b4b" stroke="#5a2a1a" strokeWidth="1.2" />
-              <circle cy="-3" r="5" fill="#faf3e9" />
-              <text x="22" y="-4" fontSize="13" fill="#2a1e16" fontWeight="600" fontFamily="Cormorant Garamond, serif">Providence Academy</text>
-              <text x="22" y="11" fontSize="11" fill="#5a4538" fontFamily="EB Garamond, serif" fontStyle="italic">Ceremony · Vancouver, WA</text>
-            </g>
-
-            {/* PDX Airport (45.589, -122.595) */}
-            <g transform="translate(610 240)">
-              <path d="M 0 -18 C -10 -18, -16 -10, -16 -2 C -16 8, 0 22, 0 22 C 0 22, 16 8, 16 -2 C 16 -10, 10 -18, 0 -18 Z" fill="#3e6b5c" stroke="#1f3a30" strokeWidth="1.2" />
-              <circle cy="-3" r="5" fill="#faf3e9" />
-              <text x="22" y="-4" fontSize="13" fill="#2a1e16" fontWeight="600" fontFamily="Cormorant Garamond, serif">PDX</text>
-              <text x="22" y="11" fontSize="11" fill="#5a4538" fontFamily="EB Garamond, serif" fontStyle="italic">Portland International</text>
-            </g>
-
-            {/* Lan Su Chinese Garden (45.525, -122.673) */}
-            <g transform="translate(285 415)">
-              <path d="M 0 -18 C -10 -18, -16 -10, -16 -2 C -16 8, 0 22, 0 22 C 0 22, 16 8, 16 -2 C 16 -10, 10 -18, 0 -18 Z" fill="#8a2a3a" stroke="#4a121c" strokeWidth="1.2" />
-              <circle cy="-3" r="5" fill="#faf3e9" />
-              <text x="22" y="-4" fontSize="13" fill="#2a1e16" fontWeight="600" fontFamily="Cormorant Garamond, serif">Lan Su Garden</text>
-              <text x="22" y="11" fontSize="11" fill="#5a4538" fontFamily="EB Garamond, serif" fontStyle="italic">Reception · 兰苏园</text>
-            </g>
-
-            {/* The Benson Portland (45.521, -122.679) — slightly south of Lan Su */}
-            <g transform="translate(265 440)">
-              <path d="M 0 -18 C -10 -18, -16 -10, -16 -2 C -16 8, 0 22, 0 22 C 0 22, 16 8, 16 -2 C 16 -10, 10 -18, 0 -18 Z" fill="#c89b3c" stroke="#7a5a14" strokeWidth="1.2" />
-              <circle cy="-3" r="5" fill="#faf3e9" />
-              <text x="-22" y="20" textAnchor="end" fontSize="13" fill="#2a1e16" fontWeight="600" fontFamily="Cormorant Garamond, serif">The Benson</text>
-              <text x="-22" y="35" textAnchor="end" fontSize="11" fill="#5a4538" fontFamily="EB Garamond, serif" fontStyle="italic">Hotel block</text>
-            </g>
-
-            {/* dashed travel line: Hotel → Providence (shuttle/drive route hint) */}
-            <path d="M 285 415 Q 280 240, 290 90" fill="none" stroke="#8a4a35" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.5" />
-          </svg>
-
-          <div className="travel-legend">
-            <div className="legend-item"><span className="legend-dot" style={{ background: "#b86b4b" }}></span>Ceremony · Providence Academy</div>
-            <div className="legend-item"><span className="legend-dot" style={{ background: "#8a2a3a" }}></span>Reception · Lan Su Chinese Garden</div>
-            <div className="legend-item"><span className="legend-dot" style={{ background: "#c89b3c" }}></span>Hotel · The Benson Portland</div>
-            <div className="legend-item"><span className="legend-dot" style={{ background: "#3e6b5c" }}></span>Airport · PDX</div>
-          </div>
         </div>
       </Reveal>
     </div>
