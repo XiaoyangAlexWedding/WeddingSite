@@ -238,14 +238,14 @@ const Registry = () =>
         {/* HOME REGISTRY (Updated with QR code) */}
         <div className="registry-row">
           <div className="registry-qr">
-            <img src="assets/Alex Zelle.jiff" alt="Home Registry QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
+            <img src="assets/Alex Zelle.jfif" alt="Home Registry QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
           </div>
           <div>
             <h4>Home Registry</h4>
             <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
-              A few small things to make our Sacramento apartment feel a little more like ours.
+              We didn't create a true regsitry. Please consider which element of our life you'd like to contribute to and leave it in the comments, cooking, entertainment, living room, bedroom, furniture etc.
             </p>
-            <a href="#">crateandbarrel.com/li-joachim →</a>
+            <a href="assets/Alex Zelle.jfif">Request Transfer Details</a>
           </div>
         </div>
 
@@ -259,7 +259,7 @@ const Registry = () =>
             <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
               For family abroad — a traditional 红包 by WeChat is warmly received.
             </p>
-            <a href="#">Request transfer details →</a>
+            <a href="assets/Xiaoyang Wechat.jfif">Request transfer details →</a>
           </div>
         </div>
       </Reveal>
