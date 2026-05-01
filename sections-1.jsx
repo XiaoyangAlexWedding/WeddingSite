@@ -258,7 +258,7 @@ const DressGuide = () =>
             <div className="dress-icon"><Botanical variant="floral" size={44} /></div>
             <div>
               <h4>Color Accents</h4>
-              <p>We'd love to see guests in rich jewel tones, muted autumn shades, soft earth tones, or garden-inspired neutrals. We've included some examples for inspiration below.</p>
+              <p>We'd love to see guests in rich jewel tones, muted autumn shades, soft earth tones, or garden-inspired neutrals. We've included some examples for inspiration below. THe only hard limitations are no red or white, but really feel free to wear what makes you comfortable</p>
               <p className="cn">着装色调：宝石色 · 秋日色 · 大地色 · 自然柔和色</p>
               <div className="swatches">
                 <div className="swatch" style={{ background: "#1F4D3A" }} title="Forest green"></div>
