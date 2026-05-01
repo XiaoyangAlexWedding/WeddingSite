@@ -175,7 +175,7 @@ const Registry = () =>
         {/* WECHAT(Updated with QR code) */}
         <div className="registry-row">
           <div className="registry-qr">
-            <img src="assets/Xiaoyang Wechat.jfif" alt="WeChat and Zelle QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
+            <img src="assets/Xiaoyang Wechat.jfif" alt="WeChat QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
           </div>
           <div>
             <h4>WeChat &amp; Zelle 红包</h4>
