@@ -178,7 +178,7 @@ const Registry = () =>
             <img src="assets/Xiaoyang Wechat.jfif" alt="WeChat QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
           </div>
           <div>
-            <h4>WeChat &amp; Zelle 红包</h4>
+            <h4>WeChat; 红包</h4>
             <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
               For family abroad — a traditional 红包 by WeChat is warmly received.
             </p>
