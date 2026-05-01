@@ -221,6 +221,7 @@ const Registry = () =>
           Your presence is the greatest gift. If you'd like to give something more, we've gathered a small list — and a couple of links for those traveling far.
         </p>
 
+        {/* HONEYMOON FUND (Kept the botanical icon here) */}
         <div className="registry-row">
           <div className="registry-qr">
             <Botanical variant="floral" size={80} />
@@ -230,33 +231,35 @@ const Registry = () =>
             <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
               Help us toast somewhere new — a coffee in Lisbon, a sunset in Kyoto.
             </p>
-            <a href="#">Feature Coming Soon →</a>
+            <a href="#">honeyfund.com/li-joachim →</a>
           </div>
         </div>
 
+        {/* HOME REGISTRY (Updated with QR code) */}
         <div className="registry-row">
           <div className="registry-qr">
-            <Botanical variant="leaf" size={80} />
+            <img src="assets/home-qr.png" alt="Home Registry QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
           </div>
           <div>
             <h4>Home Registry</h4>
             <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
               A few small things to make our Sacramento apartment feel a little more like ours.
             </p>
-            <a href="#">Feature Coming Soon →</a>
+            <a href="#">crateandbarrel.com/li-joachim →</a>
           </div>
         </div>
 
+        {/* WECHAT & ZELLE (Updated with QR code) */}
         <div className="registry-row">
           <div className="registry-qr">
-            <Botanical variant="rose" size={80} />
+            <img src="assets/wechat-zelle-qr.png" alt="WeChat and Zelle QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
           </div>
           <div>
             <h4>WeChat &amp; Zelle 红包</h4>
             <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
               For family abroad — a traditional 红包 by WeChat or Zelle is warmly received.
             </p>
-            <a href="#">Feature Coming Soon→</a>
+            <a href="#">Request transfer details →</a>
           </div>
         </div>
       </Reveal>
