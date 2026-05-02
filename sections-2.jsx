@@ -107,14 +107,14 @@ const Gallery = () =>
 
       <Reveal>
         <div className="gallery">
-          <div className="g-cell"><img src="assets/IMG_2715.JPG" alt="Second date, friend party" loading="lazy" style={{ objectPosition: "50% 30%" }} /><span className="g-cap">2nd date · first friend party</span></div>
+          <div className="g-cell"><img src="assets/IMG_1086.jpg" alt="Second date, friend party" loading="lazy" style={{ objectPosition: "50% 30%" }} /><span className="g-cap">2nd date · first friend party</span></div>
           <div className="g-cell"><img src="assets/20190713_203004.jpg" alt="Hermann Park, Houston" loading="lazy" style={{ objectPosition: "50% 60%" }} /><span className="g-cap">2019 · Hermann Park, Houston</span></div>
           <div className="g-cell g-contain"><img src="assets/IMG_3650.JPG" alt="Run Alex Run sign" loading="lazy" style={{ objectFit: "contain", background: "var(--bg-deep)" }} /><span className="g-cap">Houston · Run, Alex, Run!</span></div>
-          <div className="g-cell"><img src="assets/20191128_100141.jpg" alt="Macy's Parade, NYC" loading="lazy" style={{ objectPosition: "50% 30%" }} /><span className="g-cap">Nov 2019 · NYC, Macy's Parade</span></div>
+          <div className="g-cell"><img src="assets/macy.jpg" alt="Macy's Parade, NYC" loading="lazy" style={{ objectPosition: "50% 30%" }} /><span className="g-cap">Nov 2019 · NYC, Macy's Parade</span></div>
           <div className="g-cell"><img src="assets/20201216_132654.jpg" alt="Sand dunes" loading="lazy" style={{ objectPosition: "50% 55%" }} /><span className="g-cap">Dec 2020 · sand dunes</span></div>
           <div className="g-cell"><img src="assets/20210117_193339.jpg" alt="Date night" loading="lazy" style={{ objectPosition: "50% 20%" }} /><span className="g-cap">Jan 2021 · date night</span></div>
           <div className="g-cell"><img src="assets/christmas-cat.jpg" alt="Christmas with the cat" loading="lazy" style={{ objectPosition: "50% 40%" }} /><span className="g-cap">Christmas · with our cat</span></div>
-          <div className="g-cell"><img src="assets/20230528_214053.jpg" alt="A toast" loading="lazy" style={{ objectPosition: "50% 50%" }} /><span className="g-cap">May 2023 · a toast</span></div>
+          <div className="g-cell"><img src="assets/IMG_4421.jpg" alt="A toast" loading="lazy" style={{ objectPosition: "50% 50%" }} /><span className="g-cap">May 2023 · a toast</span></div>
           <div className="g-cell"><img src="assets/20240831_191608.jpg" alt="Kayaking" loading="lazy" style={{ objectPosition: "50% 50%" }} /><span className="g-cap">Aug 2024 · kayaking</span></div>
           <div className="g-cell"><img src="assets/mmexport1728564791837.jpg" alt="Qing Feng pavilion, China" loading="lazy" style={{ objectPosition: "50% 60%" }} /><span className="g-cap">2024 · 清风亭 · China</span></div>
           <div className="g-cell"><img src="assets/20250411_141737.jpg" alt="Tulip fields" loading="lazy" style={{ objectPosition: "50% 50%" }} /><span className="g-cap">Apr 2025 · tulip fields</span></div>
