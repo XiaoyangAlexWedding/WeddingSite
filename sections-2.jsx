@@ -107,7 +107,7 @@ const Gallery = () =>
 
       <Reveal>
         <div className="gallery">
-          <div className="g-cell"><img src="assets/IMG_1086.jpg" alt="Second date, friend party" loading="lazy" style={{ objectPosition: "50% 30%" }} /><span className="g-cap">2nd date · first friend party</span></div>
+          <div className="g-cell"><img src="assets/20211016_141118.jpg" alt="park,houston" loading="lazy" style={{ objectPosition: "50% 30%" }} /><span className="g-cap">2nd date · first friend party</span></div>
           <div className="g-cell"><img src="assets/20190713_203004.jpg" alt="Hermann Park, Houston" loading="lazy" style={{ objectPosition: "50% 60%" }} /><span className="g-cap">2019 · Hermann Park, Houston</span></div>
           <div className="g-cell g-contain"><img src="assets/IMG_3650.JPG" alt="Run Alex Run sign" loading="lazy" style={{ objectFit: "contain", background: "var(--bg-deep)" }} /><span className="g-cap">Houston · Run, Alex, Run!</span></div>
           <div className="g-cell"><img src="assets/macy.jpg" alt="Macy's Parade, NYC" loading="lazy" style={{ objectPosition: "50% 30%" }} /><span className="g-cap">Nov 2019 · NYC, Macy's Parade</span></div>
