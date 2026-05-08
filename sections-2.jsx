@@ -44,94 +44,94 @@ const Travel = () =>
 
       <Reveal>
         <div className="travel-grid">
-          
-          {/* AIRPORT CARD (UPDATED) */}
-          <div className="travel-card">
-            <div className="label">Airport · 机场</div>
-            <h4>Portland International (PDX)</h4>
-            
-            <p style={{ marginBottom: 12 }}>
-              <strong>By Car:</strong> ~25 minutes to the hotel. Rideshare and rental cars are available curbside.
-            </p>
-            
-            <div style={{ marginBottom: 8 }}>
-              <strong>Light Rail to Hotel (~40 mins):</strong>
-            </div>
-            <ul style={{ margin: "4px 0 0", paddingLeft: 18, fontSize: 14 }}>
-              <li style={{ marginBottom: 6 }}>
-                Take the <a href="https://trimet.org/max/" target="_blank" rel="noopener noreferrer">MAX Red Line</a> from the <a href="https://share.google/ogAruhHK9elXU09eo" target="_blank" rel="noopener noreferrer">PDX Station</a> to <a href="https://maps.app.goo.gl/wdYeft6W9gcVRZoy5" target="_blank" rel="noopener noreferrer">Pioneer Square North</a>.
-              </li>
-              <li>
-                Tap on with a credit card or purchase a ticket. Each tap/ticket is valid for 2.5 hours of service. <em>Do not tap a second time within this 2.5-hour window.</em>
-              </li>
-            </ul>
-          </div>
-          
-          {/* HOTEL CARD */}
-          <div className="travel-card">
-            <div className="label">Hotel Block · 酒店</div>
-            <h4>The Benson Portland</h4>
-            <p className="addr-line" style={{ marginBottom: 16 }}>
-              Curio Collection by Hilton<br />
-              309 SW Broadway, Portland, OR 97205
-            </p>
-            <p style={{ marginBottom: 8 }}>
-              Group rate is <strong>$159/night</strong> for a King Urban View or Two Queen Urban View <em>(Note: the final price may appear differently until checkout)</em>.
-            </p>
-            <p style={{ marginBottom: 16 }}>
-              <a href="https://group.curiocollection.com/293rd7" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600 }}>
-                Book your room online here →
-              </a>
-            </p>
-            <p style={{ fontSize: 13, color: "var(--ink-soft)", fontStyle: "italic", margin: 0, lineHeight: 1.5, borderTop: "1px solid var(--rule)", paddingTop: 12 }}>
-              <strong>Booking issues?</strong> Contact Danny Feist, Reservation Coordinator:<br />
-              <a href="mailto:DFeist@bensonhotel.com" style={{ fontSize: 13, fontWeight: "normal" }}>DFeist@bensonhotel.com</a> &nbsp;·&nbsp; 503.228.2000 x 161
-            </p>
-          </div>
 
-          {/* PARKING CARD */}
-          <div className="travel-card">
-            <div className="label">Parking · 停 车</div>
-            <h4>Driving &amp; Parking</h4>
-            
-            <p style={{ color: "var(--accent-deep)", fontStyle: "italic", fontSize: 14, marginBottom: 16 }}>
-              Please do not leave belongings or valuables visible in your vehicles.
-            </p>
+  {/* AIRPORT CARD */}
+  <div className="travel-card">
+    <div className="label">Airport · 机场</div>
+    <h4>Portland International (PDX)</h4>
 
-            <div style={{ marginBottom: 16 }}>
-              <strong>The Benson</strong>
-              <ul style={{ margin: "4px 0 0", paddingLeft: 18, fontSize: 14 }}>
-                <li style={{ marginBottom: 4 }}>Valet parking: $44/night for wedding guests</li>
-                <li style={{ marginBottom: 4 }}>
-                  Cheaper: Union Bank Garage (403 SW Broadway)<br/>
-                  <a href="https://parkmobile.io/parking/locations/or/portland-parking/parking-lot/union-bank-garage" target="_blank" rel="noopener noreferrer">Reserve via ParkMobile →</a>
-                </li>
-                <li>
-                  Cheapest: City Owned Garage (0.3 miles walking)<br/>
-                  <a href="https://maps.app.goo.gl/ZhuFuv2U6bCnqYQt5" target="_blank" rel="noopener noreferrer">View on Google Maps →</a>
-                </li>
-              </ul>
-            </div>
+    <p style={{ marginBottom: 12, fontSize: 15 }}>
+      <strong style={{ fontWeight: 500 }}>By Car:</strong> ~25 minutes to the hotel. Rideshare and rental cars are available curbside.
+    </p>
 
-            <div style={{ marginBottom: 16 }}>
-              <strong>Ceremony · Providence Academy</strong>
-              <div style={{ fontSize: 14, marginTop: 4 }}>Onsite complimentary parking is available.</div>
-            </div>
+    <div style={{ marginBottom: 8, fontSize: 15, fontWeight: 500 }}>
+      Light Rail to Hotel (~40 mins):
+    </div>
+    <ul style={{ margin: "4px 0 0", paddingLeft: 18, fontSize: 15 }}>
+      <li style={{ marginBottom: 6 }}>
+        Take the <a href="https://trimet.org/max/" target="_blank" rel="noopener noreferrer">MAX Red Line</a> from the <a href="https://share.google/ogAruhHK9elXU09eo" target="_blank" rel="noopener noreferrer">PDX Station</a> to <a href="https://maps.app.goo.gl/wdYeft6W9gcVRZoy5" target="_blank" rel="noopener noreferrer">Pioneer Square North</a>.
+      </li>
+      <li>
+        Tap on with a credit card or purchase a ticket. Each tap/ticket is valid for 2.5 hours of service. <em>Do not tap a second time within this 2.5-hour window.</em>
+      </li>
+    </ul>
+  </div>
 
-            <div>
-              <strong>Reception · Lan Su Chinese Garden</strong>
-              <div style={{ fontSize: 14, marginTop: 4 }}>Ample street parking, plus a lot at Flanders &amp; 3rd.</div>
-            </div>
-          </div>
+  {/* HOTEL CARD */}
+  <div className="travel-card">
+    <div className="label">Hotel Block · 酒店</div>
+    <h4>The Benson Portland</h4>
+    <p style={{ marginBottom: 16, fontSize: 15 }}>
+      Curio Collection by Hilton<br />
+      309 SW Broadway, Portland, OR 97205
+    </p>
+    <p style={{ marginBottom: 8, fontSize: 15 }}>
+      Group rate is <span style={{ fontWeight: 500 }}>$159/night</span> for a King Urban View or Two Queen Urban View <em>(Note: the final price may appear differently until checkout)</em>.
+    </p>
+    <p style={{ marginBottom: 16 }}>
+      <a href="https://group.curiocollection.com/293rd7" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 500 }}>
+        Book your room online here →
+      </a>
+    </p>
+    <p style={{ fontSize: 13, color: "var(--ink-soft)", fontStyle: "italic", margin: 0, lineHeight: 1.5, borderTop: "1px solid var(--rule)", paddingTop: 12 }}>
+      <span style={{ fontWeight: 500 }}>Booking issues?</span> Contact Danny Feist, Reservation Coordinator:<br />
+      <a href="mailto:DFeist@bensonhotel.com" style={{ fontSize: 13, fontWeight: 400 }}>DFeist@bensonhotel.com</a> &nbsp;·&nbsp; 503.228.2000 x 161
+    </p>
+  </div>
 
-          {/* SHUTTLE CARD */}
-          <div className="travel-card">
-            <div className="label">Shuttle · 接 驳 车</div>
-            <h4>The Benson ↔ Providence ↔ Lan Su</h4>
-            <p>A complimentary shuttle will take guests from the ceremony at Providence to the reception at Lan Su Chinese Garden — about a 15-minute ride. Departs right after the ceremony.</p>
-          </div>
+  {/* PARKING CARD */}
+  <div className="travel-card">
+    <div className="label">Parking · 停 车</div>
+    <h4>Driving &amp; Parking</h4>
 
-        </div>
+    <p style={{ color: "var(--accent-deep)", fontStyle: "italic", fontSize: 15, marginBottom: 16 }}>
+      Please do not leave belongings or valuables visible in your vehicles.
+    </p>
+
+    <div style={{ marginBottom: 16 }}>
+      <span style={{ fontSize: 15, fontWeight: 500 }}>The Benson</span>
+      <ul style={{ margin: "4px 0 0", paddingLeft: 18, fontSize: 15 }}>
+        <li style={{ marginBottom: 4 }}>Valet parking: $44/night for wedding guests</li>
+        <li style={{ marginBottom: 4 }}>
+          Cheaper: Union Bank Garage (403 SW Broadway)<br />
+          <a href="https://parkmobile.io/parking/locations/or/portland-parking/parking-lot/union-bank-garage" target="_blank" rel="noopener noreferrer">Reserve via ParkMobile →</a>
+        </li>
+        <li>
+          Cheapest: City Owned Garage (0.3 miles walking)<br />
+          <a href="https://maps.app.goo.gl/ZhuFuv2U6bCnqYQt5" target="_blank" rel="noopener noreferrer">View on Google Maps →</a>
+        </li>
+      </ul>
+    </div>
+
+    <div style={{ marginBottom: 16 }}>
+      <span style={{ fontSize: 15, fontWeight: 500 }}>Ceremony · Providence Academy</span>
+      <div style={{ fontSize: 15, marginTop: 4 }}>Onsite complimentary parking is available.</div>
+    </div>
+
+    <div>
+      <span style={{ fontSize: 15, fontWeight: 500 }}>Reception · Lan Su Chinese Garden</span>
+      <div style={{ fontSize: 15, marginTop: 4 }}>Ample street parking, plus a lot at Flanders &amp; 3rd.</div>
+    </div>
+  </div>
+
+  {/* SHUTTLE CARD */}
+  <div className="travel-card">
+    <div className="label">Shuttle · 接 驳 车</div>
+    <h4>Providence ↔ Lan Su</h4>
+    <p style={{ fontSize: 15 }}>A complimentary shuttle will take guests from the ceremony at Providence to the reception at Lan Su Chinese Garden — about a 15-minute ride. Departs right after the ceremony.</p>
+  </div>
+
+</div>
       </Reveal>
 
       <Reveal>
