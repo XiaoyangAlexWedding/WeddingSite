@@ -173,7 +173,7 @@ const Gallery = () =>
           <div className="g-cell"><img src="assets/christmas-cat.jpg" alt="Christmas with the cat" loading="lazy" style={{ objectPosition: "50% 40%" }} /><span className="g-cap">Christmas · with our cat Luigi</span></div>
           <div className="g-cell"><img src="assets/20240714_140309.jpg" alt="A toast" loading="lazy" style={{ objectPosition: "50% 50%" }} /><span className="g-cap">May 2023 · Las Vagas</span></div>
           <div className="g-cell"><img src="assets/20240831_191608.jpg" alt="Kayaking" loading="lazy" style={{ objectPosition: "50% 50%" }} /><span className="g-cap">Aug 2024 · kayaking</span></div>
-          <div className="g-cell"><img src="assets/mmexport1728564791837.jpg" alt="Qing Feng pavilion, China" loading="lazy" style={{ objectPosition: "60% 70%" }} /><span className="g-cap">2024 · 南锣鼓巷 Nanluoguxiang, Beijing· China</span></div>
+          <div className="g-cell"><img src="assets/mmexport1728564791837.jpg" alt="Qing Feng pavilion, China" loading="lazy" style={{ objectPosition: "80% 70%" }} /><span className="g-cap">2024 · 南锣鼓巷 Nanluoguxiang, Beijing· China</span></div>
           <div className="g-cell"><img src="assets/20250411_141737.jpg" alt="Tulip fields" loading="lazy" style={{ objectPosition: "50% 50%" }} /><span className="g-cap">Apr 2025 · Japan Trip</span></div>
           <div className="g-cell"><img src="assets/van-show.jpg" alt="RV show" loading="lazy" style={{ objectPosition: "50% 45%" }} /><span className="g-cap">2025 · van life dreams</span></div>
           <div className="g-cell"><img src="assets/halloween-2025.jpg" alt="Halloween 2025" loading="lazy" style={{ objectPosition: "50% 35%" }} /><span className="g-cap">Halloween 2025 · Saiki K</span></div>
