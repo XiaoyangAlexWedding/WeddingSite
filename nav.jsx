@@ -63,6 +63,7 @@ const Nav = ({ active, onNavigate }) => {
           </a>
         ))}
 
+        {/*
         <a
           href="#rsvp"
           onClick={(e) => handle(e, "rsvp")}
@@ -70,6 +71,7 @@ const Nav = ({ active, onNavigate }) => {
         >
           RSVP
         </a>
+      */}
       </div>
     </nav>
   );
