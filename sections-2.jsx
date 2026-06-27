@@ -314,33 +314,47 @@ const FAQ = () => {
 
 };
 
-const RSVP = () =>
-<section id="rsvp" style={{ background: "var(--bg-deep)" }}>
-    <div className="shell-narrow">
-      <Reveal>
-        <div className="eyebrow" style={{ textAlign: "center" }}>Kindly respond</div>
-        <h2 className="section-title">RSVP</h2>
-        <div className="section-title-cn">回 复 卡</div>
-      </Reveal>
+const RSVP = () => {
+  // Let Tally's embed.js (loaded in index.html) wire up the iframe so it
+  // auto-resizes. The component mounts after the page transition, so we
+  // re-run loadEmbeds once it's on screen.
+  React.useEffect(() => {
+    if (window.Tally) window.Tally.loadEmbeds();
+  }, []);
 
-      <Reveal>
-        <div className="rsvp-block">
-          <p style={{ fontStyle: "italic", color: "var(--ink-soft)", marginBottom: 24 }}>
-            Your reply means the world to us. Please respond by <strong>August 15, 2026</strong>.
-          </p>
-          <p style={{ fontStyle: "italic", color: "var(--ink-soft)", marginBottom: 32 }}>
-            请于 2026 年 8 月 15 日前回复
-          </p>
-          <a className="btn" href="https://forms.google.com" target="_blank" rel="noopener noreferrer">
-            Respond Now &nbsp;·&nbsp; 立 即 回 复
-          </a>
-          <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--ink-soft)", marginTop: 24 }}>
-            Opens our Google Form — takes ~2 minutes
-          </p>
-        </div>
-      </Reveal>
-    </div>
-  </section>;
+  return (
+    <section id="rsvp" style={{ background: "var(--bg-deep)" }}>
+      <div className="shell-narrow">
+        <Reveal>
+          <div className="eyebrow" style={{ textAlign: "center" }}>Kindly respond</div>
+          <h2 className="section-title">RSVP</h2>
+          <div className="section-title-cn">回 复 卡</div>
+        </Reveal>
+
+        <Reveal>
+          <div className="rsvp-block">
+            <p style={{ fontStyle: "italic", color: "var(--ink-soft)", marginBottom: 24 }}>
+              Your reply means the world to us. Please respond by <strong>August 15, 2026</strong>.
+            </p>
+            <p style={{ fontStyle: "italic", color: "var(--ink-soft)", marginBottom: 32 }}>
+              请于 2026 年 8 月 15 日前回复
+            </p>
+            <iframe
+              data-tally-src="https://tally.so/embed/b5Ddqo?alignLeft=1&transparentBackground=1&dynamicHeight=1"
+              src="https://tally.so/embed/b5Ddqo?alignLeft=1&transparentBackground=1&dynamicHeight=1"
+              width="100%"
+              height="900"
+              frameBorder="0"
+              marginHeight="0"
+              marginWidth="0"
+              title="Wedding RSVP"
+            ></iframe>
+          </div>
+        </Reveal>
+      </div>
+    </section>);
+
+};
 
 
 const Footer = ({ onNavigate }) =>
