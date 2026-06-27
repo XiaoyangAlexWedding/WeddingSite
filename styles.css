@@ -1065,6 +1065,9 @@ body { padding-top: 0; }
   padding: 32px;
 }
 
+.rsvp-embed { max-width: 640px; width: 100%; margin: 0 auto; }
+.rsvp-embed iframe { width: 100%; display: block; }
+
 .btn {
   display: inline-block;
   font-family: var(--font-body);
