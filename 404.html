@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Page not found · Xiaoyang &amp; Alex</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Allura&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;1,400&family=Tangerine:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/styles.css?v=24" />
+
+  <style>
+    body { padding-top: 0; }
+    .nf-page { padding-top: 72px; min-height: calc(100vh - 220px); display: flex; align-items: center; }
+    .nf-page .section-title { font-size: 96px; }
+  </style>
+</head>
+<body>
+  <nav class="nav scrolled">
+    <a class="nav-mono" href="/" aria-label="Back to home" style="border-bottom:0;">X &amp; A</a>
+  </nav>
+
+  <main class="nf-page">
+    <section style="width:100%; background: var(--bg-deep)">
+      <div class="shell-narrow" style="text-align:center">
+        <div class="eyebrow" style="text-align:center">A little lost</div>
+        <h2 class="section-title">404</h2>
+        <div class="section-title-cn">页 面 未 找 到</div>
+        <p style="font-style:italic; color:var(--ink-soft); margin-bottom:32px">
+          This page seems to have wandered off. Let's get you back to the celebration.
+        </p>
+        <a class="btn" href="/">Return home &nbsp;·&nbsp; 返 回 首 页</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <div class="footer-monogram">X &amp; A</div>
+      <div class="divider"></div>
+      <div class="footer-meta" style="margin-top:24px">Xiaoyang Li &nbsp;·&nbsp; Alexander Joachim</div>
+      <div class="footer-meta" style="margin-top:8px">17 · 10 · 2026 &nbsp;·&nbsp; Portland, Oregon</div>
+      <div class="footer-hash">#XiaoyangAndAlex</div>
+    </div>
+  </footer>
+
+<script>
+(function () {
+  if (location.pathname.toLowerCase().replace(/\/+$/, '') === '/rsvp') {
+    location.replace('/RSVP/' + location.search + location.hash);
+  }
+})();
+</script>
+</body>
+</html>
