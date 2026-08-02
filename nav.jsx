@@ -63,6 +63,11 @@ const Nav = ({ active, onNavigate }) => {
           </a>
         ))}
 
+        {/* Standalone page at a real path — full navigation, not a hash route */}
+        <a href="/things-to-do/" onClick={() => setOpen(false)}>
+          Things to Do
+        </a>
+
         {/*
         <a
           href="#rsvp"

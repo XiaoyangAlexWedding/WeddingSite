@@ -1,4 +1,6 @@
-import { useEffect, useRef } from "react";
+/* This site has no bundler: React is a UMD global and each .jsx exposes its
+   component on window (see nav.jsx / sections-*.jsx). No import/export here. */
+const { useEffect: useTtdEffect, useRef: useTtdRef } = React;
 
 /**
  * Things to Do — guest activities page.
@@ -211,37 +213,37 @@ const SECTIONS = [
   },
 ];
 
-function SubList({ nodes }) {
+function TtdSubList({ nodes }) {
   return (
     <ul>
       {nodes.map((node, i) => (
         <li key={i}>
           {node.text}
-          {node.children && <SubList nodes={node.children} />}
+          {node.children && <TtdSubList nodes={node.children} />}
         </li>
       ))}
     </ul>
   );
 }
 
-function ItemList({ items }) {
+function TtdItemList({ items }) {
   return (
     <ul>
       {items.map((item, i) => (
         <li key={i}>
           <span className="ttd-name">{item.name}</span>
           {item.rest}
-          {item.children && <SubList nodes={item.children} />}
+          {item.children && <TtdSubList nodes={item.children} />}
         </li>
       ))}
     </ul>
   );
 }
 
-export default function ThingsToDo() {
-  const rootRef = useRef(null);
+function ThingsToDo() {
+  const rootRef = useTtdRef(null);
 
-  useEffect(() => {
+  useTtdEffect(() => {
     const root = rootRef.current;
     if (!root) return;
 
@@ -307,12 +309,12 @@ export default function ThingsToDo() {
             </div>
 
             {s.pull && <p className="ttd-pull">{s.pull}</p>}
-            {s.items && <ItemList items={s.items} />}
+            {s.items && <TtdItemList items={s.items} />}
 
             {s.subsections?.map((sub, i) => (
               <div key={i}>
                 <h3 className="ttd-sub">{sub.title}</h3>
-                <ItemList items={sub.items} />
+                <TtdItemList items={sub.items} />
               </div>
             ))}
           </section>
@@ -322,7 +324,7 @@ export default function ThingsToDo() {
       <footer className="ttd-footer">
         <div className="ttd-wrap">
           <span className="ttd-cjk">囍</span>
-          {/* Swap for <Link to="/"> if you're using react-router */}
+          {/* Static multi-page site — no router/Link, so a plain home link is correct */}
           <a href="/">Back to the wedding site</a>
         </div>
       </footer>
@@ -331,21 +333,21 @@ export default function ThingsToDo() {
 }
 
 const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&family=Karla:wght@400;500;700&family=Noto+Serif+SC:wght@600&display=swap');
-
+/* Fonts are loaded globally by the host page; colors + type here map to the
+   site's shared tokens defined on :root in styles.css. */
 .ttd{
-  --ttd-ink:#1B211E;
-  --ttd-ink-soft:#454E48;
-  --ttd-seal:#8C1D2B;
-  --ttd-burgundy:#6B1526;
-  --ttd-paper:#F2F1EA;
-  --ttd-paper-deep:#E7E6DC;
-  --ttd-jade:#5E7A64;
-  --ttd-brass:#A8874A;
-  --ttd-rule:rgba(27,33,30,.14);
-  --ttd-display:"Fraunces",Georgia,serif;
-  --ttd-body:"Karla",system-ui,sans-serif;
-  --ttd-cjk:"Noto Serif SC",serif;
+  --ttd-ink:var(--ink);
+  --ttd-ink-soft:var(--ink-soft);
+  --ttd-seal:var(--accent-deep);
+  --ttd-burgundy:var(--accent-deep);
+  --ttd-paper:var(--paper);
+  --ttd-paper-deep:var(--bg-deep);
+  --ttd-jade:var(--accent);
+  --ttd-brass:var(--line);
+  --ttd-rule:var(--rule);
+  --ttd-display:var(--font-display);
+  --ttd-body:var(--font-body);
+  --ttd-cjk:var(--font-body);
 
   background:var(--ttd-paper);
   color:var(--ttd-ink);
@@ -388,7 +390,7 @@ const CSS = `
   margin:0;
   font-variation-settings:"SOFT" 40,"WONK" 1;
 }
-.ttd-masthead h1 em{font-style:italic;color:#E8CFA9}
+.ttd-masthead h1 em{font-style:italic;color:var(--accent)}
 .ttd-cjk-title{
   font-family:var(--ttd-cjk);
   font-size:15px;letter-spacing:.4em;
@@ -489,7 +491,7 @@ const CSS = `
   color:rgba(242,241,234,.7);
   padding:44px 0;font-size:14px;text-align:center;
 }
-.ttd-footer a{color:#E8CFA9;border-bottom-color:rgba(232,207,169,.4)}
+.ttd-footer a{color:var(--line);border-bottom-color:var(--rule)}
 .ttd-cjk{
   font-family:var(--ttd-cjk);letter-spacing:.3em;color:var(--ttd-seal);
   font-size:22px;display:block;margin-bottom:14px;
@@ -508,3 +510,5 @@ const CSS = `
   .ttd-sec-head .ttd-seal{width:44px;height:44px;font-size:23px}
 }
 `;
+
+Object.assign(window, { ThingsToDo });
