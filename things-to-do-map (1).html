@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Things to Do · Map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=Karla:wght@400;500;700&family=Noto+Serif+SC:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B211E;
+    --ink-soft:#454E48;
+    --paper:#F2F1EA;
+    --paper-deep:#E7E6DC;
+    --rule:rgba(27,33,30,.14);
+    --c-downtown:#8C1D2B;
+    --c-nature:#5E7A64;
+    --c-coast:#2F6478;
+    --c-kids:#A8874A;
+    --c-venue:#1B211E;
+    --display:"Fraunces",Georgia,serif;
+    --body:"Karla",system-ui,sans-serif;
+    --cjk:"Noto Serif SC",serif;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:var(--body);
+    display:flex;flex-direction:column;
+  }
+
+  header{padding:20px 22px 14px;border-bottom:1px solid var(--rule)}
+  header h1{
+    font-family:var(--display);font-weight:300;
+    font-size:clamp(24px,4.2vw,34px);letter-spacing:-.02em;margin:0;
+    font-variation-settings:"SOFT" 40,"WONK" 1;
+  }
+  header p{margin:6px 0 0;font-size:13.5px;color:var(--ink-soft)}
+
+  .filters{
+    display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+    padding:12px 22px;border-bottom:1px solid var(--rule);
+  }
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;
+    border:1px solid var(--rule);background:transparent;
+    border-radius:999px;padding:6px 14px 6px 10px;
+    font-family:var(--body);font-size:13px;color:var(--ink-soft);
+    cursor:pointer;transition:background .15s ease,color .15s ease,border-color .15s ease;
+  }
+  .chip .dot{width:10px;height:10px;border-radius:50%;flex:0 0 auto}
+  .chip[aria-pressed="true"]{background:var(--paper-deep);color:var(--ink);border-color:rgba(27,33,30,.28)}
+  .chip[aria-pressed="false"]{opacity:.45}
+  .chip:focus-visible{outline:2px solid var(--c-nature);outline-offset:2px}
+  .chip.ghost{margin-left:auto;padding-left:14px}
+
+  #map{flex:1 1 auto;min-height:420px;background:var(--paper-deep)}
+
+  /* Markers */
+  .pin{
+    width:18px;height:18px;border-radius:50%;
+    border:2.5px solid var(--paper);
+    box-shadow:0 1px 4px rgba(0,0,0,.35);
+  }
+  .pin.venue{
+    border-radius:3px;transform:rotate(45deg);
+    width:16px;height:16px;
+  }
+
+  /* Popups */
+  .leaflet-popup-content-wrapper{
+    background:var(--paper);border-radius:4px;
+    box-shadow:0 6px 24px rgba(27,33,30,.22);
+  }
+  .leaflet-popup-content{margin:16px 18px;font-family:var(--body);font-size:14px;line-height:1.55;width:270px!important}
+  .leaflet-popup-tip{background:var(--paper)}
+  .pop-cat{
+    font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+    margin:0 0 6px;font-weight:700;
+  }
+  .pop-name{
+    font-family:var(--display);font-weight:500;font-size:18px;
+    line-height:1.2;margin:0 0 8px;letter-spacing:-.01em;
+  }
+  .pop-desc{margin:0;color:var(--ink-soft);font-size:13.5px}
+  .pop-link{
+    display:inline-block;margin-top:12px;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink);text-decoration:none;
+    border:1px solid var(--rule);border-radius:999px;padding:4px 12px;
+  }
+  .pop-link:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+  footer{
+    padding:12px 22px;border-top:1px solid var(--rule);
+    font-size:12px;color:var(--ink-soft);
+    display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+  }
+  footer .cjk{font-family:var(--cjk);color:var(--c-downtown);letter-spacing:.2em}
+
+  /* Embed mode: ?embed=1 strips the page chrome so the map fills an iframe */
+  body.embed header,
+  body.embed footer{display:none}
+  body.embed .filters{border-top:0}
+
+  @media (max-width:600px){
+    header{padding:16px 16px 12px}
+    .filters{padding:10px 16px;gap:6px}
+    .chip{padding:5px 12px 5px 9px;font-size:12.5px}
+    .chip.ghost{margin-left:0}
+    footer{padding:10px 16px}
+  }
+</style>
+</head>
+<body>
+<script>
+  // Runs before render so the header never flashes in embed mode.
+  if (new URLSearchParams(location.search).has("embed")) {
+    document.body.className = "embed";
+  }
+</script>
+
+<header>
+  <h1>Where everything is</h1>
+  <p>Tap a pin for details. Filter by category below.</p>
+</header>
+
+<div class="filters" id="filters"></div>
+
+<div id="map"></div>
+
+<footer>
+  <span class="cjk">囍</span>
+  <span>Wineries aren't pinned. They're everywhere. Find your favorite.</span>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+/* ------------------------------------------------------------------
+   CATEGORIES
+------------------------------------------------------------------ */
+const CATEGORIES = {
+  venue:    { label: "Wedding",           color: "#1B211E" },
+  downtown: { label: "Downtown Portland", color: "#8C1D2B" },
+  nature:   { label: "Nature/Hiking",     color: "#5E7A64" },
+  coast:    { label: "Oregon Coast",      color: "#2F6478" },
+  kids:     { label: "Kids",              color: "#A8874A" }
+};
+
+/* ------------------------------------------------------------------
+   PLACES  — edit here to add or change anything.
+   cats: one or more category keys. desc: text shown in the popup.
+------------------------------------------------------------------ */
+const PLACES = [
+  // --- Wedding venues (delete these two if you'd rather not show them) ---
+  { name:"Providence Academy", cats:["venue"], lat:45.6299472, lng:-122.6681668,
+    pid:"ChIJgXfH6bOolVQRXr3lsQtrJKc", desc:"Ceremony. Vancouver, WA." },
+  { name:"Lan Su Chinese Garden", cats:["venue"], lat:45.5256321, lng:-122.6729955,
+    pid:"ChIJ_5QZeKqglVQRaTkbdQnoF0w", desc:"Reception. Old Town, Portland." },
+
+  // --- Downtown Portland ---
+  { name:"Powell’s Books", cats:["downtown"], lat:45.5232451, lng:-122.6814329,
+    pid:"ChIJByq0twMKlVQRL5HMcgiC2GA", desc:"" },
+  { name:"Screen Door (Eastside)", cats:["downtown"], lat:45.5230170, lng:-122.6416250,
+    pid:"ChIJu1MQrL6glVQRNuGYoTmvBoY", desc:"Screen door brunch restaurant reservation" },
+  { name:"Screen Door (Pearl District)", cats:["downtown"], lat:45.5237960, lng:-122.6827051,
+    pid:"ChIJLU7eCV0LlVQRFraHfst6uiM", desc:"Screen door brunch restaurant reservation" },
+  { name:"Mother’s Bistro & Bar", cats:["downtown"], lat:45.5221859, lng:-122.6738239,
+    pid:"ChIJ5V0qcAYKlVQRcYiPk80LC4g", desc:"Mother’s for brunch" },
+  { name:"Portland Spirit (Salmon Street dock)", cats:["downtown"], lat:45.5152255, lng:-122.6726511,
+    pid:"ChIJ-asx_w4KlVQR2fVU5k6-e0A", desc:"Spirit cruise on the Willamette!" },
+  { name:"Black Cat Frozen Custard & Coffee", cats:["downtown"], lat:45.5216099, lng:-122.6729664,
+    pid:"ChIJPx0_zQsLlVQRcOJ_STePL2w",
+    desc:"+ hidden speakeasy – Gothic Themed Frozen Custard Shop and Speakeasy" },
+  { name:"Portland Zoo", cats:["downtown","kids"], lat:45.5093572, lng:-122.7142910,
+    pid:"ChIJBbhWuC4KlVQRJvzdnrAg5-c", desc:"accessible via light rail/has parking" },
+  { name:"Forest Park (Lower Macleay trailhead)", cats:["downtown","nature"], lat:45.5359671, lng:-122.7125142,
+    pid:"ChIJLfCt8ukJlVQR2UHJradoNhs", desc:"hiking basically within the city" },
+  { name:"Portland Japanese Garden", cats:["downtown"], lat:45.5188634, lng:-122.7080354,
+    pid:"ChIJecbtFYoJlVQR7V4BJzbAjJ4",
+    desc:"Washington Park and the Portland Japanese Garden (proclaimed to be the most beautiful and authentic Japanese garden outside of Japan and one of Oregon’s most beloved spaces) – right near Zoo" },
+  { name:"Moda Center", cats:["downtown"], lat:45.5315651, lng:-122.6668423,
+    pid:"ChIJvfIK2VKnlVQRp8nAsCikTaw",
+    desc:"Portland Trailblzers vs. Golden State Warriors Preseason Game – 10/16 @ 7pm" },
+  { name:"Tear Drop Lounge", cats:["downtown"], lat:45.5252535, lng:-122.6816476,
+    pid:"ChIJGQiLHQIKlVQRbh0KO8yg4xc",
+    desc:"expertly crafted inventive cocktail’s with unique ingredients!" },
+  { name:"Next Level Pinball Shop & Museum", cats:["downtown","kids"], lat:45.5357816, lng:-122.9560825,
+    pid:"ChIJ6bt31jUFlVQRhDqfhrhmry8",
+    desc:"One of best arcades in country ~$20 all games free, 805/grinds coffee and food next door! 34,000 sqft over 800 games! Take the Max Redline to Hillsboro Fairground and it’s a 1 mile walk!" },
+
+  // --- Nature / Hiking ---
+  { name:"Banks-Vernonia State Trail", cats:["nature"], lat:45.6222067, lng:-123.1141509,
+    pid:"ChIJgYApZwMdlVQRCB61ERBfmwY",
+    desc:"Fully paved. Oregon’s first rails-to-trails park, a 21-mile multi-use path between Banks and Vernonia." },
+  { name:"Wildwood Trail (Washington Park)", cats:["nature"], lat:45.5151756, lng:-122.7104903,
+    pid:"ChIJGfTXCycKlVQRe9loilMSQG4",
+    desc:"partially paved trail/Packed Dirt, starts near Oregon zoo, multiple access points" },
+  { name:"Tillamook Forest Center", cats:["nature","kids"], lat:45.5859877, lng:-123.5605284,
+    pid:"ChIJqxpxGC3alFQRHV47gIpvNaY",
+    desc:"ranger station to climb the top of, easy access to trails, along the way to Tillamook and Oregon Coast" },
+  { name:"Multnomah Falls", cats:["nature"], lat:45.5761597, lng:-122.1157756,
+    pid:"ChIJd1halB7rlVQRxjsIJ4b46h4", desc:"Columbia gorge" },
+  { name:"Latourell Falls", cats:["nature"], lat:45.5369979, lng:-122.2177965,
+    pid:"ChIJbdj7HjiUlVQRNWUe-Rrkm2E", desc:"Columbia gorge" },
+  { name:"Wahclella Falls", cats:["nature"], lat:45.6302189, lng:-121.9539305,
+    pid:"ChIJ-WyoH4_olVQRsKwkzzuycKg", desc:"Columbia gorge" },
+  { name:"Silver Falls State Park", cats:["nature"], lat:44.8697025, lng:-122.6370076,
+    pid:"ChIJeaLUhtrtv1QRcc8s-jbAVT0",
+    desc:"Winter Falls Loop: 7 waterfalls, 5 mile moderate loop, can do a shorter variation with fewer waterfalls. If really ambitious can do Trail of Ten Falls." },
+  { name:"Tamanawas Falls", cats:["nature"], lat:45.3971787, lng:-121.5715891,
+    pid:"ChIJ9Qu6a6EDvlQRYKjIyp8AYZo", desc:"Mount Hood, easier trail. 4.7 miles." },
+  { name:"Lookout Mountain (High Prairie trailhead)", cats:["nature"], lat:45.3519628, lng:-121.5311824,
+    pid:"ChIJ6ckUjvkEvlQRX-lwvWSaDlA", desc:"Mount Hood, easier trail. 3 miles." },
+
+  // --- Oregon Coast ---
+  { name:"Cannon Beach", cats:["coast"], lat:45.8917738, lng:-123.9615274,
+    pid:"ChIJXc7PQCellFQRITpZ6kxP_hs", desc:"" },
+  { name:"Haystack Rock", cats:["coast"], lat:45.8841173, lng:-123.9684844,
+    pid:"ChIJGyDYNeCklFQRIulHV5MDY40", desc:"Tidepooling, can see starfish" },
+  { name:"Kelly’s Brighton Marina", cats:["coast"], lat:45.6685499, lng:-123.9251451,
+    pid:"ChIJsQZyKTXKlFQRsI7eOc_YU08",
+    desc:"2hr Boat rental and crabbing equipment, get crabbing, they’ll cook your crabs and you can hang out by their fire pits by the beach. You can also do dock crabbing." },
+  { name:"Oswald West State Park", cats:["coast"], lat:45.7698110, lng:-123.9590931,
+    pid:"ChIJRzRiWye3lFQRB9nr8t6w2xY", desc:"between Cannon Beach and Manzanita" },
+  { name:"Lincoln City", cats:["coast"], lat:44.9620902, lng:-124.0159354,
+    pid:"ChIJd712C3aN6lQRYugsfWoOU3E", desc:"Further south" },
+  { name:"Boiler Bay", cats:["coast"], lat:44.8301548, lng:-124.0655196,
+    pid:"ChIJMf5nCQ6I6lQRhFKPDrILvvg", desc:"Further south" },
+
+  // --- Kids ---
+  { name:"OMSI", cats:["kids"], lat:45.5083931, lng:-122.6660355,
+    pid:"ChIJ0RKx6HIKlVQRTPj6J0hpdNA",
+    desc:"Oregon Museum of Science and Industry – interactive science exhibits for children! It’s quite fun for the whole family!" },
+  { name:"Sauvie Island Pumpkin Patch and Corn Maze", cats:["kids"], lat:45.6421910, lng:-122.7896620,
+    pid:"ChIJX7sjXICplVQRoSEq9zWCxHo", desc:"" }
+];
+
+/* ------------------------------------------------------------------
+   MAP
+------------------------------------------------------------------ */
+const map = L.map("map", { scrollWheelZoom: false });
+
+L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  maxZoom: 19
+}).addTo(map);
+
+const active = new Set(Object.keys(CATEGORIES));
+const markers = [];
+
+function esc(s){
+  return String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+}
+
+PLACES.forEach(p => {
+  const primary = p.cats[0];
+  const color = CATEGORIES[primary].color;
+  const isVenue = primary === "venue";
+
+  const icon = L.divIcon({
+    className: "",
+    html: `<div class="pin${isVenue ? " venue" : ""}" style="background:${color}"></div>`,
+    iconSize: [18, 18],
+    iconAnchor: [9, 9],
+    popupAnchor: [0, -10]
+  });
+
+  const gmaps = `https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}`
+              + (p.pid ? `&query_place_id=${p.pid}` : "");
+
+  const labels = p.cats.map(c => CATEGORIES[c].label).join(" · ");
+
+  const html =
+    `<p class="pop-cat" style="color:${color}">${esc(labels)}</p>` +
+    `<p class="pop-name">${esc(p.name)}</p>` +
+    (p.desc ? `<p class="pop-desc">${esc(p.desc)}</p>` : "") +
+    `<a class="pop-link" href="${gmaps}" target="_blank" rel="noreferrer">Directions</a>`;
+
+  const m = L.marker([p.lat, p.lng], { icon, title: p.name }).bindPopup(html);
+  m._cats = p.cats;
+  markers.push(m);
+  m.addTo(map);
+});
+
+function refresh(){
+  markers.forEach(m => {
+    const show = m._cats.some(c => active.has(c));
+    if (show && !map.hasLayer(m)) m.addTo(map);
+    if (!show && map.hasLayer(m)) map.removeLayer(m);
+  });
+}
+
+function fitAll(){
+  const shown = markers.filter(m => map.hasLayer(m));
+  if (!shown.length) return;
+  map.fitBounds(L.featureGroup(shown).getBounds().pad(0.12));
+}
+
+/* ---- Filter chips ---- */
+const filterBar = document.getElementById("filters");
+
+Object.entries(CATEGORIES).forEach(([key, cat]) => {
+  const btn = document.createElement("button");
+  btn.className = "chip";
+  btn.type = "button";
+  btn.setAttribute("aria-pressed", "true");
+  btn.innerHTML = `<span class="dot" style="background:${cat.color}"></span>${cat.label}`;
+  btn.addEventListener("click", () => {
+    const on = btn.getAttribute("aria-pressed") === "true";
+    btn.setAttribute("aria-pressed", on ? "false" : "true");
+    on ? active.delete(key) : active.add(key);
+    refresh();
+  });
+  filterBar.appendChild(btn);
+});
+
+const reset = document.createElement("button");
+reset.className = "chip ghost";
+reset.type = "button";
+reset.textContent = "Zoom to fit";
+reset.addEventListener("click", fitAll);
+filterBar.appendChild(reset);
+
+fitAll();
+map.on("click", () => map.scrollWheelZoom.enable());
+</script>
+
+</body>
+</html>
