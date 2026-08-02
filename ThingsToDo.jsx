@@ -63,6 +63,22 @@ const SECTIONS = [
           },
         ],
       },
+      {
+        name: "Hopscotch",
+        rest: (
+          <>
+            {" – immersive art experience, rooms of interactive installations "}
+            <a
+              className="ttd-maplink"
+              href="https://share.google/4EfcoO8QRTafmbgdg"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Map
+            </a>
+          </>
+        ),
+      },
     ],
   },
   {
@@ -147,6 +163,22 @@ const SECTIONS = [
         name: "Oswald West state park",
         rest: " (between Cannon Beach and Manzanita)",
       },
+      {
+        name: "Tillamook Creamery",
+        rest: " – cheese factory tour, samples, and ice cream on the way down the coast",
+      },
+      {
+        name: "Oregon Coast Scenic Railroad",
+        rest: (
+          <>
+            {" – vintage steam & diesel train rides along the coast from Garibaldi ("}
+            <a href="https://oregoncoastscenic.org/" target="_blank" rel="noreferrer">
+              oregoncoastscenic.org
+            </a>
+            {")"}
+          </>
+        ),
+      },
     ],
     subsections: [
       {
@@ -201,6 +233,22 @@ const SECTIONS = [
             <a
               className="ttd-maplink"
               href="https://share.google/HWETTR8bIZ7dt26vZ"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Map
+            </a>
+          </>
+        ),
+      },
+      {
+        name: "Hopscotch",
+        rest: (
+          <>
+            {" – immersive art experience, rooms of interactive installations "}
+            <a
+              className="ttd-maplink"
+              href="https://share.google/4EfcoO8QRTafmbgdg"
               target="_blank"
               rel="noreferrer"
             >
