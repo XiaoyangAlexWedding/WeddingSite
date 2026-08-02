@@ -6,22 +6,26 @@
 <title>Things to Do · Map</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=Karla:wght@400;500;700&family=Noto+Serif+SC:wght@600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 <style>
+  /* Neutrals + fonts match the wedding site's tokens (see styles.css :root).
+     The five --c-* category colors are a functional legend and are kept. */
   :root{
-    --ink:#1B211E;
-    --ink-soft:#454E48;
-    --paper:#F2F1EA;
-    --paper-deep:#E7E6DC;
-    --rule:rgba(27,33,30,.14);
+    --ink:#2a1e16;
+    --ink-soft:#5a4538;
+    --paper:#faf3e9;
+    --paper-deep:#ecdfd0;
+    --rule:rgba(138, 74, 53, 0.25);
     --c-downtown:#8C1D2B;
     --c-nature:#5E7A64;
     --c-coast:#2F6478;
     --c-kids:#A8874A;
-    --c-venue:#1B211E;
-    --display:"Fraunces",Georgia,serif;
-    --body:"Karla",system-ui,sans-serif;
-    --cjk:"Noto Serif SC",serif;
+    --c-venue:#2a1e16;
+    --display:"Cormorant Garamond",Georgia,serif;
+    --body:"EB Garamond",Georgia,serif;
+    --cjk:"EB Garamond",serif;
   }
   *{box-sizing:border-box}
   html,body{height:100%;margin:0}
@@ -143,7 +147,7 @@
    CATEGORIES
 ------------------------------------------------------------------ */
 const CATEGORIES = {
-  venue:    { label: "Wedding",           color: "#1B211E" },
+  venue:    { label: "Wedding",           color: "#2a1e16" },
   downtown: { label: "Downtown Portland", color: "#8C1D2B" },
   nature:   { label: "Nature/Hiking",     color: "#5E7A64" },
   coast:    { label: "Oregon Coast",      color: "#2F6478" },
