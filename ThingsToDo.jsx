@@ -287,6 +287,10 @@ function ThingsToDo() {
 
       <nav className="ttd-index" aria-label="Sections">
         <div className="ttd-wrap">
+          <a href="#map">
+            <span className="ttd-seal" aria-hidden="true">图</span>
+            Map
+          </a>
           {SECTIONS.map((s) => (
             <a key={s.id} href={`#${s.id}`}>
               <span className="ttd-seal" aria-hidden="true">
@@ -299,6 +303,29 @@ function ThingsToDo() {
       </nav>
 
       <main className="ttd-wrap">
+        <section id="map" className="ttd-reveal">
+          <div className="ttd-sec-head">
+            <span className="ttd-seal" aria-hidden="true">图</span>
+            <h2>On the Map</h2>
+          </div>
+          <p className="ttd-map-intro">
+            Everything below, pinned across Portland and out to the coast. Filter by
+            category, and tap a pin for details and directions.
+          </p>
+          <div className="ttd-map-frame">
+            <iframe
+              src="/things-to-do/map/?embed=1"
+              title="Map of things to do around Portland and the Oregon coast"
+              loading="lazy"
+            ></iframe>
+          </div>
+          <p className="ttd-map-more">
+            <a href="/things-to-do/map/" target="_blank" rel="noreferrer">
+              Open the full map ↗
+            </a>
+          </p>
+        </section>
+
         {SECTIONS.map((s) => (
           <section key={s.id} id={s.id} className="ttd-reveal">
             <div className="ttd-sec-head">
@@ -485,6 +512,17 @@ const CSS = `
   color:var(--ttd-burgundy);margin:0;
   font-variation-settings:"SOFT" 60,"WONK" 1;
 }
+
+.ttd-map-intro{color:var(--ttd-ink-soft);margin:0 0 22px;max-width:60ch}
+.ttd-map-frame{
+  border:1px solid var(--ttd-rule);
+  border-radius:8px;overflow:hidden;
+  background:var(--ttd-paper-deep);
+  box-shadow:0 2px 20px rgba(27,33,30,.06);
+}
+.ttd-map-frame iframe{display:block;width:100%;height:600px;border:0}
+.ttd-map-more{margin:16px 0 0;font-size:13px;letter-spacing:.04em}
+@media (max-width:600px){ .ttd-map-frame iframe{height:460px} }
 
 .ttd-footer{
   background:var(--ttd-ink);
