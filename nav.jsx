@@ -68,15 +68,10 @@ const Nav = ({ active, onNavigate }) => {
           Things to Do
         </a>
 
-        {/*
-        <a
-          href="#rsvp"
-          onClick={(e) => handle(e, "rsvp")}
-          className={`nav-rsvp ${active === "rsvp" ? "active" : ""}`}
-        >
+        {/* Standalone page at a real path — full navigation, not a hash route */}
+        <a href="/RSVP/" className="nav-rsvp" onClick={() => setOpen(false)}>
           RSVP
         </a>
-      */}
       </div>
     </nav>
   );
