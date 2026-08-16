@@ -200,7 +200,7 @@ const Details = () =>
             <h3>The Ceremony</h3>
             <div className="where">仪 式 · PROVIDENCE ACADEMY</div>
             <div className="when">Saturday · October 17, 2026</div>
-            <div className="when">Ceremony at 3:00 pm PST</div>
+            <div className="when">3:00 pm PST</div>
             <div className="addr" style={{ marginTop: 4, fontStyle: "italic" }}>
               May shift to 2:00 pm due to a planned construction project — we'll confirm closer to the date.
             </div>
@@ -216,7 +216,7 @@ const Details = () =>
             <h3>The Reception</h3>
             <div className="where">晚 宴 · Lan Su 兰 苏 园</div>
             <div className="when">Saturday · October 17, 2026</div>
-            <div className="when">Reception at 4:30 pm PST</div>
+            <div className="when">4:30 pm PST</div>
             <div className="addr" style={{ marginTop: 12 }}>
               Lan Su Chinese Garden<br />
               239 NW Everett St, Portland, Oregon<br />
