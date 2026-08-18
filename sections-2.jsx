@@ -334,10 +334,10 @@ const RSVP = () => {
         <Reveal>
           <div className="rsvp-block">
             <p style={{ fontStyle: "italic", color: "var(--ink-soft)", marginBottom: 24 }}>
-              Your reply means the world to us. Please respond by <strong>August 15, 2026</strong>.
+              Your reply means the world to us.
             </p>
             <p style={{ fontStyle: "italic", color: "var(--ink-soft)", marginBottom: 32 }}>
-              请于 2026 年 8 月 15 日前回复
+              期 待 您 的 回 复
             </p>
             <iframe
               data-tally-src="https://tally.so/embed/b5Ddqo?alignLeft=1&transparentBackground=1&dynamicHeight=1"
