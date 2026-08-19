@@ -127,8 +127,8 @@ const Travel = () =>
   {/* SHUTTLE CARD */}
   <div className="travel-card">
     <div className="label">Shuttle · 接 驳 车</div>
-    <h4>Providence ↔ Lan Su</h4>
-    <p style={{ fontSize: 15 }}>A complimentary shuttle will take guests from the ceremony at Providence to the reception at Lan Su Chinese Garden — about a 15-minute ride. Departs right after the ceremony.</p>
+    <h4>The Benson → Providence → Lan Su</h4>
+    <p style={{ fontSize: 15 }}>A complimentary shuttle runs the full route on the wedding day: it departs from The Benson and takes guests to Providence Academy for the ceremony, then continues on to Lan Su Chinese Garden for the reception. Exact pickup time at the hotel will be shared closer to the day.</p>
   </div>
 
 </div>
