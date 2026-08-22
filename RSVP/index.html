@@ -49,12 +49,16 @@
             var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(null==d.querySelector('script[src="'+w+'"]')){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
           </script>
 
-          <div style="margin-top:28px; padding-top:24px; border-top:1px solid var(--rule)">
-            <p style="font-style:italic; color:var(--ink-soft); margin-bottom:16px">
-              Have your details changed? Please share your updated contact information and names with us so we can keep our guest list current.
+          <div style="margin-top:36px; padding-top:32px; border-top:1px solid var(--rule)">
+            <p style="color:var(--ink); font-size:20px; font-weight:500; margin-bottom:10px">
+              Haven't filled out our guest info form yet?
             </p>
-            <a class="btn btn-ghost" href="/guestinfo/" style="font-size:14px; padding:12px 28px">
-              Update your guest info →
+            <p style="color:var(--ink); font-size:16px; margin-bottom:24px">
+              We need your contact information and the names of everyone in your party.
+              Please take a moment to share them so we can finalize invitations and stay in touch.
+            </p>
+            <a class="btn" href="/guestinfo/" style="font-size:15px; padding:14px 34px">
+              Share your guest info →
             </a>
           </div>
         </div>
