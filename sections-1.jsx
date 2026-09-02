@@ -226,12 +226,7 @@ const Details = () =>
         </div>
       </Reveal>
 
-      <Reveal>
-        <div style={{ textAlign: "center", marginTop: 64 }}>
-          <div className="eyebrow" style={{ marginBottom: 12 }}>Counting down · 倒 计 时</div>
-          <Countdown />
-        </div>
-      </Reveal>
+
 
 
       <Reveal>
@@ -242,7 +237,7 @@ const Details = () =>
       
           <figure className="detail-map">
             <img
-              src="assets/Reception-acitivity-mapA4.jpg"
+              src="assets/lansu-map.png"
               alt="Lan Su Chinese Garden wedding reception activity map"
               loading="lazy"
               style={{
@@ -254,6 +249,15 @@ const Details = () =>
           </figure>
         </div>
       </Reveal>
+      
+      <Reveal>
+        <div style={{ textAlign: "center", marginTop: 64 }}>
+          <div className="eyebrow" style={{ marginBottom: 12 }}>Counting down · 倒 计 时</div>
+          <Countdown />
+        </div>
+      </Reveal>
+      
+
       
     </div>
   </section>;
