@@ -245,11 +245,11 @@ const Details = () =>
               src="assets/Reception-acitivity-mapA4.jpg"
               alt="Lan Su Chinese Garden wedding reception activity map"
               loading="lazy"
-              style={{
+              {/* style={{
                 display: "block",
                 width: "100%",
                 height: "auto",
-              }}
+              }} */}
             />
           </figure>
         </div>
