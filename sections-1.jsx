@@ -232,6 +232,29 @@ const Details = () =>
           <Countdown />
         </div>
       </Reveal>
+
+
+      <Reveal>
+        <div style={{ textAlign: "center", marginTop: 64 }}>
+          <div className="eyebrow" style={{ marginBottom: 12 }}>
+            Reception Adventure Guide · 婚宴园林攻略
+          </div>
+      
+          <figure className="polaroid pol-1">
+            <img
+              src="/assets/Reception-activity-mapA4.jpg"
+              alt="Lan Su Chinese Garden wedding reception activity map"
+              loading="lazy"
+              style={{
+                display: "block",
+                width: "100%",
+                height: "auto",
+              }}
+            />
+          </figure>
+        </div>
+      </Reveal>
+      
     </div>
   </section>;
 
