@@ -242,7 +242,7 @@ const Details = () =>
       
           <figure className="polaroid pol-1">
             <img
-              src="/assets/Reception-activity-mapA4.jpg"
+              src="assets/Reception-activity-mapA4.jpg"
               alt="Lan Su Chinese Garden wedding reception activity map"
               loading="lazy"
               style={{
