@@ -398,7 +398,7 @@ body { padding-top: 0; }
 
 /* film-strip feel: thin labels above the stack */
 .hero-stack::before {
-  content: "ROLL 01 · 320 ASA · X & A · 2026";
+  content: "X & A · 2026";
   position: absolute;
   top: 0;
   left: 50%;
@@ -412,7 +412,7 @@ body { padding-top: 0; }
   white-space: nowrap;
 }
 .hero-stack::after {
-  content: "—  three frames  —";
+  content: "";
   position: absolute;
   bottom: 4px;
   left: 50%;
