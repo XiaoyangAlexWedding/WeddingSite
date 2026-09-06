@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Wedding Day Handbook</title>
+    <style>
+        :root {
+            --primary: #2C5E3B;
+            --accent: #C5A059;
+            --bg: #F4F4F5;
+            --card-bg: #FFFFFF;
+            --text: #222222;
+            --border: #E4E4E7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+        body { background-color: var(--bg); color: var(--text); padding-bottom: 30px; }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 16px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        header h1 { font-size: 1.2rem; font-weight: 700; }
+        header p { font-size: 0.75rem; opacity: 0.9; margin-top: 4px; }
+
+        .container { max-width: 600px; margin: 0 auto; padding: 12px; }
+
+        .refresh-bar {
+            background: #EBF2ED;
+            border: 1px solid #C8E6C9;
+            padding: 10px 14px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .nav-tabs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .tab-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 10px 4px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #555;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent);
+        }
+
+        .card-time { font-size: 0.85rem; font-weight: 700; color: var(--accent); }
+        .card-title { font-size: 0.95rem; font-weight: 700; margin: 4px 0; color: var(--primary); }
+        .card-desc { font-size: 0.85rem; color: #444; line-height: 1.4; }
+        .card-notes { font-size: 0.75rem; color: #888; margin-top: 6px; font-style: italic; }
+
+        .loading { text-align: center; padding: 40px; font-size: 0.9rem; color: #666; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Alex & Xiaoyang's Wedding Day</h1>
+        <p>Live Handbook • Single Source of Truth</p>
+    </header>
+
+    <div class="container">
+        <div class="refresh-bar">
+            <span>Updated: <strong id="update-time">Loading...</strong></span>
+            <button class="refresh-btn" onclick="fetchLiveSchedule()">🔄 Sync Now</button>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchFilter('all')">All Views</button>
+            <button class="tab-btn" onclick="switchFilter('team')">Staff & Vendors</button>
+            <button class="tab-btn" onclick="switchFilter('family')">Family & Party</button>
+        </div>
+
+        <div id="schedule-container">
+            <div class="loading">Fetching live schedule from Google Sheet...</div>
+        </div>
+    </div>
+
+    <script>
+        // REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
+        const API_URL = "https://script.google.com/macros/s/AKfycbz54qwwVIcB2ZZ08enROU0pG2k_JcjxkaWoKAUjoNc5qyCuy4z-Xrk5BoXWxFvLjuQT/exec"; 
+
+        let rawScheduleData = [];
+        let currentFilter = 'all';
+
+        async function fetchLiveSchedule() {
+            document.getElementById('update-time').innerText = "Syncing...";
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                
+                rawScheduleData = data.schedule;
+                document.getElementById('update-time').innerText = data.lastUpdated;
+                renderSchedule();
+            } catch (err) {
+                document.getElementById('schedule-container').innerHTML = 
+                    `<div class="loading" style="color:red;">Error connecting to Google Sheet.<br>Check Web App URL or permissions.</div>`;
+            }
+        }
+
+        function switchFilter(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderSchedule();
+        }
+
+        function renderSchedule() {
+            const container = document.getElementById('schedule-container');
+            container.innerHTML = '';
+
+            if (!rawScheduleData || rawScheduleData.length === 0) {
+                container.innerHTML = '<div class="loading">No schedule items found.</div>';
+                return;
+            }
+
+            rawScheduleData.forEach(item => {
+                let content = '';
+                if (currentFilter === 'all') {
+                    content = `<strong>Party/Family:</strong> ${item.family || 'N/A'}<br>
+                               <strong>Team/Vendors:</strong> ${item.team || 'N/A'}<br>
+                               <strong>Guests:</strong> ${item.guests || 'N/A'}`;
+                } else if (currentFilter === 'team') {
+                    content = item.team || 'No specific team tasks listed.';
+                } else if (currentFilter === 'family') {
+                    content = item.family || 'No specific family tasks listed.';
+                }
+
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-time">⏰ ${item.time}</div>
+                    <div class="card-desc" style="margin-top:6px;">${content}</div>
+                    ${item.notes ? `<div class="card-notes">Note: ${item.notes}</div>` : ''}
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Auto-fetch on page load
+        fetchLiveSchedule();
+    </script>
+</body>
+</html>
