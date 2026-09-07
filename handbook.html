@@ -150,38 +150,56 @@
             event.target.classList.add('active');
             renderSchedule();
         }
-
         function renderSchedule() {
             const container = document.getElementById('schedule-container');
             container.innerHTML = '';
-
+        
             if (!rawScheduleData || rawScheduleData.length === 0) {
                 container.innerHTML = '<div class="loading">No schedule items found.</div>';
                 return;
             }
-
+        
+            let renderedCount = 0;
+        
             rawScheduleData.forEach(item => {
+                // Handle section headers in the sheet (e.g., Part 1, Part 2)
+                if (item.time.includes("Part 1") || item.time.includes("Part 2")) {
+                    const headerDiv = document.createElement('div');
+                    headerDiv.style.cssText = "font-weight:bold; color:#2C5E3B; margin: 16px 0 8px 0; font-size:1.1rem; border-bottom:2px solid #2C5E3B; padding-bottom:4px;";
+                    headerDiv.innerText = item.time;
+                    container.appendChild(headerDiv);
+                    return;
+                }
+        
                 let content = '';
                 if (currentFilter === 'all') {
-                    content = `<strong>Party/Family:</strong> ${item.family || 'N/A'}<br>
+                    content = `<strong>Family/Party:</strong> ${item.family || 'N/A'}<br>
                                <strong>Team/Vendors:</strong> ${item.team || 'N/A'}<br>
                                <strong>Guests:</strong> ${item.guests || 'N/A'}`;
                 } else if (currentFilter === 'team') {
-                    content = item.team || 'No specific team tasks listed.';
+                    content = item.team;
                 } else if (currentFilter === 'family') {
-                    content = item.family || 'No specific family tasks listed.';
+                    content = item.family;
                 }
-
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <div class="card-time">⏰ ${item.time}</div>
-                    <div class="card-desc" style="margin-top:6px;">${content}</div>
-                    ${item.notes ? `<div class="card-notes">Note: ${item.notes}</div>` : ''}
-                `;
-                container.appendChild(card);
+        
+                // Only display cards that have content for the selected view filter
+                if (content && content.trim() !== '') {
+                    renderedCount++;
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <div class="card-time">⏰ ${item.time}</div>
+                        <div class="card-desc" style="margin-top:6px;">${content}</div>
+                        ${item.notes ? `<div class="card-notes">Note: ${item.notes}</div>` : ''}
+                    `;
+                    container.appendChild(card);
+                }
             });
-        }
+
+    if (renderedCount === 0) {
+        container.innerHTML = '<div class="loading">No items found for this view filter.</div>';
+    }
+}
 
         // Auto-fetch on page load
         fetchLiveSchedule();
