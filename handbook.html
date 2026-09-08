@@ -1,94 +1,14 @@
-<script>
-    // Paste your Google Apps Script Web App URL here
-    const API_URL = "https://script.google.com/macros/s/AKfycbxQxd-vbkWvXCS-PxdpaDHFtuJmOxao5kwpXMHnDVWbvnlW86KdvqgWOk6Qe8b6Lsy1/exec"; 
-
-    let rawScheduleData = [];
-    let currentFilter = 'all';
-
-    async function fetchLiveSchedule() {
-        document.getElementById('update-time').innerText = "Syncing...";
-        const container = document.getElementById('schedule-container');
-        container.innerHTML = '<div class="loading">Fetching live schedule from Google Sheet...</div>';
-
-        try {
-            // Google Apps Script requires redirect handling
-            const response = await fetch(API_URL, { redirect: "follow" });
-            const data = await response.json();
-            
-            if (data.status === "error") {
-                container.innerHTML = `<div class="loading" style="color:red;">Apps Script Error: ${data.message}</div>`;
-                return;
-            }
-
-            rawScheduleData = data.schedule;
-            document.getElementById('update-time').innerText = data.lastUpdated;
-            renderSchedule();
-        } catch (err) {
-            console.error("Fetch Error:", err);
-            container.innerHTML = `<div class="loading" style="color:red;">Failed to connect to Google Sheet API.<br>Check browser console (F12) for CORS or URL errors.</div>`;
-        }
-    }
-
-    function switchFilter(filter) {
-        currentFilter = filter;
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        event.currentTarget.classList.add('active');
-        renderSchedule();
-    }
-
-    function renderSchedule() {
-        const container = document.getElementById('schedule-container');
-        container.innerHTML = '';
-
-        if (!rawScheduleData || rawScheduleData.length === 0) {
-            container.innerHTML = '<div class="loading">No schedule items found in Google Sheet.</div>';
-            return;
-        }
-
-        let renderedCount = 0;
-
-        rawScheduleData.forEach(item => {
-            // Check if row is a section header (e.g. Part 1, Part 2)
-            if (item.time.toLowerCase().includes("part 1") || item.time.toLowerCase().includes("part 2")) {
-                const headerDiv = document.createElement('div');
-                headerDiv.style.cssText = "font-weight:bold; color:#2C5E3B; margin:16px 0 8px 0; font-size:1.05rem; border-bottom:2px solid #2C5E3B; padding-bottom:4px;";
-                headerDiv.innerText = item.time;
-                container.appendChild(headerDiv);
-                return;
-            }
-
-            // Skip table column header rows
-            if (item.time.toLowerCase() === "time") return;
-
-            let content = '';
-            if (currentFilter === 'all') {
-                content = `<strong>Party/Family:</strong> ${item.family || '—'}<br>
-                           <strong>Team/Vendors:</strong> ${item.team || '—'}<br>
-                           <strong>Guests:</strong> ${item.guests || '—'}`;
-            } else if (currentFilter === 'team') {
-                content = item.team;
-            } else if (currentFilter === 'family') {
-                content = item.family;
-            }
-
-            if (content && content.trim() !== '' && content !== '—') {
-                renderedCount++;
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <div class="card-time">⏰ ${item.time}</div>
-                    <div class="card-desc" style="margin-top:6px;">${content}</div>
-                    ${item.notes ? `<div class="card-notes">Note: ${item.notes}</div>` : ''}
-                `;
-                container.appendChild(card);
-            }
-        });
-
-        if (renderedCount === 0) {
-            container.innerHTML = '<div class="loading">No schedule items match the selected filter view.</div>';
-        }
-    }
-
-    // Load data on page launch
-    fetchLiveSchedule();
-</script>
+<div style="width:100%; max-width:1200px; margin:0 auto;">
+  <iframe
+    src="https://script.google.com/macros/s/AKfycbxnVmZMMlis0Sz3hbmUn5pPKIH0ujjVJy_cUOedtUO5yDCwU93OJ4kX0E9Fl0VmTtXL/exec"
+    title="Participation Guide for Family and Close Friends"
+    style="
+      width:100%;
+      height:1600px;
+      border:0;
+      display:block;
+      background:#efe2d2;
+    "
+    loading="lazy">
+  </iframe>
+</div>
