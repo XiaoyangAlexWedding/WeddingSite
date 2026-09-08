@@ -1,14 +1,21 @@
-<div style="width:100%; max-width:1200px; margin:0 auto;">
-  <iframe
-    src="https://script.google.com/macros/s/AKfycbxnVmZMMlis0Sz3hbmUn5pPKIH0ujjVJy_cUOedtUO5yDCwU93OJ4kX0E9Fl0VmTtXL/exec"
-    title="Participation Guide for Family and Close Friends"
-    style="
-      width:100%;
-      height:5000px;
-      border:0;
-      display:block;
-      background:#efe2d2;
-    "
-    loading="lazy">
-  </iframe>
-</div>
+<!-- Keep your existing /exec URL here -->
+<iframe
+  id="weddingHandbook"
+  src="https://script.google.com/macros/s/AKfycbxnVmZMMlis0Sz3hbmUn5pPKIH0ujjVJy_cUOedtUO5yDCwU93OJ4kX0E9Fl0VmTtXL/exec"
+  title="Participation Handbook"
+  style="width:100%;height:1600px;border:0;display:block;overflow:hidden;">
+</iframe>
+
+<script>
+window.addEventListener("message", function(event) {
+  if (!event.data || event.data.type !== "wedding-handbook-height") return;
+
+  const iframe = document.getElementById("weddingHandbook");
+  if (!iframe) return;
+
+  const newHeight = Number(event.data.height);
+  if (newHeight > 0) {
+    iframe.style.height = (newHeight + 20) + "px";
+  }
+});
+</script>
