@@ -237,7 +237,7 @@ const Details = () =>
       
           <figure className="detail-map">
             <img
-              src="assets/lansu-map.png"
+              src="assets/V3.jpg"
               alt="Lan Su Chinese Garden wedding reception activity map"
               loading="lazy"
               style={{
