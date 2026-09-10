@@ -42,13 +42,7 @@
     font-size:clamp(34px,6vw,58px); line-height:1.02; font-weight:500;
     color:var(--sage);
   }
-  .lede {
-    font-size: 14px !important;
-    line-height: 1.55 !important;
-    margin: 14px auto 20px !important;
-    color: var(--site-muted) !important;
-  }
-  
+  .lede { max-width:720px; color:var(--muted); font-size:16px; margin:12px 0 24px; }
   .controls {
     display:grid; grid-template-columns:minmax(220px,1fr) auto auto; gap:12px;
     align-items:end; padding:18px; border:1px solid var(--line);
@@ -1304,19 +1298,51 @@
   }
 </style>
 
+
+<style id="key-moments-production-overrides">
+  /* Keep the current design; only Key Moments changes to one centered column. */
+  .page.key-moments-mode .timeline {
+    grid-template-columns: minmax(0, 760px) !important;
+    justify-content: center !important;
+  }
+
+  .page.key-moments-mode .section-label {
+    grid-column: 1 !important;
+    width: 100%;
+  }
+
+  .page.key-moments-mode .event {
+    width: 100%;
+    max-width: 760px;
+    justify-self: center;
+  }
+
+  .summary[hidden],
+  .intro-note[hidden] {
+    display: none !important;
+  }
+
+  @media (min-width: 851px) {
+    .controls {
+      grid-template-columns: minmax(220px, 1fr) auto auto auto !important;
+    }
+  }
+</style>
+
 </head>
 <body>
 <main class="page">
-  <div class="eyebrow">Xiaoyang & Alex's Wedding Day</div>
+  <div class="eyebrow">A simple day-of guide for family and close friends.</div>
   <h1>Participation Guide</h1>
-  <p class="lede">A simple day-of guide for family and close friends. We’re still working on our timeline and really appreciate all of your support. This isn’t meant to be a strict schedule but an easy reference so you don’t have to remember everything or wonder where you’re needed. We can’t wait to celebrate with you!</p>
+  <p class="lede">We are still working on our timeline and appreciate all of your support. We can’t wait to celebrate with you!</p>
 
-  <section class="controls" aria-label="Wedding duty filters">
+  <section class="controls" aria-label="Wedding timeline filters">
     <div class="name-control">
       <label for="person">Search your name</label>
-      <select id="person"><option value="">Loading names…</option></select>
+      <select id="person"><option value="">Search YOUR NAME</option></select>
     </div>
-    <button id="showAll" type="button" class="active">All moments</button>
+    <button id="showKey" type="button" class="active">Key moments</button>
+    <button id="showAll" type="button">All moments</button>
     <button id="showHelping" type="button">Helping only</button>
   </section>
 
@@ -1325,7 +1351,7 @@
       <div class="membership-label">You are part of</div>
       <div class="big" id="personGroup">Wedding guest</div>
       <div class="makeup-summary" id="makeupSummary" hidden>
-        You professional makeup starts at <span id="makeupTime">—</span>
+        Your professional makeup starts at <span id="makeupTime">—</span>
       </div>
     </div>
     <div><div class="big" id="helpCount">0</div><div class="small">helping moments</div></div>
@@ -1375,7 +1401,7 @@ let DATA = {
 
 const state = {
   person: "",
-  helpingOnly: false,
+  mode: "key",
   venue: ""
 };
 const $ = (id) => document.getElementById(id);
@@ -1505,11 +1531,48 @@ function renderPartners(person, selectedTags) {
 }
 
 
+function setMode(mode) {
+  state.mode = mode;
+
+  [
+    ["showKey", "key"],
+    ["showAll", "all"],
+    ["showHelping", "helping"]
+  ].forEach(([id, buttonMode]) => {
+    const button = $(id);
+    if (button) {
+      button.classList.toggle("active", buttonMode === state.mode);
+    }
+  });
+
+  render();
+}
+
+
 function render() {
   const person = state.person;
-  const personInfo = DATA.people.find(p => p.name === person) || {name:person, group:""};
+  const hasPerson = Boolean(person);
+
+  // Key Moments is intentionally the only single-column desktop view.
+  document.querySelector(".page").classList.toggle(
+    "key-moments-mode",
+    state.mode === "key"
+  );
+
+  const summary = document.querySelector(".summary");
+  const introNote = document.querySelector(".intro-note");
+
+  // The landing page is a general wedding timeline.
+  // Personal information only appears after someone searches their name.
+  if (summary) summary.hidden = !hasPerson;
+  if (introNote) introNote.hidden = !hasPerson;
+
+  const personInfo =
+    DATA.people.find(p => p.name === person) || {name: person, group: ""};
+
   const enriched = DATA.events.map(ev => {
-    const roleRows = rowsFor(person, ev.eventId);
+    const roleRows = hasPerson ? rowsFor(person, ev.eventId) : [];
+
     return {
       ...ev,
       roleRows,
@@ -1523,36 +1586,57 @@ function render() {
   });
 
   const helping = enriched.filter(e => e.helping);
-  $("personGroup").textContent = personInfo.group || "Wedding guest";
-  $("helpCount").textContent = String(helping.length);
-  $("firstDuty").textContent = helping[0]?.time || "None";
 
-  // Same lookup result as the Makeup Timeline formula in My Duties.
-  const makeupTime = (DATA.makeupTimes || {})[person] || "";
-  const makeupSummary = $("makeupSummary");
+  if (hasPerson) {
+    $("personGroup").textContent = personInfo.group || "Wedding guest";
+    $("helpCount").textContent = String(helping.length);
+    $("firstDuty").textContent = helping[0]?.time || "None";
 
-  if (makeupTime) {
-    $("makeupTime").textContent = makeupTime;
-    makeupSummary.hidden = false;
+    // Same lookup result as the Makeup Timeline formula in My Duties.
+    const makeupTime = (DATA.makeupTimes || {})[person] || "";
+    const makeupSummary = $("makeupSummary");
+
+    if (makeupTime) {
+      $("makeupTime").textContent = makeupTime;
+      makeupSummary.hidden = false;
+    } else {
+      makeupSummary.hidden = true;
+    }
+
+    // Duty Tags are collected from every Roles row for this person.
+    const personRoleRows = DATA.roles.filter(row => row.name === person);
+    const allDutyTags = roleItems(personRoleRows);
+
+    $("dutyTags").innerHTML = allDutyTags.length
+      ? allDutyTags
+          .map(tag => `<span class="summary-tag">${escapeHtml(tag)}</span>`)
+          .join("")
+      : '<span class="summary-tag none">None</span>';
+
+    renderPartners(person, allDutyTags);
   } else {
-    makeupSummary.hidden = true;
+    $("makeupSummary").hidden = true;
+    renderPartners("", []);
   }
 
-  // Collect Duty Tags directly from every Roles row for this person.
-  // This intentionally does NOT depend on Event ID matching to Master Timeline.
-  // That way an Event ID mismatch cannot make a person's Role tags disappear.
-  const personRoleRows = DATA.roles.filter(row => row.name === person);
-  const allDutyTags = roleItems(personRoleRows);
+  // Helping Only requires a selected person.
+  if (state.mode === "helping" && !hasPerson) {
+    $("timeline").innerHTML =
+      '<div class="empty"><strong>Search YOUR NAME</strong><br>' +
+      'Your personal helping moments will appear here.</div>';
+    return;
+  }
 
-  $("dutyTags").innerHTML = allDutyTags.length
-    ? allDutyTags
-        .map(tag => `<span class="summary-tag">${escapeHtml(tag)}</span>`)
-        .join("")
-    : '<span class="summary-tag none">None</span>';
+  let visible;
 
-  renderPartners(person, allDutyTags);
-
-  let visible = state.helpingOnly ? helping : enriched;
+  if (state.mode === "key") {
+    // A filled Key moments cell means this row belongs in the simple timeline.
+    visible = enriched.filter(ev => String(ev.keyMoment || "").trim());
+  } else if (state.mode === "helping") {
+    visible = helping;
+  } else {
+    visible = enriched;
+  }
 
   if (state.venue === "PA") {
     visible = visible.filter(ev =>
@@ -1567,24 +1651,48 @@ function render() {
   }
 
   if (!visible.length) {
-    $("timeline").innerHTML = '<div class="empty">No matching wedding moments found.</div>';
+    $("timeline").innerHTML =
+      '<div class="empty">No matching wedding moments found.</div>';
     return;
   }
 
   let lastVenue = "";
+
   $("timeline").innerHTML = visible.map(ev => {
-    const venue = (ev.eventId || "").startsWith("PA") ? "Ceremony" :
-                  (ev.eventId || "").startsWith("LS") ? "Reception" : "";
+    const venue =
+      (ev.eventId || "").startsWith("PA") ? "Ceremony" :
+      (ev.eventId || "").startsWith("LS") ? "Reception" : "";
+
     let section = "";
-    if (!state.helpingOnly && venue && venue !== lastVenue) {
+
+    if (state.mode !== "helping" && venue && venue !== lastVenue) {
       lastVenue = venue;
-      section = `<div class="section-label" id="jump-${venue === "Ceremony" ? "PA" : "LS"}">${venue}</div>`;
+      section =
+        `<div class="section-label" id="jump-${venue === "Ceremony" ? "PA" : "LS"}">` +
+        `${venue}</div>`;
     }
 
-    const happening = splitHappening(ev.happening);
-    const roleChips = ev.roles.map(r => `<span class="rolechip">${escapeHtml(r)}</span>`).join("");
-    const duties = ev.duties.map(d => `• ${escapeHtml(d)}`).join("\n");
-    const details = ev.details.map(d => `• ${escapeHtml(d)}`).join("\n");
+    // Key Moments uses the new Master Timeline column for the card text,
+    // while All Moments keeps using the existing Wedding Party & Family text.
+    const displayText =
+      state.mode === "key"
+        ? ev.keyMoment
+        : ev.happening;
+
+    const happening = splitHappening(displayText);
+
+    const roleChips = ev.roles
+      .map(r => `<span class="rolechip">${escapeHtml(r)}</span>`)
+      .join("");
+
+    const duties = ev.duties
+      .map(d => `• ${escapeHtml(d)}`)
+      .join("\n");
+
+    const details = ev.details
+      .map(d => `• ${escapeHtml(d)}`)
+      .join("\n");
+
     const dutyBox = ev.helping ? `
       <div class="dutybox">
         <div>
@@ -1599,7 +1707,7 @@ function render() {
       </div>` : "";
 
     const collapsedClass = ev.helping ? "" : "enjoy-collapsed";
-    const expandButton = ev.helping ? "" :
+    const expandButton = ev.helping || !happening.context ? "" :
       `<button type="button" class="expand-btn" aria-label="Show details" title="Show details">＋</button>`;
 
     return section + `
@@ -1630,16 +1738,25 @@ function render() {
       const card = btn.closest(".event");
       const collapsed = card.classList.toggle("enjoy-collapsed");
       btn.textContent = collapsed ? "＋" : "−";
-      btn.setAttribute("aria-label", collapsed ? "Show details" : "Hide details");
+      btn.setAttribute(
+        "aria-label",
+        collapsed ? "Show details" : "Hide details"
+      );
     });
   });
 }
+
 
 const select = $("person");
 
 
 function rebuildPersonDropdown(previousPerson) {
   select.innerHTML = "";
+
+  const placeholder = document.createElement("option");
+  placeholder.value = "";
+  placeholder.textContent = "Search YOUR NAME";
+  select.appendChild(placeholder);
 
   DATA.people.forEach(person => {
     const option = document.createElement("option");
@@ -1648,31 +1765,47 @@ function rebuildPersonDropdown(previousPerson) {
     select.appendChild(option);
   });
 
-  // Optional convenience:
+  // Optional direct personal link:
   // https://xiaoyangalex.wedding/handbook?name=Cherry%20Zhao
   const requestedName =
     new URLSearchParams(window.location.search).get("name") || "";
 
-  const candidates = [
-    previousPerson,
-    requestedName,
-    DATA.defaultPerson,
-    DATA.people[0]?.name || ""
-  ];
+  const requestedIsValid =
+    requestedName &&
+    DATA.people.some(person => person.name === requestedName);
 
-  state.person =
-    candidates.find(name =>
-      name && DATA.people.some(person => person.name === name)
-    ) || "";
+  const previousIsValid =
+    previousPerson &&
+    DATA.people.some(person => person.name === previousPerson);
+
+  if (previousIsValid) {
+    state.person = previousPerson;
+  } else if (requestedIsValid) {
+    state.person = requestedName;
+    state.mode = "all";
+  } else {
+    state.person = "";
+    state.mode = "key";
+  }
 
   select.value = state.person;
+
+  [
+    ["showKey", "key"],
+    ["showAll", "all"],
+    ["showHelping", "helping"]
+  ].forEach(([id, buttonMode]) => {
+    const button = $(id);
+    if (button) {
+      button.classList.toggle("active", buttonMode === state.mode);
+    }
+  });
 }
 
 
 function loadWeddingData(isAutoRefresh = false) {
   const previousPerson = state.person;
 
-  // Use a unique JSONP callback for every refresh.
   const callbackName =
     "__weddingData_" +
     Date.now() +
@@ -1680,14 +1813,14 @@ function loadWeddingData(isAutoRefresh = false) {
     Math.floor(Math.random() * 1000000);
 
   const script = document.createElement("script");
-  let finished = false;
+
+  let settled = false;
   let timeoutId = null;
 
   function cleanup() {
-    if (finished) return;
-    finished = true;
-
-    clearTimeout(timeoutId);
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
 
     if (script.parentNode) {
       script.parentNode.removeChild(script);
@@ -1700,12 +1833,17 @@ function loadWeddingData(isAutoRefresh = false) {
     }
   }
 
-  function showLoadError(message) {
+  function fail(message) {
+    if (settled) return;
+
+    settled = true;
+    cleanup();
+
     console.error(message);
 
     if (!isAutoRefresh) {
       select.innerHTML =
-        '<option value="">Unable to load names</option>';
+        '<option value="">Search YOUR NAME</option>';
 
       $("timeline").innerHTML =
         '<div class="empty">' +
@@ -1716,17 +1854,18 @@ function loadWeddingData(isAutoRefresh = false) {
   }
 
   window[callbackName] = function(data) {
+    if (settled) return;
+
     if (!data || data.ok === false) {
-      const message =
+      fail(
         data && data.error
           ? data.error
-          : "The wedding data endpoint returned an invalid response.";
-
-      cleanup();
-      showLoadError(message);
+          : "The wedding data endpoint returned an invalid response."
+      );
       return;
     }
 
+    settled = true;
     cleanup();
 
     DATA = data;
@@ -1737,18 +1876,17 @@ function loadWeddingData(isAutoRefresh = false) {
 
     if (updated) {
       updated.textContent =
-        "Live from our wedding agenda · Updated " + data.updatedAt;
+        "Live from our wedding agenda · Updated " +
+        data.updatedAt;
     }
   };
 
   script.onerror = function() {
-    cleanup();
-    showLoadError(
+    fail(
       "Could not reach the live wedding agenda. Please refresh and try again."
     );
   };
 
-  // Cache-buster keeps the once-per-minute refresh genuinely live.
   script.src =
     DATA_ENDPOINT +
     "?callback=" +
@@ -1757,36 +1895,41 @@ function loadWeddingData(isAutoRefresh = false) {
     Date.now();
 
   script.async = true;
-  document.body.appendChild(script);
 
-  timeoutId = setTimeout(() => {
-    cleanup();
-    showLoadError(
+  // Start timeout BEFORE adding the script, avoiding a false timeout race.
+  timeoutId = setTimeout(function() {
+    fail(
       "The live wedding agenda took too long to respond. Please refresh and try again."
     );
-  }, 15000);
+  }, 30000);
+
+  document.body.appendChild(script);
 }
 
 
 select.addEventListener("change", () => {
   state.person = select.value;
-  render();
+
+  // Searching a name opens their full personal timeline.
+  // Clearing the name returns to the simple Key Moments landing page.
+  state.mode = state.person ? "all" : "key";
+
+  setMode(state.mode);
+});
+
+
+$("showKey").addEventListener("click", () => {
+  setMode("key");
 });
 
 
 $("showAll").addEventListener("click", () => {
-  state.helpingOnly = false;
-  $("showAll").classList.add("active");
-  $("showHelping").classList.remove("active");
-  render();
+  setMode("all");
 });
 
 
 $("showHelping").addEventListener("click", () => {
-  state.helpingOnly = true;
-  $("showHelping").classList.add("active");
-  $("showAll").classList.remove("active");
-  render();
+  setMode("helping");
 });
 
 
