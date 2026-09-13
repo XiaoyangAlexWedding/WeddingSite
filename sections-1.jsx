@@ -232,7 +232,7 @@ const Details = () =>
       <Reveal>
         <div style={{ textAlign: "center", marginTop: 64 }}>
           <div className="eyebrow-map" style={{ marginBottom: 12 }}>
-            Reception Adventure Guide · 婚宴园林攻略
+            Reception Adventure Guide · 婚礼园林游赏图鉴
           </div>
       
           <figure className="detail-map">
