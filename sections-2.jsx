@@ -232,12 +232,12 @@ const Registry = () =>
         {/* WECHAT(Updated with QR code) */}
         <div className="registry-row">
           <div className="registry-qr">
-            <img src="assets/Xiaoyang Wechat.jfif" alt="WeChat QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
+            <img src="assets/xiao-alipay.jpeg" alt="Alipay QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
           </div>
           <div>
-            <h4>WeChat; 红包</h4>
+            <h4>Alipay; 红包</h4>
             <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
-              For family abroad — a traditional 红包 by WeChat is warmly received.
+              For family abroad — a traditional 红包 by Alipay is warmly received.
             </p>
             <a href="assets/Xiaoyang Wechat.jfif">Request transfer details →</a>
           </div>
