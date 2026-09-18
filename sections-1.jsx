@@ -200,9 +200,9 @@ const Details = () =>
             <h3>The Ceremony</h3>
             <div className="where">仪 式 · PROVIDENCE ACADEMY</div>
             <div className="when">Saturday · October 17, 2026</div>
-            <div className="when">3:00 pm PST</div>
+            <div className="when">2:30 pm PST</div>
             <div className="addr" style={{ marginTop: 4, fontStyle: "italic" }}>
-              May shift to 2:00 pm due to a planned construction project — we'll confirm closer to the date.
+              We recommend arriving by 2:15 PM so you have time to get settled before the processional begins. 
             </div>
             <div className="addr" style={{ marginTop: 12 }}>
               Providence Academy<br />
