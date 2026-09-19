@@ -125,12 +125,24 @@ const Travel = () =>
   </div>
 
   {/* SHUTTLE CARD */}
-  <div className="travel-card">
-    <div className="label">Shuttle · 接 驳 车</div>
-    <h4>The Benson → Providence → Lan Su</h4>
-    <p style={{ fontSize: 15 }}>A complimentary shuttle runs the full route on the wedding day: it departs from The Benson and takes guests to Providence Academy for the ceremony, then continues on to Lan Su Chinese Garden for the reception. Exact pickup time at the hotel will be shared closer to the day.</p>
-  </div>
-
+<div className="travel-card">
+  <div className="label">Shuttle · 接 驳 车</div>
+  <h4>The Benson → Providence → Lan Su</h4>
+  
+  <p style={{ fontSize: 15, marginBottom: 8 }}>
+    A complimentary shuttle runs the full route on the wedding day:
+  </p>
+  
+  <ul style={{ fontSize: 15, paddingLeft: 20, lineHeight: 1.5, marginBottom: 12 }}>
+    <li><strong>Before the ceremony:</strong> Departs from The Benson and takes guests to Providence Academy.</li>
+    <li><strong>After the ceremony:</strong> Continues from Providence Academy to Lan Su Chinese Garden for the reception.</li>
+  </ul>
+  
+  <p style={{ fontSize: 15, fontStyle: "italic", color: "#555" }}>
+    * Exact pickup times at the hotel will be shared closer to the day.
+  </p>
+</div>
+            
 </div>
       </Reveal>
 
