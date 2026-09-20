@@ -1329,6 +1329,59 @@
   }
 </style>
 
+<style id="duty-detail-link-style">
+  /* Optional detail guides shown next to matching Duty Tags. */
+  .summary-tag-wrap {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:4px 7px;
+    max-width:100%;
+  }
+
+  .duty-detail-links {
+    display:inline-flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:4px 6px;
+  }
+
+  .duty-detail-link {
+    color:var(--site-rust);
+    font-family:Georgia,"Times New Roman",serif;
+    font-style:italic;
+    font-size:12px;
+    line-height:1.25;
+    text-decoration:none;
+    border-bottom:1px solid rgba(154,79,54,.35);
+    padding-bottom:1px;
+  }
+
+  .duty-detail-link:hover,
+  .duty-detail-link:focus {
+    color:var(--site-rust-dark);
+    border-bottom-color:var(--site-rust-dark);
+  }
+
+  .duty-detail-separator {
+    color:var(--site-line);
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:12px;
+  }
+
+  @media (max-width:700px) {
+    .summary-tag-wrap {
+      width:100%;
+      gap:5px 8px;
+    }
+
+    .duty-detail-link {
+      font-size:14px;
+    }
+  }
+</style>
+
 </head>
 <body>
 <main class="page">
@@ -1394,6 +1447,7 @@ let DATA = {
   defaultPerson: "",
   myDutiesHeaders: [],
   makeupTimes: {},
+  dutyDetails: {},
   events: [],
   roles: [],
   people: []
@@ -1441,6 +1495,31 @@ function escapeHtml(s) {
   return String(s ?? "")
     .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
     .replaceAll('"',"&quot;").replaceAll("'","&#039;");
+}
+
+function dutyTagHtml(tag) {
+  const guides = (DATA.dutyDetails || {})[tag] || [];
+  const safeTag = escapeHtml(tag);
+
+  if (!guides.length) {
+    return `<span class="summary-tag-wrap"><span class="summary-tag">${safeTag}</span></span>`;
+  }
+
+  const links = guides
+    .filter(guide => guide && guide.url)
+    .map(guide => {
+      const label = escapeHtml(guide.label || "Details");
+      const url = escapeHtml(guide.url);
+
+      return `<a class="duty-detail-link" href="${url}" target="_blank" rel="noopener noreferrer">${label} ↗</a>`;
+    })
+    .join('<span class="duty-detail-separator">·</span>');
+
+  return `
+    <span class="summary-tag-wrap">
+      <span class="summary-tag">${safeTag}</span>
+      ${links ? `<span class="duty-detail-links">${links}</span>` : ""}
+    </span>`;
 }
 
 function splitHappening(text) {
@@ -1609,7 +1688,7 @@ function render() {
 
     $("dutyTags").innerHTML = allDutyTags.length
       ? allDutyTags
-          .map(tag => `<span class="summary-tag">${escapeHtml(tag)}</span>`)
+          .map(tag => dutyTagHtml(tag))
           .join("")
       : '<span class="summary-tag none">None</span>';
 
