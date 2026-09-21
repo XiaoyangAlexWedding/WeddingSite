@@ -1333,10 +1333,8 @@
   /* Optional detail guides shown next to matching Duty Tags. */
   .summary-tag-wrap {
     display:inline-flex;
-    flex-direction:column;
     align-items:center;
-    justify-content:flex-start;
-    gap:5px;
+    justify-content:center;
     max-width:100%;
     vertical-align:top;
   }
@@ -1347,6 +1345,19 @@
     align-items:center;
     gap:3px;
     max-width:240px;
+  }
+
+  .duty-detail-links-below {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+    margin-top:7px;
+    width:100%;
+  }
+
+  .duty-detail-links-below:empty {
+    display:none;
   }
 
   .duty-detail-link {
@@ -1411,6 +1422,7 @@
     <div class="duty-tags-summary">
       <div class="summary-tags" id="dutyTags">—</div>
       <div class="small">duty tags</div>
+      <div class="duty-detail-links-below" id="dutyDetailLinks"></div>
     </div>
     <div><div class="big" id="firstDuty">—</div><div class="small">first duty</div></div>
   </section>
@@ -1498,16 +1510,23 @@ function escapeHtml(s) {
 }
 
 function dutyTagHtml(tag) {
-  const guides = (DATA.dutyDetails || {})[tag] || [];
-  const safeTag = escapeHtml(tag);
+  return `<span class="summary-tag-wrap"><span class="summary-tag">${escapeHtml(tag)}</span></span>`;
+}
 
-  if (!guides.length) {
-    return `<span class="summary-tag-wrap"><span class="summary-tag">${safeTag}</span></span>`;
-  }
+function dutyDetailLinksHtml(tags) {
+  const seen = new Set();
+  const links = [];
 
-  const links = guides
-    .filter(guide => guide && guide.url)
-    .map(guide => {
+  (tags || []).forEach(tag => {
+    const guides = (DATA.dutyDetails || {})[tag] || [];
+
+    guides.forEach(guide => {
+      if (!guide || !guide.url) return;
+
+      const key = `${guide.url}||${guide.label || ""}`;
+      if (seen.has(key)) return;
+      seen.add(key);
+
       const label = escapeHtml(guide.label || "Details");
       const url = escapeHtml(guide.url);
       const isVideo =
@@ -1515,15 +1534,13 @@ function dutyTagHtml(tag) {
         /\.(mp4|mov|m4v|webm)$/i.test(guide.label || "");
       const prefix = isVideo ? "▶ " : "";
 
-      return `<a class="duty-detail-link" href="${url}" target="_blank" rel="noopener noreferrer">${prefix}${label} ↗</a>`;
-    })
-    .join('<span class="duty-detail-separator">·</span>');
+      links.push(
+        `<a class="duty-detail-link" href="${url}" target="_blank" rel="noopener noreferrer">${prefix}${label} ↗</a>`
+      );
+    });
+  });
 
-  return `
-    <span class="summary-tag-wrap">
-      <span class="summary-tag">${safeTag}</span>
-      ${links ? `<span class="duty-detail-links">${links}</span>` : ""}
-    </span>`;
+  return links.join("");
 }
 
 function splitHappening(text) {
@@ -1696,9 +1713,20 @@ function render() {
           .join("")
       : '<span class="summary-tag none">None</span>';
 
+    const dutyDetailLinks = $("dutyDetailLinks");
+    if (dutyDetailLinks) {
+      dutyDetailLinks.innerHTML = dutyDetailLinksHtml(allDutyTags);
+    }
+
     renderPartners(person, allDutyTags);
   } else {
     $("makeupSummary").hidden = true;
+
+    const dutyDetailLinks = $("dutyDetailLinks");
+    if (dutyDetailLinks) {
+      dutyDetailLinks.innerHTML = "";
+    }
+
     renderPartners("", []);
   }
 
