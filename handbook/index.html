@@ -1333,18 +1333,20 @@
   /* Optional detail guides shown next to matching Duty Tags. */
   .summary-tag-wrap {
     display:inline-flex;
+    flex-direction:column;
     align-items:center;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:4px 7px;
+    justify-content:flex-start;
+    gap:5px;
     max-width:100%;
+    vertical-align:top;
   }
 
   .duty-detail-links {
-    display:inline-flex;
+    display:flex;
+    flex-direction:column;
     align-items:center;
-    flex-wrap:wrap;
-    gap:4px 6px;
+    gap:3px;
+    max-width:240px;
   }
 
   .duty-detail-link {
@@ -1365,9 +1367,7 @@
   }
 
   .duty-detail-separator {
-    color:var(--site-line);
-    font-family:Georgia,"Times New Roman",serif;
-    font-size:12px;
+    display:none;
   }
 
   @media (max-width:700px) {
@@ -1510,8 +1510,12 @@ function dutyTagHtml(tag) {
     .map(guide => {
       const label = escapeHtml(guide.label || "Details");
       const url = escapeHtml(guide.url);
+      const isVideo =
+        guide.type === "video" ||
+        /\.(mp4|mov|m4v|webm)$/i.test(guide.label || "");
+      const prefix = isVideo ? "▶ " : "";
 
-      return `<a class="duty-detail-link" href="${url}" target="_blank" rel="noopener noreferrer">${label} ↗</a>`;
+      return `<a class="duty-detail-link" href="${url}" target="_blank" rel="noopener noreferrer">${prefix}${label} ↗</a>`;
     })
     .join('<span class="duty-detail-separator">·</span>');
 
