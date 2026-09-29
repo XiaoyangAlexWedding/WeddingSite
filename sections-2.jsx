@@ -210,18 +210,40 @@ const Registry = () =>
 
       <Reveal>
         <p style={{ textAlign: "center", color: "var(--ink-soft)", fontStyle: "italic", marginBottom: 40 }}>
-          Your presence is the greatest gift. If you'd like to give something more, we've gathered a small list — and a couple of links for those traveling far.
+          Your presence is the greatest gift. If you'd like to give something more, our registry is below — along with a few ways to send a gift from afar.
         </p>
 
-        {/* HOME REGISTRY (Updated with QR code) */}
+        {/* AMAZON REGISTRY — primary. Amazon blocks iframes (X-Frame-Options),
+            so this links out to the live registry in a new tab. */}
+        <div className="registry-feature">
+          <div className="eyebrow">Our Registry · 礼 物 清 单</div>
+          <h3>Amazon Wedding Registry</h3>
+          <p>
+            We've put together a registry of things for our home and our life together.
+            Gifts ship straight to us, and Amazon marks items as purchased so nothing is doubled up.
+          </p>
+          <a
+            className="btn"
+            href="https://www.amazon.com/wedding/share/xiaoyangalexwedding"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View our registry →
+          </a>
+          <div className="registry-feature-note">Opens Amazon in a new tab</div>
+        </div>
+
+        <h4 className="registry-subhead">Prefer to give a cash gift? · 红 包 与 转 账</h4>
+
+        {/* HOME FUND (Zelle QR) */}
         <div className="registry-row">
           <div className="registry-qr">
-            <img src="assets/Alex Zelle.jfif" alt="Home Registry QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
+            <img src="assets/Alex Zelle.jfif" alt="Home Fund Zelle QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
           </div>
           <div>
-            <h4>Home Registry</h4>
+            <h4>Home Fund</h4>
             <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
-             For the moment we may not have a traditional registry, if you're patient, we may in the future — if you're in a rush, we'd love for you to contribute to a chapter of our life together. Whether it's our kitchen, our living room, a cozy bedroom retreat, or our entertainment setup, feel free to Zelle us toward whatever feels right, and leave a note in the comments letting us know which part of our home you'd like to help build.
+             We'd love for you to contribute to a chapter of our life together. Whether it's our kitchen, our living room, a cozy bedroom retreat, or our entertainment setup, feel free to Zelle us toward whatever feels right, and leave a note in the comments letting us know which part of our home you'd like to help build.
             </p>
             <a href="assets/Alex Zelle.jfif">Request Transfer Details</a>
           </div>

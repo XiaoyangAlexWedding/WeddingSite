@@ -973,6 +973,46 @@ body { padding-top: 0; }
 }
 
 /* ---------- Registry ---------- */
+.registry-feature {
+  text-align: center;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 40px 32px 32px;
+  margin-bottom: 56px;
+  box-shadow: 0 2px 20px rgba(42, 30, 22, 0.06);
+}
+.registry-feature h3 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 36px;
+  color: var(--accent-deep);
+  margin: 8px 0 12px;
+}
+.registry-feature p {
+  color: var(--ink-soft);
+  max-width: 480px;
+  margin: 0 auto 28px;
+}
+.registry-feature-note {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin-top: 14px;
+}
+.registry-subhead {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ink-soft);
+  margin: 0 0 16px;
+}
+
 .registry-row {
   display: grid;
   grid-template-columns: 140px 1fr;
