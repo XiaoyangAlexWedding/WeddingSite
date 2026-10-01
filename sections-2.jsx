@@ -188,6 +188,29 @@ const Gallery = () =>
         <div className="section-title-cn">回 忆 集</div>
       </Reveal>
 
+      {/* GUESTCAM — link out; GuestCam has no embed option */}
+      <Reveal>
+        <div className="guestcam">
+          <div className="guestcam-body">
+            <h3>Share your photos and videos</h3>
+            <p>Upload straight from your phone — no app or account needed.</p>
+            <a
+              className="btn guestcam-btn"
+              href="https://guestcam.co/guest/aRGfIkFS64"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Upload photos &amp; videos →
+            </a>
+          </div>
+          <img
+            className="guestcam-qr"
+            src="assets/guestcam-qr.png"
+            alt="QR code to upload photos and videos on GuestCam"
+          />
+        </div>
+      </Reveal>
+
       <Reveal>
         <div className="gallery">
           <div className="g-cell"><img src="assets/20211016_141118.jpg" alt="park,houston" loading="lazy" style={{ objectPosition: "50% 30%" }} /><span className="g-cap">2019 · Hermann Park, Houston</span></div>
