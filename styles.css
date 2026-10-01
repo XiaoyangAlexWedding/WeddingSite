@@ -896,6 +896,54 @@ body { padding-top: 0; }
   }
 }
 
+/* ---------- GuestCam upload (Gallery page) ---------- */
+.guestcam {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  max-width: 720px;
+  margin: 0 auto 56px;
+  padding: 36px 40px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  box-shadow: 0 2px 20px rgba(42, 30, 22, 0.06);
+}
+.guestcam-body { text-align: center; }
+.guestcam h3 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 34px;
+  color: var(--accent-deep);
+  margin: 0 0 10px;
+}
+.guestcam p {
+  color: var(--ink-soft);
+  margin: 0 0 24px;
+}
+.guestcam-qr {
+  width: 150px;
+  height: 150px;
+  flex: 0 0 auto;
+  background: #fff;
+  border: 1px solid var(--rule);
+  padding: 6px;
+}
+@media (max-width: 768px) {
+  .guestcam { padding: 28px 20px; margin-bottom: 40px; }
+  .guestcam h3 { font-size: 27px; line-height: 1.2; }
+  .guestcam-qr { display: none; }
+  .guestcam .guestcam-btn {
+    display: block;
+    width: 100%;
+    padding: 18px 12px;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+  }
+}
+
 /* ---------- Gallery ---------- */
 .gallery {
   display: grid;
