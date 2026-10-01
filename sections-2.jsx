@@ -129,17 +129,31 @@ const Travel = () =>
   <div className="label">Shuttle · 接 驳 车</div>
   <h4>The Benson → Providence → Lan Su</h4>
   
-  <p style={{ fontSize: 15, marginBottom: 8 }}>
-    A complimentary shuttle runs the full route on the wedding day:
+  <p style={{ fontSize: 15, marginBottom: 12 }}>
+    A complimentary shuttle runs the full route on Saturday, October 17:
   </p>
-  
+
+  <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", columnGap: 14, rowGap: 6, fontSize: 15, lineHeight: 1.4, marginBottom: 16 }}>
+    <span style={{ fontWeight: 500, whiteSpace: "nowrap" }}>1:30 pm</span>
+    <span>Shuttle arrives at The Benson (309 SW Broadway)</span>
+    <span style={{ fontWeight: 500, whiteSpace: "nowrap" }}>1:45 pm</span>
+    <span><strong style={{ fontWeight: 500 }}>Departs The Benson</strong> for Providence Academy</span>
+    <span style={{ whiteSpace: "nowrap", color: "var(--ink-soft)" }}>2:30 pm</span>
+    <span style={{ fontStyle: "italic", color: "var(--ink-soft)" }}>Ceremony begins</span>
+    <span style={{ fontWeight: 500, whiteSpace: "nowrap" }}>4:00 pm</span>
+    <span><strong style={{ fontWeight: 500 }}>Departs Providence Academy</strong> for Lan Su Chinese Garden</span>
+    <span style={{ whiteSpace: "nowrap", color: "var(--ink-soft)" }}>4:30 pm</span>
+    <span style={{ fontStyle: "italic", color: "var(--ink-soft)" }}>Reception begins</span>
+  </div>
+
   <ul style={{ fontSize: 15, paddingLeft: 20, lineHeight: 1.5, marginBottom: 12 }}>
-    <li><strong>Before the ceremony:</strong> Departs from The Benson and takes guests to Providence Academy.</li>
-    <li><strong>After the ceremony:</strong> Continues from Providence Academy to Lan Su Chinese Garden for the reception.</li>
+    <li style={{ marginBottom: 4 }}>Please be on board by 1:45 pm. The shuttle leaves on time.</li>
+    <li>You're welcome to leave bags and coats on the shuttle during the ceremony.</li>
   </ul>
-  
-  <p style={{ fontSize: 15, fontStyle: "italic", color: "#555" }}>
-    * Exact pickup times at the hotel will be shared closer to the day.
+
+  <p style={{ fontSize: 13, color: "var(--ink-soft)", fontStyle: "italic", margin: 0, lineHeight: 1.5, borderTop: "1px solid var(--rule)", paddingTop: 12 }}>
+    <span style={{ fontWeight: 500 }}>Seats are limited</span> and reserved from your RSVP. Didn't reserve a seat but would like one? Email us at{" "}
+    <a href="mailto:xiaoalex.joachli@gmail.com" style={{ fontSize: 13, fontWeight: 400 }}>xiaoalex.joachli@gmail.com</a> by Friday, October&nbsp;9.
   </p>
 </div>
             
