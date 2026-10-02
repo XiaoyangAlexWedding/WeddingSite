@@ -23,11 +23,23 @@ const Nav = ({ active, onNavigate }) => {
     onNavigate(id);
   };
 
+  // On phones the links are a horizontally scrolling row; keep the current
+  // page's link in view so guests can see where they are.
+  useNavEff(() => {
+    const el = document.querySelector(".nav-links a.active");
+    if (el) el.scrollIntoView({ block: "nearest", inline: "center" });
+  }, [active]);
+
   return (
     <nav className="nav scrolled">
       <button className="nav-mono" onClick={(e) => handle(e, "home")} aria-label="Back to home">
         X &amp; A
       </button>
+
+      {/* Phone-only RSVP in the top bar; the in-row RSVP is hidden on phones */}
+      <a href="/RSVP/" className="nav-rsvp nav-rsvp-mobile">
+        RSVP
+      </a>
 
       <button
         className="nav-burger"
@@ -64,7 +76,11 @@ const Nav = ({ active, onNavigate }) => {
         ))}
 
         {/* Standalone page at a real path — full navigation, not a hash route */}
-        <a href="/things-to-do/" onClick={() => setOpen(false)}>
+        <a
+          href="/things-to-do/"
+          onClick={() => setOpen(false)}
+          className={active === "things-to-do" ? "active" : ""}
+        >
           Things to Do
         </a>
 

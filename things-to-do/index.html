@@ -19,8 +19,10 @@
        so the two sticky/fixed elements don't collide. */
     body .ttd-masthead { padding-top: 104px; }
     body .ttd-index { top: 52px; }
-    @media (max-width: 600px) {
-      body .ttd-masthead { padding-top: 84px; }
+    /* On phones the nav is taller (logo + RSVP row, then a swipeable link row) */
+    @media (max-width: 820px) {
+      body .ttd-masthead { padding-top: 136px; }
+      body .ttd-index { top: 104px; }
     }
   </style>
 </head>
