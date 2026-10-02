@@ -113,16 +113,17 @@ const Travel = () =>
       </ul>
     </div>
 
-    <div style={{ marginBottom: 16 }}>
-      <span style={{ fontSize: 15, fontWeight: 500 }}>Ceremony · Providence Academy</span>
-      <div style={{ fontSize: 15, marginTop: 4 }}>Onsite complimentary parking is available.</div>
-    </div>
-
     <div>
-      <span style={{ fontSize: 15, fontWeight: 500 }}>Reception · Lan Su Chinese Garden</span>
-      <div style={{ fontSize: 15, marginTop: 4 }}>Ample street parking, plus a lot at Flanders &amp; 3rd.</div>
+      <div style="margin-bottom: 16px;">
+        <span style="font-size: 15px; font-weight: 500;">Ceremony · <a href="https://maps.app.goo.gl/HWFec1KTQF1aeB3j7">Providence Academy</a></span>
+        <div style="font-size: 15px; margin-top: 4px;">Onsite complimentary parking is available.</div>
+      </div>
+    
+      <div>
+        <span style="font-size: 15px; font-weight: 500;">Reception · <a href="https://maps.app.goo.gl/5HXc4svM11J4oGhN8">Lan Su Chinese Garden</a></span>
+        <div style="font-size: 15px; margin-top: 4px;">Ample street parking, plus a parking lot at <a href="https://maps.app.goo.gl/FewRSuxL56dNmU6EA">Flanders &amp; 3rd</a>.</div>
+      </div>
     </div>
-  </div>
 
   {/* SHUTTLE CARD */}
 <div className="travel-card">
