@@ -280,7 +280,7 @@ const DressGuide = () =>
             <div>
               <h4>Dress Code</h4>
               <p>We invite you to celebrate in style — our dress code is <em>Formal</em>. Long dresses, suits, or your most-loved evening look.</p>
-              <p className="cn">着装：正式 · 欢迎您以最美的样子出席</p>
+              <p className="cn">着装：正式 · 欢迎您以最美的样子出席 您可以选择长礼服、西装等您最钟爱的晚宴造型</p>
             </div>
           </div>
 
@@ -307,7 +307,7 @@ const DressGuide = () =>
             <div>
               <h4>Cultural &amp; Traditional Attire</h4>
               <p>Traditional or cultural attire is highly welcomed and warmly encouraged. Cheongsams, hanfu, sherwanis — wear what feels like home.</p>
-              <p className="cn">欢迎穿着传统民族服饰 · 旗袍、汉服皆可</p>
+              <p className="cn">欢迎穿着传统民族服饰 · 旗袍等皆可</p>
             </div>
           </div>
 
@@ -324,8 +324,8 @@ const DressGuide = () =>
             <div className="dress-icon"><Botanical variant="sprig" size={44} /></div>
             <div>
               <h4>Weather &amp; Comfort</h4>
-              <p>The garden area will be roofed in case of rain, but October evenings in Portland can turn cool — please bring a formal jacket, wrap, or shawl to keep you warm through the celebration.</p>
-              <p className="cn">建议携带正装外套或披肩 · 以备夜晚降温</p>
+              <p>Most of the garden area will be outdoors but roofed in case of rain. October evenings in Portland can turn cool — please bring a formal jacket, wrap, or shawl to keep you warm through the celebration.</p>
+              <p className="cn">建议携带正装外套或披肩 · 以备降雨和夜晚降温</p>
             </div>
           </div>
         </div>
