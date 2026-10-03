@@ -129,7 +129,6 @@ const Travel = () =>
       </div>
     </div>
 
-
   {/* SHUTTLE CARD */}
 <div className="travel-card">
   <div className="label">Shuttle · 接 驳 车</div>
