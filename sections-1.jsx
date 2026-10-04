@@ -232,12 +232,12 @@ const Details = () =>
       <Reveal>
         <div style={{ textAlign: "center", marginTop: 64 }}>
           <div className="eyebrow-map" style={{ marginBottom: 12 }}>
-            Reception Adventure Guide · 婚礼园林游赏图鉴
+            Reception Adventure Guide · 婚宴园林游赏图鉴
           </div>
       
           <figure className="detail-map">
             <img
-              src="assets/EN-Map.png"
+              src="assets/Lansu Map- Eng.jpg"
               alt="Lan Su Chinese Garden wedding reception activity map"
               loading="lazy"
               style={{
