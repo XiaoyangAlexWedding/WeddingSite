@@ -49,7 +49,7 @@ h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:500;margin:0;co
     @media(max-width:640px){.event.key-public{grid-template-columns:82px 1fr;padding:16px 0}.event.key-public .event-time{font-size:17px}.event.key-public h3{font-size:17px}}
 
 
-.doc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.doc-card{display:flex;gap:13px;align-items:flex-start;padding:16px;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 5px 18px rgba(43,53,44,.04)}.doc-card:hover{border-color:#cbb990;background:#fffdf7}.doc-icon{flex:0 0 38px;width:38px;height:38px;display:grid;place-items:center;border-radius:11px;background:var(--gold-2);font-size:1.05rem}.doc-copy{min-width:0}.doc-copy b{display:block;color:#493f2f;line-height:1.3}.doc-meta{margin-top:4px;color:var(--muted);font-size:.78rem}.handoff-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}.handoff-box{min-width:0}.handoff-box-title{font-family:Georgia,"Times New Roman",serif;font-size:1.22rem;margin:0 0 4px}.handoff-box-sub{color:var(--muted);font-size:.82rem;margin:0 0 12px}.staff-directory{display:grid;gap:10px}.staff-contact-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:13px 14px}.staff-contact-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.staff-contact-name{font-weight:800;color:#334034}.staff-contact-role{margin-top:3px;color:var(--muted);font-size:.8rem;white-space:pre-line}.contact-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}.contact-link{display:inline-flex;align-items:center;gap:4px;border:1px solid #dfe4db;background:#f8faf6;border-radius:999px;padding:5px 8px;font-size:.77rem;text-decoration:none;color:#536552}.food-note{margin-top:8px;font-size:.77rem;color:#765f42;background:#fbf5e8;border-radius:8px;padding:6px 8px}@media(max-width:760px){.doc-grid,.handoff-grid{grid-template-columns:1fr}}
+.doc-library-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}.doc-frame{border:1px solid var(--line);border-radius:18px;background:#fbfcf9;padding:15px}.doc-frame-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:11px}.doc-frame-title{font-family:Georgia,"Times New Roman",serif;font-size:1.13rem;margin:0;color:#3f493e}.doc-frame-sub{color:var(--muted);font-size:.79rem;margin-top:3px}.doc-frame-count{flex:0 0 auto;border:1px solid #dfe4db;background:#fff;border-radius:999px;padding:4px 8px;font-size:.72rem;font-weight:800;color:#667164}.doc-grid{display:grid;grid-template-columns:1fr;gap:10px}.doc-card{display:flex;gap:13px;align-items:flex-start;padding:16px;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 5px 18px rgba(43,53,44,.04)}.doc-card:hover{border-color:#cbb990;background:#fffdf7}.doc-icon{flex:0 0 38px;width:38px;height:38px;display:grid;place-items:center;border-radius:11px;background:var(--gold-2);font-size:1.05rem}.doc-copy{min-width:0}.doc-copy b{display:block;color:#493f2f;line-height:1.3}.doc-meta{margin-top:4px;color:var(--muted);font-size:.78rem}.handoff-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}.handoff-box{min-width:0}.handoff-box-title{font-family:Georgia,"Times New Roman",serif;font-size:1.22rem;margin:0 0 4px}.handoff-box-sub{color:var(--muted);font-size:.82rem;margin:0 0 12px}.focus-flash{outline:3px solid #d7bd79;outline-offset:3px;transition:outline-color .3s ease}.staff-directory{display:grid;gap:10px}.staff-contact-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:13px 14px}.staff-contact-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.staff-contact-name{font-weight:800;color:#334034}.staff-contact-role{margin-top:3px;color:var(--muted);font-size:.8rem;white-space:pre-line}.contact-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}.contact-link{display:inline-flex;align-items:center;gap:4px;border:1px solid #dfe4db;background:#f8faf6;border-radius:999px;padding:5px 8px;font-size:.77rem;text-decoration:none;color:#536552}.food-note{margin-top:8px;font-size:.77rem;color:#765f42;background:#fbf5e8;border-radius:8px;padding:6px 8px}@media(max-width:760px){.doc-library-grid,.doc-grid,.handoff-grid{grid-template-columns:1fr}}
 
 </style>
 </head>
@@ -219,10 +219,25 @@ function collaboratorsForEvent(eventId){
     r=>[r.name,r.eventId,r.role,r.duty].join('|')
   ).sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')) || String(a.role||'').localeCompare(String(b.role||'')));
 }
+function captainAnchor(c){
+  const slug=v=>String(v||'').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+  return `captain-${slug(c?.name||'person')}-${slug(c?.eventId||'event')}`;
+}
+function captainsTabLink(c){
+  try{
+    const u=new URL(location.href);
+    u.searchParams.set('role',currentRole);
+    u.searchParams.set('plan',currentPlan);
+    u.searchParams.set('tab','captains');
+    u.searchParams.set('moments',currentMomentMode);
+    u.hash=captainAnchor(c);
+    return u.toString();
+  }catch(e){return '#'+captainAnchor(c)}
+}
 function renderMomentCollaborators(eventId){
   const people=collaboratorsForEvent(eventId);
   if(!people.length) return '';
-  return `<div class="moment-collabs"><div class="master-label">Family & Friend captains / collaborators</div><div class="moment-collab-list">${people.map(c=>`<a class="moment-collab-link" href="${esc(familyLink(c.name))}" target="_blank" rel="noopener"><span>${esc(c.name)}</span>${c.role?`<span class="moment-collab-role">· ${esc(c.role)}</span>`:''} ↗</a>`).join('')}</div></div>`;
+  return `<div class="moment-collabs"><div class="master-label">Family & Friend captains / collaborators</div><div class="moment-collab-list">${people.map(c=>`<a class="moment-collab-link internal-captain-link" data-captain-target="${esc(captainAnchor(c))}" href="${esc(captainsTabLink(c))}"><span>${esc(c.name)}</span>${c.role?`<span class="moment-collab-role">· ${esc(c.role)}</span>`:''} →</a>`).join('')}</div></div>`;
 }
 function renderRoleAssignment(t){
   const place=[t.venue,t.location].filter(Boolean).map(esc).join(' · ');
@@ -288,7 +303,7 @@ function renderPerson(p){
   return `<div class="person"><div class="person-name">${esc(p.name)}</div>${p.assignment?`<div class="person-role">${nl(p.assignment)}</div>`:''}<div class="person-meta">${p.phone?esc(p.phone):''}${p.phone&&p.email?' · ':''}${p.email?`<a href="mailto:${esc(p.email)}">${esc(p.email)}</a>`:''}</div>${p.food?`<div class="person-food">Food: ${esc(p.food)}</div>`:''}</div>`;
 }
 function renderCollab(c){
-  return `<div class="card collab"><div class="collab-name">${esc(c.name)}</div><div class="collab-role">${esc(c.role)}</div><div class="collab-meta">${esc(c.time||'')}${c.stage?' · '+esc(c.stage):''}${c.location?' · '+esc(c.location):''}</div><div class="collab-duty">${nl(c.duty)}</div><div class="collab-links"><a class="pill-link" href="${esc(familyLink(c.name))}" target="_blank" rel="noopener">Open ${esc(c.name)}'s Family handbook ↗</a></div></div>`;
+  return `<div class="card collab" id="${esc(captainAnchor(c))}"><div class="collab-name">${esc(c.name)}</div><div class="collab-role">${esc(c.role)}</div><div class="collab-meta">${esc(c.time||'')}${c.stage?' · '+esc(c.stage):''}${c.location?' · '+esc(c.location):''}</div><div class="collab-duty">${nl(c.duty)}</div><div class="collab-links"><a class="pill-link" href="${esc(familyLink(c.name))}" target="_blank" rel="noopener">Open ${esc(c.name)}'s Family handbook ↗</a></div></div>`;
 }
 function renderDoc(d){
   const isVideo=norm(d.type)==='video' || /\.(mp4|mov|m4v|webm)$/i.test(d.label||'');
@@ -365,11 +380,20 @@ function render(){
     </div>`:''}
 
     <div class="tab-panel" data-panel="docs" role="tabpanel">
-      <section class="section"><div class="section-head"><div><div class="section-kicker">Role reference library</div><h2>Detailed Docs</h2><div class="section-sub">Live references from the <b>Doc Details</b> tab for this staff role. Documents and venue video tours open in a new tab.</div></div></div><div class="doc-grid">${model.docs.length?model.docs.map(renderDoc).join(''):`<div class="empty">No Detailed Docs are currently mapped to ${esc(model.role)} in the Doc Details tab.</div>`}</div></section>
+      <section class="section"><div class="section-head"><div><div class="section-kicker">Role reference library</div><h2>Detailed Docs</h2><div class="section-sub">Live references from the <b>Doc Details</b> tab for this staff role, separated into working documents and venue / setup video tours.</div></div></div>
+      ${(()=>{
+        const documents=(model.docs||[]).filter(d=>!(norm(d.type)==='video' || /\.(mp4|mov|m4v|webm)$/i.test(d.label||'')));
+        const videos=(model.docs||[]).filter(d=>norm(d.type)==='video' || /\.(mp4|mov|m4v|webm)$/i.test(d.label||''));
+        return `<div class="doc-library-grid">
+          <div class="doc-frame"><div class="doc-frame-head"><div><h3 class="doc-frame-title">Detailed Documents</h3><div class="doc-frame-sub">Layouts, scripts, guides, and other role references.</div></div><span class="doc-frame-count">${documents.length}</span></div><div class="doc-grid">${documents.length?documents.map(renderDoc).join(''):`<div class="empty">No detailed documents are currently mapped to ${esc(model.role)}.</div>`}</div></div>
+          <div class="doc-frame"><div class="doc-frame-head"><div><h3 class="doc-frame-title">Video Tours</h3><div class="doc-frame-sub">Venue, setup, and location walkthrough videos.</div></div><span class="doc-frame-count">${videos.length}</span></div><div class="doc-grid">${videos.length?videos.map(renderDoc).join(''):`<div class="empty">No video tours are currently mapped to ${esc(model.role)}.</div>`}</div></div>
+        </div>`;
+      })()}
+      </section>
     </div>
 
     <div class="tab-panel" data-panel="captains" role="tabpanel">
-      <section class="section"><div class="section-head"><div><div class="section-kicker">Human handoffs</div><h2>${model.role==='Coordinator'?'Captains & staff/vendor contacts':'Family & Friend captains / collaborators'}</h2><div class="section-sub">${model.role==='Coordinator'?'Coordinator command-center view: Family & Friend handoffs plus every staff/vendor contact from Groups&Contact.':'Operational Family & Friend roles sharing this team\'s Event IDs. Each card links back to the existing Family & Friend handbook.'}</div></div></div>
+      <section class="section"><div class="section-head"><div><div class="section-kicker">Human handoffs</div><h2>${model.role==='Coordinator'?'Captains & staff/vendor contacts':'Family & Friend captains / collaborators'}</h2><div class="section-sub">${model.role==='Coordinator'?'Coordinator command-center view: Family & Friend handoffs plus every staff/vendor contact from Groups&Contact.':'Operational Family & Friend roles sharing this team\'s Event IDs. Role-moment names jump here to the matching captain card.'}</div></div></div>
       ${model.role==='Coordinator'?`<div class="handoff-grid"><div class="handoff-box"><h3 class="handoff-box-title">Family & Friend Captains</h3><p class="handoff-box-sub">People coordinating guest/family execution with the coordinator team.</p><div class="collab-grid">${model.collaborators.length?model.collaborators.map(renderCollab).join(''):`<div class="empty">No Family & Friend captain/collaborator is currently linked to Coordinator Event IDs.</div>`}</div></div><div class="handoff-box"><h3 class="handoff-box-title">All Staff / Vendor Contacts</h3><p class="handoff-box-sub">Live directory from Groups&Contact for day-of vendor communication.</p><div class="staff-directory">${(DATA.staffContacts||[]).length?[...(DATA.staffContacts||[])].sort((a,b)=>categoryForContact(a).localeCompare(categoryForContact(b))||String(a.name||'').localeCompare(String(b.name||''))).map(renderStaffDirectoryContact).join(''):`<div class="empty">No staff contacts found in Groups&Contact.</div>`}</div></div></div>`:`<div class="collab-grid">${model.collaborators.length?model.collaborators.map(renderCollab).join(''):`<div class="empty">No Family & Friend captain/collaborator is currently linked to this role's Event IDs.</div>`}</div>`}
       </section>
     </div>
@@ -378,7 +402,18 @@ function render(){
 
   document.querySelectorAll('.tab-btn').forEach(btn=>btn.addEventListener('click',()=>activateTab(btn.dataset.tab,true)));
   document.querySelectorAll('[data-moments]').forEach(btn=>{btn.classList.toggle('active',btn.dataset.moments===currentMomentMode);btn.addEventListener('click',()=>{currentMomentMode=btn.dataset.moments;render()})});
+  document.querySelectorAll('.internal-captain-link').forEach(link=>link.addEventListener('click',e=>{
+    e.preventDefault();
+    const target=link.dataset.captainTarget;
+    activateTab('captains',false);
+    requestAnimationFrame(()=>{
+      const el=document.getElementById(target);
+      if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('focus-flash');setTimeout(()=>el.classList.remove('focus-flash'),1600)}
+      try{history.replaceState({},'',captainsTabLink({name:'',eventId:''}).split('#')[0]+'#'+target)}catch(_){}
+    });
+  }));
   activateTab(currentTab,false);
+  if(location.hash && currentTab==='captains'){requestAnimationFrame(()=>{const el=document.getElementById(location.hash.slice(1));if(el)el.scrollIntoView({block:'center'})})}
 }
 function populateRoleSelect(){
   const s=$('#roleSelect');s.innerHTML='';ROLE_MODELS.forEach(m=>{const o=document.createElement('option');o.value=m.role;o.textContent=`${m.role} (${m.people.length})`;s.appendChild(o)}); if(!ROLE_MODELS.some(m=>m.role===currentRole))currentRole=ROLE_MODELS[0]?.role||'';s.value=currentRole;
