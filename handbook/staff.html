@@ -74,7 +74,7 @@ h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:500;margin:0;co
 const CONFIG = {
   // Paste the /exec URL from the ONE unified Apps Script Web App here.
   // Keep ?handbook=staff at the end. Until then, the page uses the embedded preview snapshot.
-  API_URL: 'https://script.google.com/macros/s/AKfycbxnVmZMMlis0Sz3hbmUn5pPKIH0ujjVJy_cUOedtUO5yDCwU93OJ4kX0E9Fl0VmTtXL/exec?handbook=staff',
+  API_URL: 'https://script.google.com/macros/s/AKfycbxnVmZMMlis0Sz3hbmUn5pPKIH0ujjVJy_cUOedtUO5yDCwU93OJ4kX0E9Fl0VmTtXL?handbook=staff',
   FAMILY_PERSON_PARAM: 'person',
   AUTO_REFRESH_MS: 5 * 60 * 1000
 };
@@ -243,26 +243,71 @@ function renderRoleAssignment(t){
   const place=[t.venue,t.location].filter(Boolean).map(esc).join(' · ');
   return `<div class="role-assignment"><div class="role-assignment-top"><span class="role-assignment-person">${esc(t.name||'TBD')}</span><span class="badge ${badgeClass(t.status)}">${esc(t.status||'Status not set')}</span>${t.plan==='Rain'?'<span class="badge rain">Rain</span>':''}</div><div class="role-assignment-duty">${nl(t.duty||'Assignment')}</div>${place?`<div class="role-assignment-meta">📍 ${place}</div>`:''}${t.coupleNotes?`<div class="notes"><b>Couple note</b><br>${nl(t.coupleNotes)}</div>`:''}${t.coordNotes?`<details><summary>Open planning / coordination note</summary><div class="discussion">${nl(t.coordNotes)}</div></details>`:''}</div>`;
 }
-function taskMatchesMaster(t,e){
+function chooseMasterForTask(t,masterEvents){
+  const all=masterEvents||[];
   const ref=parseSourceRef(t.source);
-  if(ref) return ref.row===e.row && ref.plan===e.plan;
-  return !!(t.eventId && e.eventId && t.eventId===e.eventId);
+  const taskEvent=String(t.eventId||'').trim();
+  const taskPlan=String(t.plan||'').trim();
+
+  // A source-row reference is trusted only when it still points to the same Event ID.
+  if(ref){
+    const exact=all.find(e=>e.row===ref.row && e.plan===ref.plan);
+    if(exact && (!taskEvent || String(exact.eventId||'').trim()===taskEvent)) return exact;
+  }
+
+  // Event ID is the authoritative join key.  If the same Event ID occurs more
+  // than once, use the matching plan and the moment closest to the Staff Task time.
+  if(taskEvent){
+    let candidates=all.filter(e=>String(e.eventId||'').trim()===taskEvent);
+    const samePlan=candidates.filter(e=>!taskPlan || e.plan===taskPlan);
+    if(samePlan.length) candidates=samePlan;
+    if(candidates.length){
+      const tm=minutes(t.time);
+      return candidates.slice().sort((a,b)=>{
+        const da=Math.abs(minutes(a.time)-tm);
+        const db=Math.abs(minutes(b.time)-tm);
+        if(Number.isFinite(da) && Number.isFinite(db) && da!==db) return da-db;
+        return (a.row||99999)-(b.row||99999);
+      })[0];
+    }
+  }
+
+  // Last-resort fallback for legacy rows that have no Event ID.
+  if(ref) return all.find(e=>e.row===ref.row && e.plan===ref.plan) || null;
+  return null;
 }
 function buildMergedTimeline(masterEvents,tasks){
-  const used=new Set();
-  const items=(masterEvents||[]).map(e=>{
-    const attached=[];
-    tasks.forEach(t=>{if(taskMatchesMaster(t,e)){attached.push(t);used.add(t)}});
-    attached.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')) || (a.row||0)-(b.row||0));
-    return {master:e,tasks:attached,time:e.time||attached[0]?.time||'',eventId:e.eventId||attached[0]?.eventId||'',sortRow:e.row||99999};
+  const items=(masterEvents||[]).map(e=>({
+    master:e,tasks:[],time:e.time||'',eventId:e.eventId||'',sortRow:e.row||99999
+  }));
+  const itemByMaster=new Map(items.map(i=>[i.master,i]));
+  const unmatched=[];
+
+  (tasks||[]).forEach(t=>{
+    const chosen=chooseMasterForTask(t,masterEvents);
+    if(chosen && itemByMaster.has(chosen)){
+      itemByMaster.get(chosen).tasks.push(t);
+    }else{
+      unmatched.push(t);
+    }
   });
+
+  items.forEach(i=>{
+    i.tasks.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')) || (a.row||0)-(b.row||0));
+    if(i.tasks.length && !i.time) i.time=i.tasks[0].time||'';
+  });
+
   const groups=new Map();
-  tasks.filter(t=>!used.has(t)).forEach(t=>{
+  unmatched.forEach(t=>{
     const key=[t.time||'',t.eventId||'',t.venue||'',t.location||''].join('|');
     if(!groups.has(key)) groups.set(key,{master:null,tasks:[],time:t.time||'',eventId:t.eventId||'',sortRow:t.row||99999});
     groups.get(key).tasks.push(t);
   });
-  groups.forEach(g=>{g.tasks.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')) || (a.row||0)-(b.row||0));items.push(g)});
+  groups.forEach(g=>{
+    g.tasks.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')) || (a.row||0)-(b.row||0));
+    items.push(g);
+  });
+
   return items.sort((a,b)=>minutes(a.time)-minutes(b.time) || (a.sortRow||99999)-(b.sortRow||99999) || String(a.eventId||'').localeCompare(String(b.eventId||'')));
 }
 function renderMergedMoment(item){
