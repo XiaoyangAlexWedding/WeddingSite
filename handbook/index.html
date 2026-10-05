@@ -1176,7 +1176,7 @@
   }
 
   @media (max-width:700px) {
-    .makeup-summary {
+.makeup-summary {
       margin-top:8px;
       font-size:15px;
     }
@@ -1383,7 +1383,40 @@
 
 
 <style id="personal-link-and-resource-row-style">
-  .copy-personal-link {
+  .name-search-row {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:9px;
+    align-items:stretch;
+  }
+
+  .refresh-page-btn {
+    min-height:46px !important;
+    padding:0 16px !important;
+    background:var(--site-rust-dark) !important;
+    color:#fff !important;
+    border:1px solid var(--site-rust-dark) !important;
+    border-radius:4px !important;
+    font-family:Georgia,"Times New Roman",serif !important;
+    font-style:italic;
+    font-weight:700 !important;
+    font-size:14px !important;
+    white-space:nowrap;
+    box-shadow:0 2px 0 rgba(74,47,37,.14);
+  }
+
+  .refresh-page-btn:disabled {
+    opacity:.72;
+    cursor:wait;
+  }
+
+  .refresh-page-btn:hover,
+  .refresh-page-btn:focus-visible {
+    background:var(--site-rust) !important;
+    border-color:var(--site-rust) !important;
+    color:#fff !important;
+  }
+.copy-personal-link {
     display:inline-block;
     min-height:auto !important;
     margin-top:8px;
@@ -1417,30 +1450,31 @@
     font-style:italic;
   }
 
-  /* Separate full-width row so role documents are easy to find. */
-  .summary .resource-summary {
-    grid-column:1 / -1 !important;
-    display:block;
-    padding:14px 16px 16px !important;
-    border-left:0 !important;
-    border-top:1px solid var(--site-line) !important;
-    background:rgba(255,255,255,.12) !important;
+  /* Guides & Documents is a separate section below Your Partners. */
+  .resource-section {
+    max-width:900px;
+    margin:14px auto 18px;
+    padding:16px 18px 18px;
+    border-top:1px solid var(--site-line);
+    border-bottom:1px solid var(--site-line);
+    background:rgba(255,255,255,.12);
+    text-align:center;
   }
 
-  .summary .resource-summary[hidden] {
+  .resource-section[hidden] {
     display:none !important;
   }
 
   .resource-heading {
     color:var(--site-rust);
     font-family:Georgia,"Times New Roman",serif;
-    font-size:18px;
+    font-size:22px;
     font-style:italic;
     line-height:1.25;
   }
 
   .resource-subtitle {
-    margin-top:2px;
+    margin-top:3px;
     color:var(--site-muted);
     font-family:Georgia,"Times New Roman",serif;
     font-size:12px;
@@ -1452,19 +1486,19 @@
     justify-content:center;
     align-items:stretch;
     flex-wrap:wrap;
-    gap:8px;
-    margin-top:10px;
+    gap:9px;
+    margin-top:12px;
   }
 
   .resource-links .duty-detail-link {
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    min-height:36px;
-    padding:7px 11px;
+    min-height:38px;
+    padding:8px 12px;
     color:var(--site-rust-dark);
-    border:1px solid rgba(154,79,54,.32);
-    background:rgba(255,255,255,.20);
+    border:1px solid rgba(154,79,54,.34);
+    background:rgba(255,255,255,.22);
     text-decoration:none;
     line-height:1.3;
   }
@@ -1473,17 +1507,27 @@
   .resource-links .duty-detail-link:focus-visible {
     color:var(--site-rust);
     border-color:var(--site-rust);
-    background:rgba(255,255,255,.34);
+    background:rgba(255,255,255,.36);
   }
 
   @media (max-width:700px) {
-    .summary .resource-summary {
-      grid-column:1 / -1 !important;
-      padding:13px 10px 15px !important;
+    .name-search-row {
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:7px;
+    }
+
+    .refresh-page-btn {
+      padding:0 12px !important;
+      font-size:13px !important;
+    }
+
+    .resource-section {
+      margin-top:12px;
+      padding:14px 12px 16px;
     }
 
     .resource-heading {
-      font-size:20px;
+      font-size:22px;
     }
 
     .resource-subtitle {
@@ -1498,15 +1542,1339 @@
     .resource-links .duty-detail-link {
       width:100%;
       font-size:15px;
-      padding:9px 10px;
+      padding:10px;
     }
 
     .copy-personal-link {
       font-size:14px !important;
     }
   }
+
+  @media (max-width:430px) {
+    .name-search-row {
+      grid-template-columns:1fr;
+    }
+
+    .refresh-page-btn {
+      width:100%;
+    }
+  }
 </style>
 
+
+<style id="summary-five-column-and-personal-link-style">
+  @media (min-width:701px) {
+    .summary {
+      grid-template-columns:
+        minmax(180px,1.25fr)
+        minmax(95px,.55fr)
+        minmax(180px,1.20fr)
+        minmax(105px,.65fr)
+        minmax(170px,1fr) !important;
+      max-width:1040px !important;
+    }
+}
+
+  .copy-personal-link {
+    min-height:32px !important;
+    margin-top:9px !important;
+    padding:5px 10px !important;
+    color:#fff !important;
+    background:var(--site-rust-dark) !important;
+    border:1px solid var(--site-rust-dark) !important;
+    border-radius:4px !important;
+    text-decoration:none !important;
+    font-weight:700 !important;
+  }
+
+  .copy-personal-link:hover,
+  .copy-personal-link:focus-visible {
+    color:#fff !important;
+    background:var(--site-rust) !important;
+    border-color:var(--site-rust) !important;
+  }
+
+  @media (max-width:700px) {
+.copy-personal-link {
+      width:auto;
+      max-width:220px;
+      align-self:center;
+    }
+  }
+</style>
+
+
+<style id="day-of-contact-card-style">
+  .day-contact-summary {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    min-width:0;
+  }
+
+  .day-contact-title {
+    color:var(--site-rust);
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:16px;
+    font-style:italic;
+    font-weight:700;
+    line-height:1.2;
+  }
+
+  .day-contact-role {
+    color:var(--site-ink);
+    font-size:12px;
+    line-height:1.3;
+  }
+
+  .day-contact-details {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:3px;
+    font-size:11px;
+    line-height:1.3;
+  }
+
+  .day-contact-details a,
+  .all-staff-link {
+    color:var(--site-rust-dark);
+    text-decoration:none;
+    border-bottom:1px solid rgba(154,79,54,.32);
+  }
+
+  .day-contact-details a:hover,
+  .day-contact-details a:focus-visible,
+  .all-staff-link:hover,
+  .all-staff-link:focus-visible {
+    color:var(--site-rust);
+    border-bottom-color:var(--site-rust);
+  }
+
+  .day-contact-dot {
+    color:var(--site-muted);
+  }
+
+  .all-staff-link {
+    margin-top:2px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:12px;
+    font-style:italic;
+    font-weight:700;
+  }
+
+  @media (min-width:701px) {
+    .summary {
+      grid-template-columns:
+        minmax(180px,1.15fr)
+        minmax(90px,.50fr)
+        minmax(165px,1.05fr)
+        minmax(100px,.60fr)
+        minmax(235px,1.35fr) !important;
+      max-width:1120px !important;
+    }
+
+    .day-contact-summary {
+      grid-column:5 !important;
+    }
+  }
+
+  @media (max-width:700px) {
+    .day-contact-summary {
+      grid-column:auto !important;
+      padding-left:10px !important;
+      padding-right:10px !important;
+    }
+
+    .day-contact-title {
+      font-size:18px;
+    }
+
+    .day-contact-role,
+    .day-contact-details,
+    .all-staff-link {
+      font-size:13px;
+    }
+  }
+</style>
+
+
+<style id="friendly-reading-layout">
+  /* Top actions: identity + copy + refresh only. */
+  .top-person-controls {
+    display:block !important;
+    max-width:900px;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  .top-person-controls .name-control {
+    width:100%;
+  }
+
+  .name-search-row {
+    grid-template-columns:minmax(0,1fr) auto auto !important;
+  }
+
+  .top-copy-link,
+  .refresh-page-btn {
+    min-height:46px !important;
+    align-self:stretch;
+  }
+
+  .top-copy-link {
+    margin-top:0 !important;
+    padding:0 14px !important;
+    color:var(--site-rust-dark) !important;
+    background:transparent !important;
+    border:1px solid var(--site-rust-dark) !important;
+    border-radius:4px !important;
+    white-space:nowrap;
+  }
+
+  .top-copy-link:hover,
+  .top-copy-link:focus-visible {
+    color:#fff !important;
+    background:var(--site-rust) !important;
+  }
+
+  .copy-link-status {
+    text-align:right;
+    min-height:14px;
+  }
+
+  /* Summary: all duty tags remain visible. */
+  .summary .small {
+    color:var(--site-rust-dark) !important;
+    font-size:10px !important;
+    font-weight:700 !important;
+    letter-spacing:.10em !important;
+  }
+
+  .summary-tag {
+    font-size:13px !important;
+    line-height:1.3 !important;
+    padding:3px 7px !important;
+  }
+
+  .first-duty-role {
+    margin-top:3px;
+    color:var(--site-rust-dark);
+    font-size:11px;
+    line-height:1.3;
+  }
+
+  .day-phone {
+    display:inline-block;
+    color:var(--site-rust) !important;
+    font-size:14px;
+    font-weight:800;
+    border-bottom:1px solid rgba(154,79,54,.42) !important;
+  }
+
+  /* Partners and role documents share one compact row. */
+  .personal-support-grid {
+    max-width:900px;
+    margin:12px auto 18px;
+    display:grid;
+    grid-template-columns:minmax(0,1.35fr) minmax(260px,.85fr);
+    gap:18px;
+    align-items:stretch;
+  }
+
+  .personal-support-grid[hidden] {
+    display:none !important;
+  }
+
+  .personal-support-grid.single-column {
+    grid-template-columns:1fr;
+  }
+
+  .personal-support-grid .partners-section,
+  .personal-support-grid .resource-section {
+    width:100%;
+    max-width:none;
+    height:100%;
+    margin:0 !important;
+    padding:15px 18px 16px !important;
+    border:1px solid var(--site-line);
+    background:rgba(255,255,255,.11);
+  }
+
+  .personal-support-grid .partners-section {
+    text-align:left;
+  }
+
+  .personal-support-grid .partners-heading,
+  .personal-support-grid .resource-heading {
+    text-align:center;
+    font-size:21px;
+  }
+
+  .personal-support-grid .partners-subtitle,
+  .personal-support-grid .resource-subtitle {
+    text-align:center;
+  }
+
+  .personal-support-grid .partner-row {
+    grid-template-columns:minmax(110px,.7fr) minmax(0,1.7fr);
+    gap:10px;
+  }
+
+  .personal-support-grid .partner-tag,
+  .personal-support-grid .partner-name {
+    font-style:normal;
+  }
+
+  .resource-links {
+    align-content:start;
+  }
+
+  /* One clear filtering area, immediately before the timeline. */
+  .view-your-day {
+    max-width:900px;
+    margin:10px auto 22px;
+    padding-top:12px;
+    border-top:1px solid var(--site-line);
+  }
+
+  .view-your-day-heading {
+    display:flex;
+    justify-content:center;
+    align-items:baseline;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-bottom:10px;
+  }
+
+  .view-your-day-title {
+    color:var(--site-rust);
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:22px;
+    font-style:italic;
+    font-weight:700;
+    white-space:nowrap;
+  }
+
+  .view-your-day .intro-note {
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+    font-size:12px !important;
+    line-height:1.45 !important;
+    text-align:left !important;
+  }
+
+  .timeline-filter-bar {
+    display:grid;
+    grid-template-columns:1.25fr .75fr;
+    gap:12px;
+    padding:10px 12px;
+    border:1px solid var(--site-line);
+    background:rgba(255,255,255,.16);
+  }
+
+  .filter-group {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    min-width:0;
+  }
+
+  .filter-label {
+    color:var(--site-muted);
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:.10em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+
+  .filter-buttons {
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    justify-content:center;
+  }
+
+  .filter-buttons button,
+  .view-your-day .quick-jump button {
+    min-height:34px !important;
+    padding:0 10px !important;
+    margin:0 !important;
+    border:1px solid var(--site-line) !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    color:var(--site-rust-dark) !important;
+    font-family:Georgia,"Times New Roman",serif !important;
+    font-size:12px !important;
+  }
+
+  .filter-buttons button.active,
+  .view-your-day .quick-jump button.active {
+    color:#fff !important;
+    background:var(--site-rust-dark) !important;
+    border-color:var(--site-rust-dark) !important;
+  }
+
+  .view-your-day .quick-jump {
+    max-width:none !important;
+    margin:0 !important;
+    justify-content:center !important;
+  }
+
+  /* Timeline readability: operational text is less italic and Helping stands out. */
+  .event-title {
+    font-style:normal !important;
+    font-weight:800 !important;
+  }
+
+  .happening,
+  .dutytext,
+  .details,
+  .rolechip {
+    font-style:normal !important;
+  }
+
+  .event.helping {
+    border-left-width:6px !important;
+    box-shadow:inset 0 0 0 1px rgba(154,79,54,.10);
+  }
+
+  .event.helping .pill.status-help {
+    font-weight:850 !important;
+  }
+
+  /* Lightweight mobile back-to-top control. */
+  .back-to-top {
+    position:fixed;
+    right:14px;
+    bottom:16px;
+    z-index:40;
+    min-height:38px;
+    padding:0 12px;
+    color:#fff;
+    background:var(--site-rust-dark);
+    border:1px solid var(--site-rust-dark);
+    border-radius:999px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:13px;
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(8px);
+    transition:opacity .18s ease, transform .18s ease;
+  }
+
+  .back-to-top.visible {
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0);
+  }
+
+  @media (max-width:700px) {
+    .name-search-row {
+      grid-template-columns:minmax(0,1fr) auto auto !important;
+    }
+
+    .top-copy-link,
+    .refresh-page-btn {
+      min-height:50px !important;
+      padding:0 10px !important;
+      font-size:13px !important;
+    }
+
+    .summary .small {
+      font-size:11px !important;
+    }
+
+    .summary-tag {
+      font-size:14px !important;
+    }
+
+    .personal-support-grid {
+      grid-template-columns:1fr;
+      gap:10px;
+      margin:10px auto 14px;
+    }
+
+    .personal-support-grid .partners-section,
+    .personal-support-grid .resource-section {
+      padding:14px 12px 15px !important;
+    }
+
+    .personal-support-grid .partner-row {
+      grid-template-columns:1fr;
+      gap:3px;
+      text-align:center;
+    }
+
+    .personal-support-grid .partner-tag {
+      text-align:center;
+    }
+
+    .personal-support-grid .partner-names {
+      justify-content:center;
+    }
+
+    .view-your-day {
+      margin-bottom:14px;
+    }
+
+    .view-your-day-heading {
+      align-items:center;
+      gap:6px 10px;
+    }
+
+    .view-your-day-title {
+      font-size:21px;
+    }
+
+    .view-your-day .intro-note {
+      font-size:12px !important;
+      text-align:center !important;
+    }
+
+    .timeline-filter-bar {
+      position:sticky;
+      top:0;
+      z-index:25;
+      grid-template-columns:1fr;
+      gap:7px;
+      padding:8px;
+      background:rgba(241,225,204,.97);
+      box-shadow:0 2px 8px rgba(74,47,37,.08);
+    }
+
+    .filter-group {
+      justify-content:space-between;
+    }
+
+    .filter-label {
+      min-width:58px;
+      text-align:left;
+    }
+
+    .filter-buttons {
+      flex:1;
+      justify-content:flex-end;
+    }
+
+    .filter-buttons button,
+    .view-your-day .quick-jump button {
+      min-height:36px !important;
+      font-size:13px !important;
+      padding:0 9px !important;
+    }
+
+    .day-phone {
+      font-size:15px;
+    }
+  }
+
+  @media (max-width:520px) {
+    .name-search-row {
+      grid-template-columns:1fr 1fr !important;
+    }
+
+    .name-search-row select {
+      grid-column:1 / -1;
+    }
+
+    .top-copy-link,
+    .refresh-page-btn {
+      width:100%;
+    }
+
+    .copy-link-status {
+      text-align:center;
+    }
+
+    .filter-group {
+      display:block;
+    }
+
+    .filter-label {
+      display:block;
+      margin-bottom:5px;
+      text-align:center;
+    }
+
+    .filter-buttons {
+      justify-content:center;
+    }
+  }
+</style>
+
+
+<style id="summary-readability-and-contact-style">
+  /* Personal summary labels: larger, darker, easier to scan. */
+  .summary .small {
+    color:var(--site-rust-dark) !important;
+    font-size:12px !important;
+    line-height:1.25 !important;
+    font-weight:800 !important;
+    letter-spacing:.08em !important;
+    text-transform:uppercase;
+  }
+
+  .membership-label {
+    color:var(--site-rust-dark) !important;
+    font-size:12px !important;
+    font-weight:700 !important;
+  }
+
+  /* Keep decorative headings italic, but make operational information regular. */
+  .event-title,
+  .happening,
+  .dutytext,
+  .details,
+  .rolechip,
+  .first-duty-role,
+  .day-contact-role,
+  .day-contact-email,
+  .day-phone,
+  .all-staff-link,
+  .partner-tag,
+  .partner-name,
+  .resource-links .duty-detail-link {
+    font-style:normal !important;
+  }
+
+  /* Preserve the elegant italics only for section / decorative headings. */
+  .partners-heading,
+  .resource-heading,
+  .view-your-day-title,
+  .day-contact-title {
+    font-style:italic !important;
+  }
+
+  .day-contact-summary {
+    gap:5px !important;
+  }
+
+  .day-contact-title {
+    margin-bottom:1px;
+  }
+
+  .day-contact-role {
+    color:var(--site-ink);
+    font-size:12px !important;
+    line-height:1.25;
+  }
+
+  /* Phone is the strongest practical action. */
+  .day-phone {
+    display:inline-block;
+    margin-top:2px;
+    padding:3px 7px;
+    color:var(--site-rust) !important;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:16px !important;
+    font-weight:900 !important;
+    line-height:1.2;
+    text-decoration:none !important;
+    border-bottom:1px solid rgba(154,79,54,.48) !important;
+  }
+
+  .day-phone:hover,
+  .day-phone:focus-visible {
+    color:var(--site-rust-dark) !important;
+    border-bottom-color:var(--site-rust-dark) !important;
+  }
+
+  .day-contact-email {
+    color:var(--site-muted) !important;
+    font-size:11px !important;
+    line-height:1.25;
+    text-decoration:none;
+    border-bottom:1px solid rgba(74,47,37,.22);
+  }
+
+  .day-contact-email:hover,
+  .day-contact-email:focus-visible {
+    color:var(--site-rust-dark) !important;
+    border-bottom-color:var(--site-rust-dark) !important;
+  }
+
+  .all-staff-link {
+    margin-top:2px !important;
+    color:var(--site-rust-dark) !important;
+    font-size:12px !important;
+    font-weight:700 !important;
+  }
+
+  @media (max-width:700px) {
+    .summary .small,
+    .membership-label {
+      font-size:12px !important;
+    }
+
+    .day-contact-role {
+      font-size:13px !important;
+    }
+
+    .day-phone {
+      font-size:17px !important;
+      padding:4px 8px;
+    }
+
+    .day-contact-email {
+      font-size:12px !important;
+    }
+
+    .all-staff-link {
+      font-size:13px !important;
+    }
+  }
+</style>
+
+
+<style id="editorial-wedding-program-style">
+  /* =========================================================
+     Overall: quieter, more editorial, less dashboard-like
+     ========================================================= */
+  :root {
+    --editorial-ink: #4d4037;
+    --editorial-muted: #7e6c5f;
+    --editorial-rule: rgba(116,88,67,.22);
+    --editorial-soft: rgba(255,255,255,.10);
+  }
+
+  /* Keep the page title romantic; make operational areas quieter. */
+  .lede,
+  .membership-label,
+  .summary .small,
+  .filter-label,
+  .partners-subtitle,
+  .resource-subtitle {
+    color:var(--editorial-muted) !important;
+  }
+
+  /* =========================================================
+     Top controls: one strong action (Refresh), one quiet action
+     ========================================================= */
+  .top-person-controls {
+    border-top:1px solid var(--editorial-rule) !important;
+    border-bottom:1px solid var(--editorial-rule) !important;
+    padding:12px 0 13px !important;
+  }
+
+  .name-control > label {
+    color:var(--editorial-muted) !important;
+    letter-spacing:.12em !important;
+  }
+
+  .top-copy-link {
+    color:var(--site-rust-dark) !important;
+    background:transparent !important;
+    border:0 !important;
+    border-bottom:1px solid rgba(154,79,54,.32) !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+    padding:0 5px !important;
+    font-weight:600 !important;
+    min-height:46px !important;
+  }
+
+  .top-copy-link:hover,
+  .top-copy-link:focus-visible {
+    color:var(--site-rust) !important;
+    background:transparent !important;
+    border-bottom-color:var(--site-rust) !important;
+  }
+
+  .refresh-page-btn {
+    box-shadow:none !important;
+  }
+
+  /* =========================================================
+     Personal summary: whitespace replaces boxes and vertical walls
+     ========================================================= */
+  .summary {
+    max-width:1040px !important;
+    margin:16px auto 24px !important;
+    border-top:1px solid var(--editorial-rule) !important;
+    border-bottom:1px solid var(--editorial-rule) !important;
+    background:transparent !important;
+  }
+
+  .summary > div {
+    position:relative;
+    background:transparent !important;
+    border:0 !important;
+    padding:15px 18px !important;
+  }
+
+  /* No boxed dashboard columns. Use a tiny dot divider on desktop. */
+  @media (min-width:701px) {
+    .summary > div:not(:last-child)::after {
+      content:"";
+      position:absolute;
+      right:0;
+      top:50%;
+      width:2px;
+      height:2px;
+      margin-top:-1px;
+      border-radius:50%;
+      background:rgba(116,88,67,.35);
+    }
+  }
+
+  .summary .big {
+    color:var(--site-rust) !important;
+    font-family:Georgia,"Times New Roman",serif !important;
+    font-size:19px !important;
+    line-height:1.22 !important;
+    font-weight:600 !important;
+    font-style:normal !important;
+  }
+
+  .summary .small {
+    margin-top:6px !important;
+    font-size:11px !important;
+    line-height:1.25 !important;
+    letter-spacing:.09em !important;
+    font-weight:700 !important;
+  }
+
+  .membership-label {
+    font-size:11px !important;
+    letter-spacing:.04em !important;
+    font-weight:600 !important;
+    text-transform:none !important;
+  }
+
+  .makeup-summary {
+    color:var(--editorial-muted) !important;
+    font-style:normal !important;
+  }
+
+  /* Duty tags remain ALL visible, but quieter. */
+  .summary-tags {
+    gap:5px !important;
+  }
+
+  .summary-tag {
+    color:var(--editorial-ink) !important;
+    background:transparent !important;
+    border:1px solid rgba(154,79,54,.24) !important;
+    font-size:12px !important;
+    line-height:1.25 !important;
+    padding:3px 7px !important;
+    font-style:normal !important;
+  }
+
+  .first-duty-role {
+    color:var(--editorial-muted) !important;
+    font-size:11px !important;
+    line-height:1.3 !important;
+    margin-top:4px !important;
+  }
+
+  /* Day-of contact stays practical, but not card-like. */
+  .day-contact-summary {
+    align-items:center !important;
+    gap:4px !important;
+  }
+
+  .day-contact-title {
+    color:var(--site-rust) !important;
+    font-size:17px !important;
+  }
+
+  .day-contact-role {
+    color:var(--editorial-ink) !important;
+    font-size:12px !important;
+  }
+
+  .day-phone {
+    margin-top:3px !important;
+    padding:0 !important;
+    color:var(--site-rust-dark) !important;
+    font-size:16px !important;
+    font-weight:800 !important;
+    border:0 !important;
+  }
+
+  .day-contact-email {
+    color:var(--editorial-muted) !important;
+    border:0 !important;
+    font-size:11px !important;
+  }
+
+  .all-staff-link {
+    margin-top:4px !important;
+    padding-bottom:1px;
+    color:var(--site-rust-dark) !important;
+    border-bottom:1px solid rgba(154,79,54,.28) !important;
+    font-size:11px !important;
+    font-weight:600 !important;
+  }
+
+  /* =========================================================
+     Partners + Guides: one editorial spread, no card boxes
+     ========================================================= */
+  .personal-support-grid {
+    max-width:900px !important;
+    margin:8px auto 24px !important;
+    display:grid !important;
+    grid-template-columns:minmax(0,1.35fr) minmax(260px,.85fr) !important;
+    gap:0 !important;
+    border-top:1px solid var(--editorial-rule);
+    border-bottom:1px solid var(--editorial-rule);
+  }
+
+  .personal-support-grid.single-column {
+    grid-template-columns:1fr !important;
+  }
+
+  .personal-support-grid .partners-section,
+  .personal-support-grid .resource-section {
+    margin:0 !important;
+    padding:19px 26px 20px !important;
+    border:0 !important;
+    background:transparent !important;
+  }
+
+  .personal-support-grid:not(.single-column) .partners-section {
+    border-right:1px solid var(--editorial-rule) !important;
+  }
+
+  .partners-heading,
+  .resource-heading {
+    color:var(--site-rust) !important;
+    font-size:21px !important;
+    line-height:1.2 !important;
+    margin-bottom:4px !important;
+  }
+
+  .partners-subtitle,
+  .resource-subtitle {
+    font-size:11px !important;
+    line-height:1.4 !important;
+    margin-bottom:10px !important;
+  }
+
+  .personal-support-grid .partner-row {
+    padding:3px 0 !important;
+    border:0 !important;
+  }
+
+  .partner-tag {
+    color:var(--site-rust-dark) !important;
+    font-weight:600 !important;
+  }
+
+  .partner-name {
+    color:var(--editorial-ink) !important;
+    font-weight:400 !important;
+  }
+
+  .partner-dot {
+    color:rgba(116,88,67,.35) !important;
+  }
+
+  /* Documents become elegant text links, not buttons/cards. */
+  .resource-links {
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    gap:7px !important;
+    margin-top:11px !important;
+  }
+
+  .resource-links .duty-detail-link {
+    min-height:auto !important;
+    width:auto !important;
+    padding:2px 0 !important;
+    color:var(--site-rust-dark) !important;
+    background:transparent !important;
+    border:0 !important;
+    border-bottom:1px solid rgba(154,79,54,.26) !important;
+    font-size:12px !important;
+    font-weight:500 !important;
+    text-align:center;
+  }
+
+  .resource-links .duty-detail-link:hover,
+  .resource-links .duty-detail-link:focus-visible {
+    color:var(--site-rust) !important;
+    background:transparent !important;
+    border-bottom-color:var(--site-rust) !important;
+  }
+
+  /* =========================================================
+     View your day: clean editorial controls, no dashboard box
+     ========================================================= */
+  .view-your-day {
+    max-width:900px !important;
+    margin:8px auto 26px !important;
+    padding:0 !important;
+    border:0 !important;
+  }
+
+  .view-your-day-heading {
+    display:flex !important;
+    justify-content:center !important;
+    align-items:baseline !important;
+    gap:18px !important;
+    margin-bottom:12px !important;
+    padding-top:2px !important;
+  }
+
+  .view-your-day-title {
+    color:var(--site-rust) !important;
+    font-size:22px !important;
+  }
+
+  .view-your-day .intro-note {
+    color:var(--editorial-muted) !important;
+    font-size:11px !important;
+  }
+
+  .timeline-filter-bar {
+    display:grid !important;
+    grid-template-columns:1.2fr .8fr !important;
+    gap:22px !important;
+    padding:10px 0 2px !important;
+    border-top:1px solid var(--editorial-rule) !important;
+    border-right:0 !important;
+    border-bottom:0 !important;
+    border-left:0 !important;
+    background:transparent !important;
+  }
+
+  .filter-group {
+    gap:10px !important;
+  }
+
+  .filter-label {
+    font-size:9px !important;
+    letter-spacing:.11em !important;
+    font-weight:700 !important;
+  }
+
+  .filter-buttons,
+  .view-your-day .quick-jump {
+    gap:12px !important;
+  }
+
+  .filter-buttons button,
+  .view-your-day .quick-jump button {
+    min-height:auto !important;
+    padding:4px 1px 5px !important;
+    color:var(--editorial-muted) !important;
+    background:transparent !important;
+    border:0 !important;
+    border-bottom:1px solid transparent !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+    font-size:12px !important;
+    font-weight:500 !important;
+  }
+
+  .filter-buttons button:hover,
+  .view-your-day .quick-jump button:hover,
+  .filter-buttons button:focus-visible,
+  .view-your-day .quick-jump button:focus-visible {
+    color:var(--site-rust-dark) !important;
+    background:transparent !important;
+    border-bottom-color:rgba(154,79,54,.35) !important;
+  }
+
+  .filter-buttons button.active,
+  .view-your-day .quick-jump button.active {
+    color:var(--site-rust-dark) !important;
+    background:transparent !important;
+    border-bottom:2px solid var(--site-rust) !important;
+    font-weight:700 !important;
+  }
+
+  /* =========================================================
+     Timeline remains the visual anchor
+     ========================================================= */
+  .timeline {
+    margin-top:6px !important;
+  }
+
+  .timeline h2,
+  .section-title {
+    color:var(--site-rust) !important;
+  }
+
+  .event {
+    background:rgba(255,255,255,.08) !important;
+    border-color:rgba(154,79,54,.24) !important;
+    box-shadow:none !important;
+  }
+
+  .event.helping {
+    border-left:4px solid var(--site-rust) !important;
+    background:rgba(154,79,54,.035) !important;
+  }
+
+  .event-title,
+  .happening,
+  .dutytext,
+  .details,
+  .rolechip {
+    color:var(--editorial-ink) !important;
+  }
+
+  /* =========================================================
+     Mobile: keep calm spacing, stack editorial spread
+     ========================================================= */
+  @media (max-width:700px) {
+    .summary {
+      grid-template-columns:1fr 1fr !important;
+      margin-bottom:18px !important;
+    }
+
+    .summary > div {
+      padding:13px 10px !important;
+    }
+
+    .summary > div::after {
+      display:none !important;
+    }
+
+    .personal-support-grid {
+      grid-template-columns:1fr !important;
+      border-top:1px solid var(--editorial-rule);
+      border-bottom:1px solid var(--editorial-rule);
+    }
+
+    .personal-support-grid .partners-section,
+    .personal-support-grid .resource-section {
+      padding:16px 12px !important;
+    }
+
+    .personal-support-grid .partners-section {
+      border-right:0 !important;
+      border-bottom:1px solid var(--editorial-rule) !important;
+    }
+
+    .timeline-filter-bar {
+      position:sticky !important;
+      top:0 !important;
+      z-index:25 !important;
+      grid-template-columns:1fr !important;
+      gap:7px !important;
+      padding:8px 8px 7px !important;
+      background:rgba(241,225,204,.97) !important;
+      border-top:1px solid var(--editorial-rule) !important;
+      border-bottom:1px solid var(--editorial-rule) !important;
+      box-shadow:0 2px 7px rgba(74,47,37,.06) !important;
+    }
+
+    .view-your-day-heading {
+      gap:6px 12px !important;
+    }
+
+    .filter-buttons,
+    .view-your-day .quick-jump {
+      gap:10px !important;
+    }
+  }
+
+  @media (max-width:520px) {
+    .view-your-day-heading {
+      display:block !important;
+      text-align:center;
+    }
+
+    .view-your-day-title {
+      margin-bottom:5px;
+    }
+
+    .summary {
+      grid-template-columns:1fr !important;
+    }
+
+    .summary > div {
+      border-bottom:1px solid rgba(116,88,67,.12) !important;
+    }
+
+    .summary > div:last-child {
+      border-bottom:0 !important;
+    }
+  }
+</style>
+
+<style id="soft-elegant-typography-style">
+  /* Softer overall emphasis — less bold, more graceful hierarchy. */
+  .summary .big {
+    font-weight:500 !important;
+  }
+
+  .summary .small,
+  .membership-label,
+  .filter-label {
+    font-weight:500 !important;
+  }
+
+  .summary-tag {
+    font-weight:400 !important;
+    font-style:italic !important;
+  }
+
+  .first-duty-role {
+    font-weight:400 !important;
+    font-style:italic !important;
+  }
+
+  .day-contact-title,
+  .partners-heading,
+  .resource-heading,
+  .view-your-day-title {
+    font-weight:500 !important;
+  }
+
+  .day-contact-role {
+    font-weight:400 !important;
+    font-style:italic !important;
+  }
+
+  .day-phone {
+    font-weight:600 !important;
+    font-style:normal !important;
+  }
+
+  .day-contact-email {
+    font-weight:400 !important;
+    font-style:normal !important;
+  }
+
+  .all-staff-link {
+    font-weight:500 !important;
+    font-style:italic !important;
+  }
+
+  .partner-tag {
+    font-weight:500 !important;
+    font-style:italic !important;
+  }
+
+  .partner-name {
+    font-weight:400 !important;
+    font-style:italic !important;
+  }
+
+  .resource-links .duty-detail-link {
+    font-weight:400 !important;
+    font-style:italic !important;
+  }
+
+  .filter-buttons button,
+  .view-your-day .quick-jump button {
+    font-weight:400 !important;
+    font-style:italic !important;
+  }
+
+  .filter-buttons button.active,
+  .view-your-day .quick-jump button.active {
+    font-weight:500 !important;
+  }
+
+  /* Restore the softer italic wedding-program feel in the timeline. */
+  .event-title {
+    font-weight:600 !important;
+    font-style:italic !important;
+  }
+
+  .happening,
+  .dutytext,
+  .details,
+  .rolechip {
+    font-weight:400 !important;
+    font-style:italic !important;
+  }
+
+  .event.helping .pill.status-help {
+    font-weight:500 !important;
+    font-style:italic !important;
+  }
+
+  .makeup-summary {
+    font-weight:400 !important;
+    font-style:italic !important;
+  }
+
+  /* Keep headings elegant rather than heavy. */
+  h1,
+  h2,
+  h3 {
+    font-weight:500 !important;
+  }
+
+  /* Copy link becomes a graceful secondary action. */
+  .top-copy-link {
+    font-weight:400 !important;
+    font-style:italic !important;
+  }
+
+  /* Refresh should still read clearly, but not feel too heavy. */
+  .refresh-page-btn {
+    font-weight:600 !important;
+  }
+</style>
+
+<style id="unbold-final-style">
+  /* Final typography pass: remove heavy/bold weights throughout the handbook. */
+  body,
+  button,
+  select,
+  input,
+  .big,
+  .small,
+  .membership-label,
+  .summary-tag,
+  .first-duty-role,
+  .day-contact-title,
+  .day-contact-role,
+  .day-phone,
+  .day-contact-email,
+  .all-staff-link,
+  .partners-heading,
+  .partners-subtitle,
+  .partner-tag,
+  .partner-name,
+  .resource-heading,
+  .resource-subtitle,
+  .resource-links .duty-detail-link,
+  .view-your-day-title,
+  .intro-note,
+  .filter-label,
+  .filter-buttons button,
+  .quick-jump button,
+  .event-title,
+  .happening,
+  .dutytext,
+  .details,
+  .rolechip,
+  .pill,
+  .time,
+  .stage,
+  .top-copy-link,
+  .refresh-page-btn,
+  h1,
+  h2,
+  h3,
+  strong,
+  b {
+    font-weight:400 !important;
+  }
+
+  /* Keep italics/elegant serif styling from the previous version. */
+  strong,
+  b {
+    font-style:inherit !important;
+  }
+</style>
 </head>
 <body>
 <main class="page">
@@ -1514,14 +2882,16 @@
   <h1>Participation Guide</h1>
   <p class="lede">We are still working on our timeline and appreciate all of your support. We can’t wait to celebrate with you!</p>
 
-  <section class="controls" aria-label="Wedding timeline filters">
+  <section class="controls top-person-controls" aria-label="Personal wedding guide controls">
     <div class="name-control">
       <label for="person">Search your name</label>
-      <select id="person"><option value="">Search YOUR NAME</option></select>
+      <div class="name-search-row">
+        <select id="person"><option value="">Search YOUR NAME</option></select>
+        <button id="copyPersonalLink" type="button" class="copy-personal-link top-copy-link" hidden>🔗 Copy personal link</button>
+        <button id="refreshPage" type="button" class="refresh-page-btn" title="Reload the latest wedding guide">↻ Refresh</button>
+      </div>
+      <div id="copyLinkStatus" class="copy-link-status" aria-live="polite"></div>
     </div>
-    <button id="showKey" type="button" class="active">Key moments</button>
-    <button id="showAll" type="button">All moments</button>
-    <button id="showHelping" type="button">Helping only</button>
   </section>
 
   <section class="summary" aria-live="polite">
@@ -1531,8 +2901,6 @@
       <div class="makeup-summary" id="makeupSummary" hidden>
         Your professional makeup starts at <span id="makeupTime">—</span>
       </div>
-      <button id="copyPersonalLink" type="button" class="copy-personal-link" hidden>Copy personal link</button>
-      <div id="copyLinkStatus" class="copy-link-status" aria-live="polite"></div>
     </div>
 
     <div>
@@ -1545,34 +2913,70 @@
       <div class="small">duty tags</div>
     </div>
 
-    <div>
+    <div class="first-duty-summary">
       <div class="big" id="firstDuty">—</div>
+      <div class="first-duty-role" id="firstDutyRole"></div>
       <div class="small">first duty</div>
     </div>
 
-    <div class="resource-summary" id="resourceSummary" hidden>
+    <div class="day-contact-summary">
+      <div class="day-contact-title">Day-of contact</div>
+      <div class="day-contact-role">Coordinator: <strong>Shi Choong</strong></div>
+      <a class="day-phone" href="tel:+15037141112">📞 (503) 714-1112</a>
+      <a class="day-contact-email" href="mailto:shi@eventplannershi.com">shi@eventplannershi.com</a>
+      <a class="all-staff-link"
+         href="https://xiaoyangalex.wedding/handbook/staff?role=Coordinator&plan=Standard&tab=captains&moments=role"
+         target="_blank"
+         rel="noopener noreferrer">All staff contacts ↗</a>
+    </div>
+
+  </section>
+
+
+  <div class="personal-support-grid" id="personalSupportGrid">
+    <section id="partnersSection" class="partners-section" hidden>
+      <div class="partners-heading">Your Partners</div>
+      <div class="partners-subtitle">
+        Family &amp; close friends sharing the same duty tags with you
+      </div>
+      <div id="partnersList" class="partners-list"></div>
+    </section>
+
+    <section id="resourceSummary" class="resource-section" hidden>
       <div class="resource-heading">Guides &amp; Documents</div>
       <div class="resource-subtitle">Documents and videos for your assigned roles</div>
       <div class="resource-links" id="dutyDetailLinks"></div>
-    </div>
-  </section>
-
-
-  <section id="partnersSection" class="partners-section" hidden>
-    <div class="partners-heading">Your Partners</div>
-    <div class="partners-subtitle">
-      Family &amp; close friends sharing the same duty tags with you
-    </div>
-    <div id="partnersList" class="partners-list"></div>
-  </section>
-
-  <div class="intro-note">🌿 <strong>Enjoy</strong> means nothing extra is assigned to you at that moment. 🧡 <strong>Helping</strong> means there is a personal role or duty for you.</div>
-
-  <div class="quick-jump" aria-label="Wedding section filters">
-    <button type="button" data-jump="PA" title="Show Ceremony only">Ceremony</button>
-    <button type="button" data-jump="LS" title="Show Reception only">Reception</button>
-    <button type="button" id="collapseEnjoy">Compact enjoy rows</button>
+    </section>
   </div>
+
+  <section class="view-your-day" aria-label="Timeline view controls">
+    <div class="view-your-day-heading">
+      <div class="view-your-day-title">View your day</div>
+      <div class="intro-note">🌿 <strong>Enjoy</strong> = nothing extra assigned &nbsp; · &nbsp; 🧡 <strong>Helping</strong> = you have a role or duty</div>
+    </div>
+
+    <div class="timeline-filter-bar">
+      <div class="filter-group">
+        <div class="filter-label">Moments</div>
+        <div class="filter-buttons">
+          <button id="showKey" type="button" class="active">Highlights</button>
+          <button id="showAll" type="button">All moments</button>
+          <button id="showHelping" type="button">My duties</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">Section</div>
+        <div class="filter-buttons quick-jump" aria-label="Wedding section filters">
+          <button type="button" data-jump="PA" title="Show Ceremony only">Ceremony</button>
+          <button type="button" data-jump="LS" title="Show Reception only">Reception</button>
+          <button type="button" data-jump="ALL" class="active" title="Show Ceremony and Reception">All</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <button id="backToTop" type="button" class="back-to-top" aria-label="Back to top">↑ Top</button>
 
 
   <section id="timeline" class="timeline"></section>
@@ -1584,6 +2988,8 @@
 // Keep this as your existing Apps Script production /exec URL.
 const DATA_ENDPOINT =
   "https://script.google.com/macros/s/AKfycbxnVmZMMlis0Sz3hbmUn5pPKIH0ujjVJy_cUOedtUO5yDCwU93OJ4kX0E9Fl0VmTtXL/exec";
+
+const LOCAL_DATA_KEY = "xiaoyangAlexWeddingHandbookData_v2";
 
 let DATA = {
   defaultPerson: "",
@@ -1689,7 +3095,7 @@ function updatePersonalLinkButton(person) {
 
   button.hidden = !person;
   button.dataset.person = person || "";
-  button.textContent = "Copy personal link";
+  button.textContent = "🔗 Copy personal link";
 
   if (status) {
     status.textContent = "";
@@ -1801,6 +3207,24 @@ function renderPartners(person, selectedTags) {
 }
 
 
+function syncPersonalSupportGrid() {
+  const grid = $("personalSupportGrid");
+  const partners = $("partnersSection");
+  const resources = $("resourceSummary");
+
+  if (!grid || !partners || !resources) return;
+
+  const partnersVisible = !partners.hidden;
+  const resourcesVisible = !resources.hidden;
+
+  grid.hidden = !partnersVisible && !resourcesVisible;
+  grid.classList.toggle(
+    "single-column",
+    partnersVisible !== resourcesVisible
+  );
+}
+
+
 function setMode(mode) {
   state.mode = mode;
 
@@ -1820,6 +3244,7 @@ function setMode(mode) {
 
 
 function render() {
+  syncVenueButtons();
   const person = state.person;
   const hasPerson = Boolean(person);
 
@@ -1862,6 +3287,14 @@ function render() {
     $("helpCount").textContent = String(helping.length);
     $("firstDuty").textContent = helping[0]?.time || "None";
 
+    const firstDutyRole = $("firstDutyRole");
+    if (firstDutyRole) {
+      firstDutyRole.textContent =
+        helping[0]?.roles?.length
+          ? helping[0].roles.join(" · ")
+          : "";
+    }
+
     // Same lookup result as the Makeup Timeline formula in My Duties.
     const makeupTime = (DATA.makeupTimes || {})[person] || "";
     const makeupSummary = $("makeupSummary");
@@ -1897,6 +3330,7 @@ function render() {
 
     updatePersonalLinkButton(person);
     renderPartners(person, allDutyTags);
+    syncPersonalSupportGrid();
   } else {
     $("makeupSummary").hidden = true;
 
@@ -1911,8 +3345,14 @@ function render() {
       resourceSummary.hidden = true;
     }
 
+    const firstDutyRole = $("firstDutyRole");
+    if (firstDutyRole) {
+      firstDutyRole.textContent = "";
+    }
+
     updatePersonalLinkButton("");
     renderPartners("", []);
+    syncPersonalSupportGrid();
   }
 
   // Helping Only requires a selected person.
@@ -2099,7 +3539,55 @@ function rebuildPersonDropdown(previousPerson) {
 }
 
 
-function loadWeddingData(isAutoRefresh = false) {
+function hasUsableWeddingData(data = DATA) {
+  return Boolean(
+    data &&
+    Array.isArray(data.events) &&
+    data.events.length &&
+    Array.isArray(data.people) &&
+    data.people.length
+  );
+}
+
+function saveLocalWeddingData(data) {
+  try {
+    localStorage.setItem(
+      LOCAL_DATA_KEY,
+      JSON.stringify(data)
+    );
+  } catch (_) {}
+}
+
+function loadLocalWeddingData() {
+  try {
+    const raw = localStorage.getItem(LOCAL_DATA_KEY);
+    if (!raw) return null;
+
+    const data = JSON.parse(raw);
+    return hasUsableWeddingData(data) ? data : null;
+  } catch (_) {
+    return null;
+  }
+}
+
+function setRefreshButtonBusy(isBusy) {
+  const button = $("refreshPage");
+  if (!button) return;
+
+  button.disabled = isBusy;
+  button.textContent =
+    isBusy ? "↻ Refreshing…" : "↻ Refresh";
+}
+
+function showRefreshStatus(message) {
+  const updated = $("lastUpdated");
+  if (updated) {
+    updated.textContent = message;
+  }
+}
+
+
+function loadWeddingData(isAutoRefresh = false, forceFresh = false) {
   const previousPerson = state.person;
 
   const callbackName =
@@ -2134,8 +3622,16 @@ function loadWeddingData(isAutoRefresh = false) {
 
     settled = true;
     cleanup();
+    setRefreshButtonBusy(false);
 
     console.error(message);
+
+    if (hasUsableWeddingData()) {
+      showRefreshStatus(
+        "Could not refresh right now · Showing the last loaded wedding agenda"
+      );
+      return;
+    }
 
     if (!isAutoRefresh) {
       select.innerHTML =
@@ -2165,6 +3661,9 @@ function loadWeddingData(isAutoRefresh = false) {
     cleanup();
 
     DATA = data;
+    saveLocalWeddingData(data);
+    setRefreshButtonBusy(false);
+
     rebuildPersonDropdown(previousPerson);
     render();
 
@@ -2187,6 +3686,7 @@ function loadWeddingData(isAutoRefresh = false) {
     DATA_ENDPOINT +
     "?callback=" +
     encodeURIComponent(callbackName) +
+    (forceFresh ? "&fresh=1" : "") +
     "&_=" +
     Date.now();
 
@@ -2197,7 +3697,7 @@ function loadWeddingData(isAutoRefresh = false) {
     fail(
       "The live wedding agenda took too long to respond. Please refresh and try again."
     );
-  }, 30000);
+  }, 45000);
 
   document.body.appendChild(script);
 }
@@ -2214,7 +3714,7 @@ $("copyPersonalLink").addEventListener("click", async () => {
     button.textContent = "Copied ✓";
     if (status) status.textContent = "Personal link copied";
     window.setTimeout(() => {
-      button.textContent = "Copy personal link";
+      button.textContent = "🔗 Copy personal link";
       if (status) status.textContent = "";
     }, 1800);
   } catch (error) {
@@ -2222,6 +3722,33 @@ $("copyPersonalLink").addEventListener("click", async () => {
     if (status) status.textContent = "Copy failed — please copy the page URL";
   }
 });
+
+const backToTopButton = $("backToTop");
+
+if (backToTopButton) {
+  window.addEventListener("scroll", () => {
+    backToTopButton.classList.toggle(
+      "visible",
+      window.scrollY > 650
+    );
+  }, { passive: true });
+
+  backToTopButton.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+}
+
+
+$("refreshPage").addEventListener("click", () => {
+  setRefreshButtonBusy(true);
+
+  // Refresh live data only; preserve the page and selected person.
+  loadWeddingData(false, true);
+});
+
 
 select.addEventListener("change", () => {
   state.person = select.value;
@@ -2249,52 +3776,60 @@ $("showHelping").addEventListener("click", () => {
 });
 
 
+function syncVenueButtons() {
+  document
+    .querySelectorAll("[data-jump]")
+    .forEach(button => {
+      const jump = button.dataset.jump;
+
+      button.classList.toggle(
+        "active",
+        jump === "ALL"
+          ? !state.venue
+          : jump === state.venue
+      );
+    });
+}
+
+
 document.querySelectorAll("[data-jump]").forEach(btn => {
   btn.addEventListener("click", () => {
     const venue = btn.dataset.jump;
 
-    // Tap the active filter again to return to both sections.
-    state.venue =
-      state.venue === venue ? "" : venue;
+    // "All" always returns to Ceremony + Reception.
+    state.venue = venue === "ALL" ? "" : venue;
 
-    document
-      .querySelectorAll("[data-jump]")
-      .forEach(button => {
-        button.classList.toggle(
-          "active",
-          button.dataset.jump === state.venue
-        );
-      });
-
+    syncVenueButtons();
     render();
   });
 });
 
 
-$("collapseEnjoy").addEventListener("click", () => {
-  document
-    .querySelectorAll(".event:not(.helping)")
-    .forEach(card => {
-      card.classList.add("enjoy-collapsed");
+// Show the last successful copy immediately when available.
+const savedWeddingData = loadLocalWeddingData();
 
-      const btn = card.querySelector(".expand-btn");
+if (savedWeddingData) {
+  DATA = savedWeddingData;
+  rebuildPersonDropdown("");
+  render();
 
-      if (btn) {
-        btn.textContent = "＋";
-      }
-    });
-});
-
-
-// First live load from Google Sheets.
-loadWeddingData();
+  showRefreshStatus(
+    "Showing saved wedding agenda · Updated " +
+    (savedWeddingData.updatedAt || "previously") +
+    " · Refreshing…"
+  );
+}
 
 
-// Refresh an already-open page once per minute.
+// Request the live copy in the background.
+loadWeddingData(Boolean(savedWeddingData));
+
+
+// Refresh an already-open page every 5 minutes.
 // This does NOT change the selected person's name.
 setInterval(() => {
   loadWeddingData(true);
-}, 60000);
+}, 300000);
 
 
 </script>
