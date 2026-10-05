@@ -7,76 +7,160 @@
 <meta name="description" content="Live role-based day-of handbook for Rebecca & Alex's wedding staff and vendors." />
 <style>
 :root{
-  --ink:#3f352e; --muted:#786b61; --paper:#f3e5d2; --card:#fffaf2;
-  --terracotta:#a55237; --terracotta-2:#f0d8c8; --sage:#7b846d; --sage-2:#e9ede3;
-  --gold:#a67743; --gold-2:#f3e4cf; --rose:#aa6a5d; --rose-2:#f2ddd6;
-  --line:#ddcdbb; --warn:#8a5b20; --warn-bg:#fff0d6;
-  --blue:#667286; --blue-bg:#e9edf3; --shadow:0 10px 30px rgba(87,61,43,.08); --radius:22px;
+  --text:#3f3933; --muted:#746d65; --label:#81786e;
+  --paper:#fbf7ef; --soft:#f7f0e7; --line:#e5dacd; --line-strong:#d4c3b2;
+  --terracotta:#a55b45; --terracotta-soft:#f4e4db;
+  --olive:#707a62; --olive-soft:#edf0e8;
+  --warn:#84591f; --warn-bg:#fff0d6; --ok:#5c7756;
+  --rain:#596c7d; --rain-bg:#e8eef3;
 }
-*{box-sizing:border-box} html{scroll-behavior:smooth}
-body{margin:0;background:linear-gradient(180deg,#f2e2cd 0,#f8f1e7 31rem,#fbf7f0 100%);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
-a{color:#8f4c35;text-decoration-thickness:1px;text-underline-offset:3px} button,select{font:inherit}
-.hero{padding:48px 20px 34px;text-align:center;border-bottom:1px solid rgba(165,82,55,.16)}.eyebrow{font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;color:var(--terracotta);font-weight:750}
-h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:500;margin:0;color:#49372e}h1{font-size:clamp(2.45rem,7vw,4.7rem);font-style:italic;line-height:1.02;margin:.5rem 0 .75rem;color:var(--terracotta)}.hero p{max-width:760px;margin:0 auto;color:#6f5c50;font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:1.05rem}
-.shell{width:min(1120px,calc(100% - 28px));margin:0 auto 60px}
-.controls{position:sticky;top:10px;z-index:20;background:rgba(255,250,242,.93);backdrop-filter:blur(14px);border:1px solid rgba(218,218,210,.9);box-shadow:var(--shadow);border-radius:20px;padding:12px;display:grid;grid-template-columns:1fr auto auto auto;gap:10px;align-items:center}
-.select-wrap{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:0 12px}.select-wrap label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:750;white-space:nowrap}select{width:100%;border:0;background:transparent;padding:12px 4px;color:var(--ink);outline:none;font-weight:650}
-.plan-toggle{display:flex;background:#eef0ea;border-radius:13px;padding:3px;gap:2px}.plan-toggle button,.action-btn{border:0;border-radius:10px;padding:9px 12px;background:transparent;color:var(--muted);cursor:pointer;font-weight:700}.copy-action{justify-self:end;background:var(--terracotta)!important;color:#fff!important;border-color:var(--terracotta)!important}.plan-toggle button.active{background:#fff;color:var(--ink);box-shadow:0 2px 10px rgba(0,0,0,.06)}.action-btn{background:#fff;border:1px solid var(--line);color:var(--ink)}
-.livebar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;color:var(--muted);font-size:.8rem;padding:0 4px}.live-state{display:inline-flex;gap:7px;align-items:center}.dot{width:8px;height:8px;border-radius:50%;background:#82937d}.dot.preview{background:#c18e45}.dot.error{background:#b7625a}
-.profile{margin-top:22px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 6px 24px rgba(43,53,44,.05)}
-.profile-main{padding:28px;position:relative;overflow:hidden}.profile-main:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:var(--terracotta-2);right:-55px;top:-75px;opacity:.72}.profile-main h2{font-size:clamp(1.8rem,4vw,3rem);position:relative;z-index:1;color:var(--terracotta);font-style:italic}.role-line{margin-top:8px;color:#6f5c50;position:relative;z-index:1}.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px;position:relative;z-index:1}.tag{border-radius:999px;padding:5px 9px;font-size:.76rem;background:var(--sage-2);color:#4e644d;font-weight:700}.tag.gold{background:var(--gold-2);color:#775d31}.tag.rose{background:var(--rose-2);color:#87514e}
-.team-card{padding:22px}.team-card h3{font-size:1.2rem;margin-bottom:13px}.person{padding:12px 0;border-top:1px solid #ecece6}.person:first-of-type{border-top:0;padding-top:0}.person-name{font-weight:800}.person-role{font-size:.82rem;color:#5f6b60;white-space:pre-line;margin-top:2px}.person-meta{font-size:.8rem;color:var(--muted);margin-top:5px;overflow-wrap:anywhere}.person-food{margin-top:5px;font-size:.78rem;color:#87514e}
-.notice{margin-top:18px;background:#fbf0e3;border:1px solid #e4cdb9;border-radius:16px;padding:14px 16px;color:#526052;font-size:.9rem;position:relative;z-index:1}
-.section{margin-top:34px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:13px}.section h2{font-size:clamp(1.6rem,3vw,2.2rem)}.section-kicker{font-size:.76rem;color:var(--gold);font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}.section-sub{color:var(--muted);font-size:.9rem;max-width:760px}
-.tabbar{position:sticky;top:82px;z-index:18;margin-top:22px;display:flex;gap:7px;overflow-x:auto;padding:7px;background:rgba(255,250,242,.96);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:17px;box-shadow:0 7px 24px rgba(43,53,44,.07);scrollbar-width:thin}.tab-btn{flex:0 0 auto;border:0;border-radius:11px;background:transparent;color:#697269;padding:10px 13px;cursor:pointer;font-weight:800;white-space:nowrap;display:inline-flex;align-items:center;gap:7px}.tab-btn:hover{background:#f0f2ed;color:var(--ink)}.tab-btn.active{background:#fff;color:var(--ink);box-shadow:0 2px 10px rgba(0,0,0,.07)}.tab-count{min-width:20px;height:20px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;padding:0 6px;background:#ecefe9;color:#657064;font-size:.69rem;font-weight:850}.tab-btn.active .tab-count{background:var(--sage-2);color:#4d624c}.tab-panel{display:none}.tab-panel.active{display:block}.tab-panel .section{margin-top:22px}
-.moment-switch{display:flex;flex-wrap:wrap;gap:5px;background:#eef0ea;border-radius:13px;padding:4px;width:max-content;max-width:100%}.moment-switch button{border:0;border-radius:10px;padding:8px 11px;background:transparent;color:var(--muted);cursor:pointer;font-weight:800}.moment-switch button.active{background:#fff;color:var(--ink);box-shadow:0 2px 10px rgba(0,0,0,.06)}
-.timeline-tools{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:13px}.timeline-hint{font-size:.82rem;color:var(--muted)}
-.role-assignments{margin-top:12px;display:grid;gap:9px}.role-assignment{border:1px solid #dfe5dc;background:#f7faf5;border-radius:13px;padding:11px 12px}.role-assignment-top{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}.assignment-inline{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.assignment-right{margin-left:auto;display:flex;align-items:center;justify-content:flex-end;gap:7px;flex-wrap:wrap;text-align:right}.role-assignment-person{font-weight:850;color:#594338}.role-assignment-place{color:var(--muted);font-size:.8rem}.role-assignment-duty{margin-top:7px;color:#4d423a;white-space:pre-line}.role-assignment-meta{margin-top:6px;color:var(--muted);font-size:.8rem}.master-context{margin-top:12px;padding-top:0;border-top:1px dashed #ddcdbb}.master-context>summary{padding-top:11px;list-style:none;display:flex;align-items:center;gap:7px;color:#7b5a45;font-size:.82rem;font-weight:800}.master-context>summary::-webkit-details-marker{display:none}.master-context>summary:before{content:"＋";font-size:1rem;color:var(--terracotta)}.master-context[open]>summary:before{content:"−"}.master-context-body{padding-top:10px}.master-label{font-size:.68rem;letter-spacing:.11em;text-transform:uppercase;color:#7f877f;font-weight:850;margin-bottom:7px}.event.role-moment{border-color:#cfdacb;box-shadow:0 5px 18px rgba(70,92,68,.05)}.moment-collabs{margin-top:10px;padding:10px 12px;border:1px solid #eadfc8;background:#fffaf0;border-radius:12px}.moment-collabs .master-label{color:#8b6f38;margin-bottom:6px}.moment-collab-list{display:flex;flex-wrap:wrap;gap:7px}.moment-collab-link{display:inline-flex;align-items:center;gap:5px;padding:6px 9px;border:1px solid #e5d5b3;background:#fff;border-radius:999px;text-decoration:none;font-size:.79rem;font-weight:800;color:#5d513c}.moment-collab-link:hover{border-color:#cbb57f;background:#fffdf7}.moment-collab-role{font-weight:600;color:#7b7468}
-.timeline{display:grid;gap:12px}.event{display:grid;grid-template-columns:105px 1fr;border-radius:18px;background:#fff;border:1px solid var(--line);overflow:hidden}.event-time{padding:18px 14px;background:#f2f4ef;font-family:Georgia,"Times New Roman",serif;font-size:1.08rem;font-weight:700;color:#51634f}.event-body{padding:16px 18px}.event-top{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-bottom:7px}.event-id{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.7rem;color:#7b817a}.badge{font-size:.7rem;padding:3px 7px;border-radius:999px;background:#eef1eb;color:#536153;font-weight:800}.badge.confirmed{background:#e4f0e7;color:#3b6846}.badge.open{background:var(--warn-bg);color:var(--warn)}.badge.rain{background:var(--blue-bg);color:var(--blue)}.badge.source{background:#f4efe6;color:#7d6440}.badge.owner{background:#edf0f5;color:#536077}
-.event h3{font-family:inherit;font-weight:760;font-size:1rem;margin:0}.event p{margin:.45rem 0 0;color:#4f5a50;white-space:pre-line}.meta-line{margin-top:8px;color:var(--muted);font-size:.83rem}.notes{margin-top:10px;padding:10px 12px;border-left:3px solid #d5c29f;background:#faf6ee;border-radius:0 10px 10px 0;font-size:.86rem;color:#665a49;white-space:pre-line}details{margin-top:10px}summary{cursor:pointer;color:#6c5a39;font-size:.84rem;font-weight:700}.discussion{margin-top:8px;font-size:.84rem;white-space:pre-line;color:#625c52;background:#faf8f3;padding:10px 12px;border-radius:10px}.role-resources{margin-top:14px;padding-top:13px;border-top:1px solid var(--line)}.role-resources-title{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:800;margin-bottom:8px}.resource-links{display:flex;flex-wrap:wrap;gap:8px}.resource-link{display:inline-flex;align-items:center;gap:5px;text-decoration:none;border:1px solid #d6c7aa;background:#fffaf0;color:#66522f;border-radius:999px;padding:7px 10px;font-size:.8rem;font-weight:750}.resource-link:hover{background:#f7eedc}.makeup-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.schedule-card{overflow:hidden}.schedule-title{padding:14px 16px 10px;font-family:Georgia,serif;font-size:1.08rem;color:var(--ink);border-bottom:1px solid var(--line)}.schedule-table-wrap{overflow-x:auto}.schedule-table{width:100%;border-collapse:collapse;font-size:.86rem}.schedule-table th{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);text-align:left;background:#faf8f3}.schedule-table th,.schedule-table td{padding:10px 12px;border-bottom:1px solid #eee8dc;vertical-align:top}.schedule-table tr:last-child td{border-bottom:0}.schedule-time{white-space:nowrap;font-weight:750;color:#6c5a39}.schedule-marker{font-weight:800;letter-spacing:.03em;color:#6c5a39}.schedule-service{color:#5e645c}.makeup-note{margin-top:8px;color:var(--muted);font-size:.8rem}@media(max-width:760px){.makeup-grid{grid-template-columns:1fr}}
-.context-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}.context{background:#f7f7f3;border-radius:12px;padding:10px}.context b{display:block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#7f877f;margin-bottom:4px}.context div{font-size:.86rem;white-space:pre-line;color:#4d574e}
-.collab-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.collab{padding:17px}.collab-name{font-family:Georgia,"Times New Roman",serif;font-size:1.24rem}.collab-role{font-size:.84rem;font-weight:800;color:#526650;margin-top:3px}.collab-duty{font-size:.88rem;color:#535c54;margin-top:8px;white-space:pre-line}.collab-meta{font-size:.8rem;color:var(--muted);margin-top:9px}.collab-links{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.pill-link{display:inline-flex;align-items:center;gap:5px;background:#f1f4ef;border:1px solid #dce3d8;border-radius:999px;padding:6px 9px;font-size:.78rem;font-weight:750;text-decoration:none}
-.ref-card{padding:18px;margin-bottom:12px}.ref-card h3{font-family:inherit;font-size:1.05rem;font-weight:800}.ref-list{display:grid;gap:8px;margin-top:12px}.ref-item{display:grid;grid-template-columns:92px 1fr;gap:10px;padding:10px 0;border-top:1px solid #ecece6}.ref-item:first-child{border-top:0}.ref-time{font-weight:800;color:#566556}.ref-main{font-size:.9rem}.ref-main b{display:block}.ref-note{color:var(--muted);font-size:.82rem;margin-top:3px;white-space:pre-line}.empty{padding:24px;border:1px dashed #cfd3ca;border-radius:18px;color:var(--muted);background:rgba(255,255,255,.5)}
-.source-footer{margin-top:45px;text-align:center;color:#888e87;font-size:.79rem}.source-footer strong{color:#636b63}
-@media(max-width:760px){.controls{grid-template-columns:1fr;position:relative;top:auto}.tabbar{top:8px;margin-top:16px}.profile{grid-template-columns:1fr}.event{grid-template-columns:82px 1fr}.context-grid{grid-template-columns:1fr}.collab-grid{grid-template-columns:1fr}.hero{padding-top:36px}.shell{width:min(100% - 18px,1120px)}.profile-main{padding:22px}.action-btn{width:100%}.livebar{align-items:flex-start;flex-direction:column}}
-@media print{body{background:#fff}.controls,.action-btn,.livebar,.tabbar{display:none!important}.tab-panel{display:block!important}.shell{width:100%;margin:0}.card,.event{box-shadow:none;break-inside:avoid}.hero{padding:20px 0}.profile{grid-template-columns:1fr 1fr}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5}
+a{color:var(--terracotta);text-underline-offset:2px}
+button,select{font:inherit;color:inherit}
+h1,h2,h3{margin:0;line-height:1.25}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+.k{font-weight:650;color:var(--label)}
+.mini-label,.kicker{font-size:.73rem;font-weight:800;letter-spacing:.075em;text-transform:uppercase;color:var(--label)}
+.muted{color:var(--muted)}
 
-    .key-public-list{gap:0;border-top:1px solid var(--line);margin-top:8px}
-    .event.key-public{grid-template-columns:98px 1fr;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;box-shadow:none;padding:20px 0;margin:0}
-    .event.key-public .event-time{font-family:Georgia,serif;font-style:italic;font-size:19px;color:var(--rust);font-weight:700;padding-top:5px}
-    .event.key-public .event-body{padding:0}
-    .event.key-public h3{font-family:Georgia,serif;font-style:italic;font-weight:500;font-size:18px;margin:4px 0 0;color:#4d4239}
-    .key-public-meta{display:flex;gap:7px;align-items:center;font-size:11px;font-weight:700;font-style:italic;color:#777064;min-height:16px}
-    @media(max-width:640px){.event.key-public{grid-template-columns:82px 1fr;padding:16px 0}.event.key-public .event-time{font-size:17px}.event.key-public h3{font-size:17px}}
+/* Compact PR #23-style masthead */
+.topbar{background:var(--soft);border-bottom:1px solid var(--line)}
+.topbar-inner{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:3px 16px;padding-top:12px;padding-bottom:12px}
+.topbar-title{font-family:Georgia,"Times New Roman",serif;font-size:1.08rem;font-weight:700;color:var(--terracotta)}
+.topbar-meta{color:var(--muted);font-size:.88rem}
 
+/* Simple controls */
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;padding-top:16px}
+.field{display:flex;align-items:center;gap:8px;font-weight:650}
+.field select{min-width:220px;padding:8px 10px;border:1px solid var(--line-strong);border-radius:8px;background:#fff;font-weight:650}
+.plan-toggle{display:inline-flex;border:1px solid var(--line-strong);border-radius:8px;overflow:hidden}
+.plan-toggle button{border:0;background:#fff;padding:8px 14px;font-weight:650;color:var(--muted);cursor:pointer}
+.plan-toggle button+button{border-left:1px solid var(--line-strong)}
+.plan-toggle button.active{background:var(--olive);color:#fff}
+.link-btn{border:0;background:none;padding:2px;color:var(--terracotta);font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.controls .copy-link{margin-left:auto}
+.livebar{display:flex;flex-wrap:wrap;align-items:center;gap:5px 8px;padding-top:8px;color:var(--muted);font-size:.84rem}
+.livebar.is-error{color:#9a4439}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--olive);flex:0 0 auto}.dot.error{background:#b7625a}
+#updatedText:not(:empty)::before{content:"· "}
 
-.doc-library-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}.doc-frame{border:1px solid var(--line);border-radius:18px;background:#fbfcf9;padding:15px}.doc-frame-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:11px}.doc-frame-title{font-family:Georgia,"Times New Roman",serif;font-size:1.13rem;margin:0;color:#3f493e}.doc-frame-sub{color:var(--muted);font-size:.79rem;margin-top:3px}.doc-frame-count{flex:0 0 auto;border:1px solid #dfe4db;background:#fff;border-radius:999px;padding:4px 8px;font-size:.72rem;font-weight:800;color:#667164}.doc-grid{display:grid;grid-template-columns:1fr;gap:10px}.doc-card{display:flex;gap:13px;align-items:flex-start;padding:16px;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 5px 18px rgba(43,53,44,.04)}.doc-card:hover{border-color:#cbb990;background:#fffdf7}.doc-icon{flex:0 0 38px;width:38px;height:38px;display:grid;place-items:center;border-radius:11px;background:var(--gold-2);font-size:1.05rem}.doc-copy{min-width:0}.doc-copy b{display:block;color:#493f2f;line-height:1.3}.doc-meta{margin-top:4px;color:var(--muted);font-size:.78rem}.handoff-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}.handoff-box{min-width:0}.handoff-box-title{font-family:Georgia,"Times New Roman",serif;font-size:1.22rem;margin:0 0 4px}.handoff-box-sub{color:var(--muted);font-size:.82rem;margin:0 0 12px}.focus-flash{outline:3px solid #d7bd79;outline-offset:3px;transition:outline-color .3s ease}.staff-directory{display:grid;gap:10px}.staff-contact-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:13px 14px}.staff-contact-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.staff-contact-role{font-family:Georgia,"Times New Roman",serif;font-weight:700;color:var(--terracotta);font-size:1rem;white-space:pre-line}.staff-contact-name{margin-top:2px;font-weight:700;color:#4c423a;font-size:.86rem}.contact-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}.contact-link{display:inline-flex;align-items:center;gap:4px;border:1px solid #dfe4db;background:#f8faf6;border-radius:999px;padding:5px 8px;font-size:.77rem;text-decoration:none;color:#536552}.food-note{margin-top:10px;font-size:.82rem;color:#6d4527;background:#fff2dd;border:1px solid #e7c38f;border-radius:10px;padding:9px 10px;font-weight:700}.food-note b{color:#a65235}.food-note:before{content:"🍽 ";margin-right:2px}@media(max-width:760px){.doc-library-grid,.doc-grid,.handoff-grid{grid-template-columns:1fr}.assignment-right{margin-left:0;width:100%;justify-content:flex-start;text-align:left}}
+/* Role summary: short and useful */
+.role-head{padding:22px 0 20px}
+.role-head h1{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-weight:500;color:var(--terracotta);font-size:2.15rem;margin-top:2px}
+.role-venue{margin-top:6px;color:var(--muted)}
+.role-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px 28px;margin-top:16px}
+.role-cols.single{grid-template-columns:1fr}
+.contact-list{display:grid;gap:12px;margin-top:6px}
+.role-cols.single .contact-list{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.person-role,.contact-role{color:var(--terracotta);font-size:.78rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;white-space:pre-line}
+.person-name,.contact-name{font-weight:750;margin-top:2px}
+.person-meta,.contact-links{margin-top:3px;color:var(--muted);font-size:.9rem;overflow-wrap:anywhere}
+.dayof{background:var(--olive-soft);border:1px solid #dce2d4;border-radius:9px;padding:13px 15px}
+.dayof .contact{margin-top:6px}
 
+/* PR #23-style underline tabs */
+.tabbar{position:sticky;top:0;z-index:10;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line)}
+.tabbar::-webkit-scrollbar{display:none}
+.tab-btn{flex:0 0 auto;border:0;border-bottom:3px solid transparent;background:none;padding:12px 11px 9px;font-weight:650;color:var(--muted);cursor:pointer;white-space:nowrap}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--text);border-bottom-color:var(--terracotta)}
+.tab-count{font-weight:500;color:var(--label);margin-left:2px}
+.tab-panel{display:none;padding-top:20px}.tab-panel.active{display:block}
+.panel-h{font-size:1.3rem}.panel-note{margin:7px 0 14px;color:var(--muted);font-size:.91rem}
 
-@media(max-width:760px){.copy-action{justify-self:stretch}.controls{grid-template-columns:1fr}.copy-action{width:100%}.assignment-inline{align-items:flex-start}}
+/* Minimal segmented timeline switch */
+.timeline-tools{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;margin-bottom:10px}
+.moment-switch{display:flex;flex-wrap:wrap;gap:6px}
+.moment-switch button{border:1px solid var(--line-strong);border-radius:999px;background:#fff;padding:6px 11px;font-size:.88rem;font-weight:650;color:var(--muted);cursor:pointer}
+.moment-switch button.active{background:var(--text);border-color:var(--text);color:#fff}
+.timeline-hint{font-size:.82rem;color:var(--muted)}
+.coordinator-person-tools{padding:10px 12px;margin-bottom:12px;background:var(--cream);border:1px solid var(--line);border-radius:10px}
+.coordinator-person-switch button.active{background:var(--terracotta);border-color:var(--terracotta);color:#fff}
+
+/* One clean schedule column */
+.timeline{border-top:1px solid var(--line)}
+.event{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid var(--line);background:transparent}
+.event-time{font-weight:750;font-variant-numeric:tabular-nums;white-space:nowrap;padding-top:1px}
+.event.role-moment .event-time{color:var(--terracotta)}
+.event-body{min-width:0}
+.event-label{display:flex;flex-wrap:wrap;gap:5px 9px;margin-bottom:4px;font-size:.76rem;font-weight:800;letter-spacing:.045em;text-transform:uppercase;color:var(--label)}
+.event-label .mine{color:var(--terracotta)}
+.rain-tag{letter-spacing:0;text-transform:none;font-size:.73rem;padding:1px 8px;border-radius:999px;background:var(--rain-bg);color:var(--rain)}
+.event-title{font-weight:750;margin:0}
+
+/* Role task: who left, where + status right */
+.role-assignments{margin-top:8px}
+.role-assignment{padding:10px 0}.role-assignment+.role-assignment{border-top:1px dashed var(--line);margin-top:6px;padding-top:13px}
+.role-assignment-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:10px}
+.role-assignment-person{font-size:.88rem;font-weight:750;color:var(--olive)}
+.assignment-right{display:flex;align-items:center;justify-content:flex-end;gap:6px 10px;flex-wrap:wrap;text-align:right}
+.role-assignment-place{font-size:.85rem;color:var(--muted);max-width:28em}
+.role-assignment-duty{margin-top:5px;white-space:pre-line}
+.badge{display:inline-block;font-size:.75rem;font-weight:750;line-height:1.3}
+.badge.confirmed{color:var(--ok);white-space:nowrap}.badge.confirmed:before{content:"✓ "}
+.badge.open{padding:2px 8px;border-radius:6px;background:var(--warn-bg);color:var(--warn)}
+.badge.rain{padding:2px 8px;border-radius:999px;background:var(--rain-bg);color:var(--rain)}
+.notes{margin-top:8px;padding:8px 11px;border-left:3px solid #d9bda0;background:#fcf7f0;font-size:.9rem;white-space:pre-line}
+.discussion{margin-top:7px;padding:9px 11px;background:var(--soft);border-radius:8px;color:#625a52;font-size:.86rem;white-space:pre-line}
+
+/* Captains inline, not chunky pills */
+.moment-collabs{margin-top:9px;font-size:.86rem;color:var(--muted)}
+.moment-collab-list{display:inline}.moment-collab-link{font-weight:650;text-decoration:none}.moment-collab-link+.moment-collab-link:before{content:", ";color:var(--muted);font-weight:400}.moment-collab-role{font-weight:400;color:var(--muted)}
+
+/* The ONLY expanded context lives behind More details */
+details.master-context,details.planning-note{margin-top:9px}
+details.master-context>summary,details.planning-note>summary{cursor:pointer;color:var(--terracotta);font-weight:650;font-size:.88rem;width:max-content;max-width:100%}
+.master-context-body{margin-top:8px;padding:11px 13px;background:var(--soft);border-radius:8px;font-size:.9rem}
+.context-grid{display:grid;gap:10px}.context b{display:block;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--label);margin-bottom:2px}.context div{white-space:pre-line}
+.key-public .event-title{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-weight:500;font-size:1.05rem}.key-public-meta{color:var(--muted);font-size:.8rem;margin-bottom:2px}
+.vendor-lines{margin-top:4px;color:var(--muted);font-size:.92rem}.vendor-lines .hl{color:var(--text);font-weight:650}
+
+/* Docs/additional references stay simple */
+.doc-library-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.doc-frame{min-width:0}.doc-frame-head{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:5px}.doc-frame-title{font-size:1.05rem}.doc-frame-sub{color:var(--muted);font-size:.84rem}.doc-frame-count{font-size:.78rem;color:var(--label)}
+.doc-grid{border-top:1px solid var(--line)}.doc-card{display:flex;gap:11px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--text)}.doc-icon{flex:0 0 30px;width:30px;height:30px;display:grid;place-items:center;border-radius:7px;background:var(--soft);color:var(--terracotta)}.doc-copy b{display:block}.doc-meta{font-size:.83rem;color:var(--muted)}
+.makeup-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.schedule-title{font-weight:750;margin-bottom:6px}.schedule-table-wrap{overflow-x:auto}.schedule-table{width:100%;border-collapse:collapse;font-size:.88rem}.schedule-table th{text-align:left;color:var(--label);font-size:.71rem;letter-spacing:.05em;text-transform:uppercase}.schedule-table th,.schedule-table td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}.schedule-time{font-weight:700;white-space:nowrap}.schedule-marker{font-weight:750}.makeup-note{margin-top:8px;color:var(--muted);font-size:.82rem}.ref-card{margin-bottom:20px}.ref-card h3{font-size:1.05rem}.ref-list{border-top:1px solid var(--line);margin-top:6px}.ref-item{display:grid;grid-template-columns:55px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}.ref-time{font-weight:750;color:var(--label)}.ref-main b{display:block}.ref-note{color:var(--muted);font-size:.85rem;margin-top:2px}
+
+/* Contacts: role first. Coordinator/Catering use two columns. */
+.handoff-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}.handoff-box{min-width:0}.handoff-box-title{font-size:1.05rem;margin-bottom:3px}.handoff-box-sub{color:var(--muted);font-size:.84rem;margin:0 0 8px}
+.staff-directory,.collab-grid{border-top:1px solid var(--line)}
+.staff-contact-card,.collab{padding:13px 0;border-bottom:1px solid var(--line);background:transparent}
+.staff-contact-role,.collab-role{display:block;color:var(--terracotta);font-size:.78rem;font-weight:800;letter-spacing:.045em;text-transform:uppercase;white-space:pre-line}
+.staff-contact-name,.collab-name{font-weight:750;margin-top:2px}
+.contact-links,.collab-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:5px}.contact-link,.pill-link{font-size:.84rem}.collab-meta{font-size:.84rem;color:var(--muted);margin-top:2px}.collab-duty{font-size:.9rem;margin-top:5px;white-space:pre-line}
+.food-note{margin-top:8px;padding:8px 10px;border-left:3px solid #c58e55;background:#fff3de;color:#744d20;font-size:.88rem;font-weight:750}
+.focus-flash{outline:3px solid #d6b67c;outline-offset:3px;transition:outline-color .3s ease}
+.empty{padding:15px;border:1px dashed var(--line-strong);border-radius:8px;color:var(--muted)}
+.footer{margin:34px 0 44px;color:var(--label);font-size:.83rem}
+
+@media(max-width:700px){
+  .wrap{padding:0 16px}.field{flex:1 1 100%}.field select{flex:1;min-width:0}.controls .copy-link{margin-left:0}.role-head h1{font-size:1.75rem}.role-cols,.handoff-grid,.doc-library-grid,.makeup-grid{grid-template-columns:1fr}.event{grid-template-columns:1fr;gap:2px;padding:14px 0}.role-assignment-top{grid-template-columns:1fr}.assignment-right{justify-content:flex-start;text-align:left}.role-assignment-place{max-width:none}.tab-btn{padding:12px 9px 9px;font-size:.93rem}.moment-switch button{font-size:.83rem;padding:5px 9px}
+}
+@media print{.controls,.livebar,.tabbar,.moment-switch,.link-btn,.pill-link{display:none!important}.tab-panel{display:block!important;padding-top:12px}.event,.collab,.staff-contact-card,.ref-item{break-inside:avoid}.wrap{max-width:none}.dayof{background:none;border:1px solid var(--line)}}
 </style>
 </head>
 <body>
-<header class="hero">
-  <div class="eyebrow">Xiaoyang & Alex · October 17, 2026</div>
-  <h1>Staff Handbook</h1>
-  <p>A role-based day-of guide: what this team owns, where it fits in the wedding timeline, and which Family & Friend captains they hand off with.</p>
-</header>
-<main class="shell">
-  <div class="controls">
-    <div class="select-wrap"><label for="roleSelect">View role</label><select id="roleSelect"></select></div>
-    <div class="plan-toggle" aria-label="Plan"><button id="standardBtn" class="active">Standard</button><button id="rainBtn">Rain</button></div>
-    <button class="action-btn" id="refreshBtn" type="button">Refresh sheet</button>
-    <button class="action-btn copy-action" id="copyBtn" type="button">Copy role link</button>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="topbar-title">Wedding Day Staff Handbook</div>
+    <div class="topbar-meta">Xiaoyang &amp; Alex · Saturday, October 17, 2026</div>
   </div>
-  <div class="livebar"><div class="live-state"><span class="dot" id="liveDot"></span><span id="liveText">Loading…</span></div><div id="updatedText"></div></div>
+</header>
+<main class="wrap">
+  <div class="controls">
+    <label class="field"><span>Role</span><select id="roleSelect"></select></label>
+    <div class="plan-toggle" aria-label="Weather plan"><button id="standardBtn" class="active">Standard</button><button id="rainBtn">Rain plan</button></div>
+    <button class="link-btn copy-link" id="copyBtn" type="button">Copy link</button>
+  </div>
+  <div class="livebar" id="liveBar"><span class="dot" id="liveDot"></span><span id="liveText">Loading…</span><span id="updatedText"></span><button class="link-btn" id="refreshBtn" type="button">Refresh</button></div>
   <div id="app"><div class="empty" style="margin-top:22px">Loading staff handbook…</div></div>
 </main>
 
 <script>
 const CONFIG = {
-  // Paste the /exec URL from the ONE unified Apps Script Web App here.
-  // Keep ?handbook=staff at the end. Until then, the page uses the embedded preview snapshot.
+  // Production: live source of truth is Agenda - All in 1 via the unified Apps Script Web App.
+  // Keep ?handbook=staff at the end.
   API_URL: 'https://script.google.com/macros/s/AKfycbxnVmZMMlis0Sz3hbmUn5pPKIH0ujjVJy_cUOedtUO5yDCwU93OJ4kX0E9Fl0VmTtXL/exec?handbook=staff',
   FAMILY_PERSON_PARAM: 'person',
   AUTO_REFRESH_MS: 5 * 60 * 1000
@@ -86,16 +170,23 @@ let DATA = null;
 let ROLE_MODELS = [];
 let currentPlan = new URLSearchParams(location.search).get('plan') || 'Standard';
 let currentRole = new URLSearchParams(location.search).get('role') || '';
+let currentCoordinatorPerson = new URLSearchParams(location.search).get('coordinator') || 'all';
 let currentTab = new URLSearchParams(location.search).get('tab') || 'timeline';
 if(currentTab==='assignments' || currentTab==='master') currentTab='timeline';
-const VALID_TABS = ['timeline','additional','docs','captains'];
+const VALID_TABS = ['timeline','agenda','additional','docs','captains'];
 if(!VALID_TABS.includes(currentTab)) currentTab='timeline';
 let currentMomentMode = new URLSearchParams(location.search).get('moments') || 'role';
 if(!['role','key','all'].includes(currentMomentMode)) currentMomentMode='role';
+if(currentMomentMode==='key' && currentTab==='timeline') currentTab='agenda';
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const nl = s => esc(s).replace(/\n/g,'<br>');
 const norm = s => String(s ?? '').trim().toLowerCase();
+const clean = s => {
+  const v=String(s ?? '').trim();
+  return /^[\/\-–—]*$/.test(v)?'':v;
+};
+const firstLine = s => clean(s).split(/\r?\n/).map(x=>x.trim()).filter(Boolean)[0]||'';
 
 function minutes(t){
   if(!t) return 99999;
@@ -203,7 +294,14 @@ function masterVisible(e){
 function badgeClass(status){return /^confirmed$/i.test(String(status||'').trim())?'confirmed':(/gap|confirm|clarification|wip/i.test(status||'')?'open':'')}
 function taskTitle(t){return (t.duty||'').split('\n')[0] || t.role || 'Assignment'}
 function updateURL(){
-  const u=new URL(location.href);u.searchParams.set('role',currentRole);u.searchParams.set('plan',currentPlan);u.searchParams.set('tab',currentTab);u.searchParams.set('moments',currentMomentMode);history.replaceState({},'',u);
+  const u=new URL(location.href);
+  u.searchParams.set('role',currentRole);
+  u.searchParams.set('plan',currentPlan);
+  u.searchParams.set('tab',currentTab);
+  u.searchParams.set('moments',currentMomentMode);
+  if(currentRole==='Coordinator' && currentCoordinatorPerson!=='all') u.searchParams.set('coordinator',currentCoordinatorPerson);
+  else u.searchParams.delete('coordinator');
+  history.replaceState({},'',u);
 }
 function activateTab(tab,scrollIntoView=false){
   currentTab=VALID_TABS.includes(tab)?tab:'timeline';
@@ -240,11 +338,13 @@ function captainsTabLink(c){
 function renderMomentCollaborators(eventId){
   const people=collaboratorsForEvent(eventId);
   if(!people.length) return '';
-  return `<div class="moment-collabs"><div class="master-label">Family & Friend captains / collaborators</div><div class="moment-collab-list">${people.map(c=>`<a class="moment-collab-link internal-captain-link" data-captain-target="${esc(captainAnchor(c))}" href="${esc(captainsTabLink(c))}"><span>${esc(c.name)}</span>${c.role?`<span class="moment-collab-role">· ${esc(c.role)}</span>`:''} →</a>`).join('')}</div></div>`;
+  const byName=new Map();
+  people.forEach(c=>{const k=norm(c.name);if(!byName.has(k))byName.set(k,{first:c,roles:[]});const g=byName.get(k);if(c.role&&!g.roles.includes(c.role))g.roles.push(c.role)});
+  return `<div class="moment-collabs"><span class="k">Family &amp; friend captains:</span> <span class="moment-collab-list">${[...byName.values()].map(({first,roles})=>`<a class="moment-collab-link internal-captain-link" data-captain-target="${esc(captainAnchor(first))}" href="${esc(captainsTabLink(first))}">${esc(first.name)}${roles.length?` <span class="moment-collab-role">(${roles.map(esc).join('; ')})</span>`:''}</a>`).join('')}</span></div>`;
 }
 function renderRoleAssignment(t){
   const place=[t.venue,t.location].filter(Boolean).map(esc).join(' · ');
-  return `<div class="role-assignment"><div class="role-assignment-top"><span class="role-assignment-person">${esc(t.name||'TBD')}</span><span class="assignment-right">${place?`<span class="role-assignment-place">📍 ${place}</span>`:''}<span class="badge ${badgeClass(t.status)}">${esc(t.status||'Status not set')}</span>${t.plan==='Rain'?'<span class="badge rain">Rain</span>':''}</span></div><div class="role-assignment-duty">${nl(t.duty||'Assignment')}</div>${t.coupleNotes?`<div class="notes"><b>Couple note</b><br>${nl(t.coupleNotes)}</div>`:''}${t.coordNotes?`<details><summary>Open planning / coordination note</summary><div class="discussion">${nl(t.coordNotes)}</div></details>`:''}</div>`;
+  return `<div class="role-assignment"><div class="role-assignment-top"><span class="role-assignment-person">${esc(t.name||'TBD')}</span><span class="assignment-right">${place?`<span class="role-assignment-place">📍 ${place}</span>`:''}<span class="badge ${badgeClass(t.status)}">${esc(t.status||'Status not set')}</span>${t.plan==='Rain'?'<span class="badge rain">Rain</span>':''}</span></div><div class="role-assignment-duty">${nl(t.duty||'Assignment')}</div>${t.coupleNotes?`<div class="notes"><span class="k">Note from the couple:</span> ${nl(t.coupleNotes)}</div>`:''}${t.coordNotes?`<details class="planning-note"><summary>Planning / coordination note</summary><div class="discussion">${nl(t.coordNotes)}</div></details>`:''}</div>`;
 }
 function chooseMasterForTask(t,masterEvents){
   const all=masterEvents||[];
@@ -313,17 +413,38 @@ function buildMergedTimeline(masterEvents,tasks){
 
   return items.sort((a,b)=>minutes(a.time)-minutes(b.time) || (a.sortRow||99999)-(b.sortRow||99999) || String(a.eventId||'').localeCompare(String(b.eventId||'')));
 }
+
+const ROLE_WORDS={'Coordinator':/coordinator|command/i,'Catering':/cater/i,'DJ':/\bdj\b/i,'Photographer':/photo/i,'Videographer':/video/i,'Officiant':/officiant/i,'Hair & Makeup':/make\s*up|hair/i,'Transportation':/shuttle|bus|transport/i,'Hotel':/hotel/i,'Venue':/venue/i};
+function vendorLines(text){
+  const v=clean(text); if(!v) return ''; const re=ROLE_WORDS[currentRole];
+  return `<div class="vendor-lines">${v.split(/\r?\n/).map(l=>l.trim()).filter(Boolean).map(l=>{const i=l.indexOf(':');const hl=!!re&&i>0&&re.test(l.slice(0,i));return `<div${hl?' class="hl"':''}>${esc(l)}</div>`}).join('')}</div>`;
+}
+function momentName(e){return (publicKeyText(e).split(/\r?\n/).map(x=>x.trim()).filter(Boolean)[0]||'').replace(/\.$/,'')}
 function renderMergedMoment(item){
-  const e=item.master;
-  const tasks=item.tasks||[];
-  const title=e ? (e.key || (e.family||'').split('\n')[0] || (e.vendor||'').split('\n')[0] || e.eventId || 'Wedding moment') : (taskTitle(tasks[0]||{}) || item.eventId || 'Role assignment');
-  const eventId=item.eventId || e?.eventId || tasks[0]?.eventId || 'Timeline';
-  const isRole=tasks.length>0;
-  const rain=(e?.plan==='Rain') || tasks.some(t=>t.plan==='Rain');
-  const assignments=isRole?`<div class="role-assignments"><div class="master-label">${esc(currentRole)} · role assignment${tasks.length===1?'':'s'}</div>${tasks.map(renderRoleAssignment).join('')}</div>`:'';
-  const collaborators=isRole?renderMomentCollaborators(eventId):'';
-  const master=(e && currentMomentMode!=='key')?`<details class="master-context"><summary>More details · Overall wedding moment</summary><div class="master-context-body"><div class="context-grid"><div class="context"><b>Wedding party & family</b><div>${nl(e.family||'—')}</div></div><div class="context"><b>Planning team & vendors</b><div>${nl(e.vendor||'—')}</div></div><div class="context"><b>Guests</b><div>${nl(e.guest||'—')}</div></div></div>${e.notes?`<div class="notes"><b>Timeline note</b><br>${nl(e.notes)}</div>`:''}</div></details>`:'';
-  return `<article class="event ${isRole?'role-moment':''}"><div class="event-time">${esc(item.time||'TBD')}</div><div class="event-body"><div class="event-top"><span class="event-id">${esc(eventId)}</span>${isRole?'<span class="badge confirmed">Role moment</span>':'<span class="badge">Overall moment</span>'}${rain?'<span class="badge rain">Rain</span>':''}${e?'<span class="badge source">Master Timeline</span>':''}${isRole?'<span class="badge owner">Staff Tasks</span>':''}</div><h3>${esc(title)}</h3>${assignments}${collaborators}${master}</div></article>`;
+  const e=item.master, tasks=item.tasks||[], mine=tasks.length>0;
+  const rain=(e?.plan==='Rain')||tasks.some(t=>t.plan==='Rain');
+  const name=momentName(e);
+  const label=[];
+  if(name) label.push(`<span>${esc(name)}</span>`);
+  if(mine&&currentMomentMode==='all') label.push(`<span class="mine">${esc(currentRole)} task</span>`);
+  if(rain) label.push('<span class="rain-tag">Rain plan</span>');
+  let main='';
+  if(mine){
+    main=`<div class="role-assignments">${tasks.map(renderRoleAssignment).join('')}</div>${renderMomentCollaborators(item.eventId||e?.eventId||tasks[0]?.eventId)}`;
+  }else{
+    const title=name||firstLine(e?.family)||firstLine(e?.vendor)||'Wedding moment';
+    main=`<div class="event-title">${esc(title)}</div>${vendorLines(e?.vendor)}`;
+  }
+  let more='';
+  if(e && currentMomentMode!=='key'){
+    const rows=[];
+    if(clean(e.family)) rows.push(['Wedding party & family',clean(e.family)]);
+    if(clean(e.vendor)) rows.push(['Planning team & vendors',clean(e.vendor)]);
+    if(clean(e.guest)) rows.push(['Guests',clean(e.guest)]);
+    if(clean(e.notes)) rows.push(['Timeline note',clean(e.notes)]);
+    if(rows.length) more=`<details class="master-context"><summary>More details · Overall wedding moment</summary><div class="master-context-body"><div class="context-grid">${rows.map(([k,v])=>`<div class="context"><b>${esc(k)}</b><div>${nl(v)}</div></div>`).join('')}</div></div></details>`;
+  }
+  return `<article class="event${mine?' role-moment':''}"><div class="event-time">${esc(item.time||'TBD')}</div><div class="event-body">${label.length?`<div class="event-label">${label.join('')}</div>`:''}${main}${more}</div></article>`;
 }
 function publicKeyText(e){
   if(!e) return '';
@@ -345,13 +466,13 @@ function renderKeyMoment(item){
   const key=publicKeyText(e);
   const title=(key.split(/\r?\n/).map(x=>x.trim()).filter(Boolean)[0]||e?.guest||e?.eventId||'Wedding moment').replace(/\.$/,'');
   const venue=publicVenue(e);
-  return `<article class="event key-public"><div class="event-time">${esc(e?.time||item.time||'TBD')}</div><div class="event-body"><div class="key-public-meta">${venue?`<span>🌿 Enjoy</span><span>·</span><span>${esc(venue)}</span>`:''}</div><h3>${esc(title)}</h3></div></article>`;
+  return `<article class="event key-public"><div class="event-time">${esc(e?.time||item.time||'TBD')}</div><div class="event-body">${venue?`<div class="key-public-meta">${esc(venue)}</div>`:''}<div class="event-title">${esc(title)}</div></div></article>`;
 }
 function renderPerson(p){
-  return `<div class="person"><div class="person-name">${esc(p.name)}</div>${p.assignment?`<div class="person-role">${nl(p.assignment)}</div>`:''}<div class="person-meta">${p.phone?esc(p.phone):''}${p.phone&&p.email?' · ':''}${p.email?`<a href="mailto:${esc(p.email)}">${esc(p.email)}</a>`:''}</div></div>`;
+  return `<div class="person">${p.assignment?`<div class="person-role">${nl(p.assignment)}</div>`:''}<div class="person-name">${esc(p.name)}</div><div class="person-meta">${p.phone?`<a href="tel:${esc(String(p.phone).replace(/[^+\d]/g,''))}">${esc(p.phone)}</a>`:''}${p.phone&&p.email?' · ':''}${p.email?`<a href="mailto:${esc(p.email)}">${esc(p.email)}</a>`:''}</div></div>`;
 }
 function renderCollab(c){
-  return `<div class="card collab" id="${esc(captainAnchor(c))}"><div class="collab-role">${esc(c.role||'Family / Friend Captain')}</div><div class="collab-name">${esc(c.name)}</div><div class="collab-meta">${esc(c.time||'')}${c.stage?' · '+esc(c.stage):''}${c.location?' · '+esc(c.location):''}</div><div class="collab-duty">${nl(c.duty)}</div><div class="collab-links"><a class="pill-link" href="${esc(familyLink(c.name))}" target="_blank" rel="noopener">Open ${esc(c.name)}'s Family handbook ↗</a></div></div>`;
+  return `<div class="collab" id="${esc(captainAnchor(c))}"><div class="collab-role">${esc(c.role||'Family / Friend Captain')}</div><div class="collab-name">${esc(c.name)}</div><div class="collab-meta">${esc(c.time||'')}${c.stage?' · '+esc(c.stage):''}${c.location?' · '+esc(c.location):''}</div><div class="collab-duty">${nl(c.duty)}</div><div class="collab-links"><a class="pill-link" href="${esc(familyLink(c.name))}" target="_blank" rel="noopener">Open ${esc(c.name)}'s Family handbook ↗</a></div></div>`;
 }
 function renderDoc(d){
   const isVideo=norm(d.type)==='video' || /\.(mp4|mov|m4v|webm)$/i.test(d.label||'');
@@ -381,10 +502,15 @@ function renderMakeupSchedule(artist,title,items){
     const marker=/^(ARRIVAL|BREAK|TOUCH-UPS|COMPLETION)$/i.test(i.name||'');
     return `<tr><td class="schedule-time">${esc(i.time||'—')}</td><td class="${marker?'schedule-marker':''}">${esc(i.name||'')}</td><td class="schedule-service">${nl(i.service||'')}</td></tr>`;
   }).join('');
-  return `<div class="card schedule-card"><div class="schedule-title">${esc(title)}</div><div class="schedule-table-wrap"><table class="schedule-table"><thead><tr><th>Time</th><th>Person / Marker</th><th>Service</th></tr></thead><tbody>${body||'<tr><td colspan="3">No schedule rows found.</td></tr>'}</tbody></table></div></div>`;
+  return `<div class="schedule-card"><div class="schedule-title">${esc(title)}</div><div class="schedule-table-wrap"><table class="schedule-table"><thead><tr><th>Time</th><th>Person / Marker</th><th>Service</th></tr></thead><tbody>${body||'<tr><td colspan="3">No schedule rows found.</td></tr>'}</tbody></table></div></div>`;
+}
+function photoOrderId(i,idx){
+  const raw=clean(i?.orderId ?? i?.order ?? i?.id ?? i?.sequence ?? '');
+  if(raw) return raw;
+  return String(idx+1);
 }
 function renderAdditional(a){
-  if(a.type==='photo') return `<div class="card ref-card"><h3>${esc(a.title)}</h3><div class="ref-list">${(a.items||[]).map(i=>`<div class="ref-item"><div class="ref-time">${esc(i.time||'—')}</div><div class="ref-main"><b>${esc(i.flow||i.note||'Photo group')}</b>${i.note&&i.flow?`<div class="ref-note">${nl(i.note)}</div>`:''}${i.names?.length?`<div class="ref-note">${i.names.map(esc).join(' · ')}</div>`:''}</div></div>`).join('')}</div></div>`;
+  if(a.type==='photo') return `<div class="ref-card"><h3>${esc(a.title)}</h3><div class="ref-list">${(a.items||[]).map((i,idx)=>`<div class="ref-item"><div class="ref-time">${esc(photoOrderId(i,idx))}</div><div class="ref-main"><b>${esc(i.flow||i.note||i.comments||'Photo group')}</b>${(i.note||i.comments)&&i.flow?`<div class="ref-note">${nl(i.note||i.comments)}</div>`:''}${i.names?.length?`<div class="ref-note">${i.names.map(esc).join(' · ')}</div>`:''}</div></div>`).join('')}</div></div>`;
   if(a.type==='makeup') return `<div><div class="makeup-grid">${renderMakeupSchedule('Ashley',"Ashley's Schedule",a.items)}${renderMakeupSchedule('Lupe',"Lupe's Schedule",a.items)}</div><div class="makeup-note">Each table follows its own column order from the Make up Timeline sheet; the two artists are not re-sorted into one combined schedule.</div></div>`;
   return '';
 }
@@ -392,103 +518,134 @@ function render(){
   if(!ROLE_MODELS.length){$('#app').innerHTML='<div class="empty" style="margin-top:22px">No staff roles were found.</div>';return}
   let model=ROLE_MODELS.find(x=>x.role===currentRole)||ROLE_MODELS[0]; currentRole=model.role;
   $('#roleSelect').value=currentRole; $('#standardBtn').classList.toggle('active',currentPlan==='Standard'); $('#rainBtn').classList.toggle('active',currentPlan==='Rain');
-  const tasks=model.tasks.filter(taskVisible).sort((a,b)=>minutes(a.time)-minutes(b.time)||String(a.name||'').localeCompare(String(b.name||''))||(a.row||0)-(b.row||0));
-  const roleMasters=model.master.filter(masterVisible).sort((a,b)=>minutes(a.time)-minutes(b.time)||(a.row||0)-(b.row||0));
+  const allRoleTasks=model.tasks.filter(taskVisible).sort((a,b)=>minutes(a.time)-minutes(b.time)||String(a.name||'').localeCompare(String(b.name||''))||(a.row||0)-(b.row||0));
+  const coordinatorPeople=['Shi Choong','Eryca','Daisy'].filter(name=>model.tasks.some(t=>norm(t.name)===norm(name)));
+  if(model.role!=='Coordinator') currentCoordinatorPerson='all';
+  if(model.role==='Coordinator' && currentCoordinatorPerson!=='all' && !coordinatorPeople.some(name=>norm(name)===norm(currentCoordinatorPerson))) currentCoordinatorPerson='all';
+  const tasks=(model.role==='Coordinator' && currentCoordinatorPerson!=='all')
+    ? allRoleTasks.filter(t=>norm(t.name)===norm(currentCoordinatorPerson))
+    : allRoleTasks;
   const allMasters=(DATA.masterEvents||[]).filter(masterVisible).sort((a,b)=>minutes(a.time)-minutes(b.time)||(a.row||0)-(b.row||0));
+  let roleMasters=model.master.filter(masterVisible).sort((a,b)=>minutes(a.time)-minutes(b.time)||(a.row||0)-(b.row||0));
+  if(model.role==='Coordinator' && currentCoordinatorPerson!=='all'){
+    roleMasters=uniq(tasks.map(t=>chooseMasterForTask(t,allMasters)).filter(Boolean),e=>[e.row,e.plan,e.eventId,e.time].join('|'))
+      .sort((a,b)=>minutes(a.time)-minutes(b.time)||(a.row||0)-(b.row||0));
+  }
   const roleTimeline=buildMergedTimeline(roleMasters,tasks);
   const allTimeline=buildMergedTimeline(allMasters,tasks);
   const keyMasters=allMasters.filter(e=>publicKeyText(e));
   const keyTimeline=buildMergedTimeline(keyMasters,[]).filter(item=>item.master && publicKeyText(item.master));
-  const timeline=currentMomentMode==='all'?allTimeline:(currentMomentMode==='key'?keyTimeline:roleTimeline);
+  if(currentMomentMode==='key') currentMomentMode='role';
+  const timeline=currentMomentMode==='all'?allTimeline:roleTimeline;
   const hasRain=model.tasks.some(t=>t.plan==='Rain') || model.master.some(e=>e.plan==='Rain'); $('#rainBtn').style.display=hasRain?'':'none';
   const venues=[...new Set(tasks.map(t=>t.venue).filter(Boolean))];
-  const tags=[`<span class="tag">${tasks.length} assignment${tasks.length===1?'':'s'}</span>`,`<span class="tag gold">${model.people.length} staff contact${model.people.length===1?'':'s'}</span>`]; venues.slice(0,2).forEach(v=>tags.push(`<span class="tag gold">${esc(v)}</span>`));
   const additionalCount=(model.additional||[]).reduce((n,a)=>n+(a.items?.length||0),0);
   const hasAdditional=(model.additional||[]).length>0 && additionalCount>0;
+  const additionalTabTitle=[...new Set((model.additional||[]).map(a=>String(a.title||'').trim()).filter(Boolean))].join(' + ') || 'Additional Timeline';
   if(!hasAdditional && currentTab==='additional') currentTab='timeline';
+  const isCoord=model.role==='Coordinator';
+  const contacts=[...(DATA.staffContacts||[])].sort((a,b)=>categoryForContact(a).localeCompare(categoryForContact(b))||String(a.assignment||'').localeCompare(String(b.assignment||''))||String(a.name||'').localeCompare(String(b.name||'')));
+  const allCaptains=uniq((DATA.familyRoles||[]).filter(isOperationalFamilyRole),r=>[r.name,r.eventId,r.role,r.duty].join('|')).sort((a,b)=>String(a.role||'').localeCompare(String(b.role||''))||String(a.name||'').localeCompare(String(b.name||''))||String(a.time||'').localeCompare(String(b.time||'')));
+  const dayOf=(()=>{if(isCoord)return '';const c=(DATA.staffContacts||[]).find(x=>/command center|point of contact/i.test(x.assignment||''))||(DATA.staffContacts||[]).find(x=>categoryForContact(x)==='Coordinator'&&String(x.phone||'').trim());if(!c)return '';return `<div class="dayof"><div class="mini-label">Day-of contact</div><div class="contact">${c.assignment?`<div class="contact-role">${esc(firstLine(c.assignment))}</div>`:''}<div class="contact-name">${esc(c.name||'Coordinator')}</div><div class="contact-links">${c.phone?`<a href="tel:${esc(String(c.phone).replace(/[^+\d]/g,''))}">${esc(c.phone)}</a>`:''}${c.phone&&c.email?' · ':''}${c.email?`<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>`:''}</div></div></div>`})();
+  const team=model.people.length?`<div><div class="mini-label">${model.people.length===1?'Contact on file':'Team'}</div><div class="contact-list">${model.people.map(renderPerson).join('')}</div></div>`:'';
+  const docs=(model.docs||[]).filter(d=>!(norm(d.type)==='video'||/\.(mp4|mov|m4v|webm)$/i.test(d.label||'')));
+  const vids=(model.docs||[]).filter(d=>norm(d.type)==='video'||/\.(mp4|mov|m4v|webm)$/i.test(d.label||''));
   document.title=`${model.role} · Wedding Staff Handbook`;
   $('#app').innerHTML=`
-    <section class="profile"><div class="card profile-main"><div class="eyebrow">Role day-of guide</div><h2>${esc(model.role)}</h2><div class="role-line">Everything this role needs from the live wedding workbook, with the Master Timeline and Staff Tasks merged into one chronological day-of view.</div><div class="tags">${tags.join('')}</div><div class="notice"><strong>${currentPlan} plan.</strong> Confirmed and unresolved items are shown exactly from <b>Staff Tasks</b>; unresolved planning is not silently converted into a final instruction.</div></div><aside class="card team-card"><h3>Role team</h3>${model.people.length?model.people.map(renderPerson).join(''):'<div class="empty">No staff contact is currently mapped to this role.</div>'}</aside></section>
+    <section class="role-head"><div class="kicker">Role</div><h1>${esc(model.role)}</h1>${venues.length?`<div class="role-venue"><span class="k">Venue:</span> ${venues.map(esc).join(' · ')}</div>`:''}${(team||dayOf)?`<div class="role-cols${team&&dayOf?'':' single'}">${team}${dayOf}</div>`:''}</section>
 
     <nav class="tabbar" role="tablist" aria-label="Staff handbook sections">
-      <button class="tab-btn" type="button" role="tab" data-tab="timeline"><span>Day-of Timeline</span><span class="tab-count">${roleTimeline.length}</span></button>
-      ${hasAdditional?`<button class="tab-btn" type="button" role="tab" data-tab="additional"><span>Additional Timeline</span><span class="tab-count">${additionalCount}</span></button>`:''}
-      <button class="tab-btn" type="button" role="tab" data-tab="docs"><span>Detailed Docs</span><span class="tab-count">${model.docs.length}</span></button>
-      <button class="tab-btn" type="button" role="tab" data-tab="captains"><span>${(model.role==='Coordinator'||model.role==='Catering')?'Captains & Contacts':'Family/Friend Captains'}</span><span class="tab-count">${model.collaborators.length}${(model.role==='Coordinator'||model.role==='Catering')?' + '+(DATA.staffContacts||[]).length:''}</span></button>
+      <button class="tab-btn" type="button" role="tab" data-tab="timeline">Schedule <span class="tab-count">${roleTimeline.length}</span></button>
+      <button class="tab-btn" type="button" role="tab" data-tab="agenda">Agenda <span class="tab-count">${keyTimeline.length}</span></button>
+      ${hasAdditional?`<button class="tab-btn" type="button" role="tab" data-tab="additional">${esc(additionalTabTitle)} <span class="tab-count">${additionalCount}</span></button>`:''}
+      <button class="tab-btn" type="button" role="tab" data-tab="docs">Documents <span class="tab-count">${model.docs.length}</span></button>
+      <button class="tab-btn" type="button" role="tab" data-tab="captains">All Contacts <span class="tab-count">${contacts.length+allCaptains.length}</span></button>
     </nav>
 
     <div class="tab-panel" data-panel="timeline" role="tabpanel">
-      <section class="section"><div class="section-head"><div><div class="section-kicker">One chronological view</div><h2>Day-of timeline + role assignments</h2><div class="section-sub">Master Timeline moments and this role's Staff Tasks are merged by Event ID / linked source row, then ordered by time. When several people in this role work at the same moment, their assignments are grouped together.</div></div></div>
-      <div class="timeline-tools"><div class="moment-switch" aria-label="Timeline moment filter"><button type="button" data-moments="role">Role moments only · ${roleTimeline.length}</button><button type="button" data-moments="key">Key moments only · ${keyTimeline.length}</button><button type="button" data-moments="all">Show all moments · ${allTimeline.length}</button></div><div class="timeline-hint">${currentMomentMode==='role'?`Showing moments relevant to ${esc(model.role)}.`:(currentMomentMode==='key'?'Guest-facing key moments only: time, event, and venue. Staff assignments and internal notes are hidden.':'Showing the complete wedding timeline, with this role highlighted where assigned.')}</div></div>
-      <div class="timeline ${currentMomentMode==='key'?'key-public-list':''}">${timeline.length?(currentMomentMode==='key'?timeline.map(renderKeyMoment).join(''):timeline.map(renderMergedMoment).join('')):`<div class="empty">No timeline moments are currently mapped to ${esc(model.role)} for this plan.</div>`}</div></section>
+      ${isCoord?`<div class="timeline-tools coordinator-person-tools"><div class="moment-switch coordinator-person-switch"><button type="button" data-coordinator-person="all">All Coordinator</button>${coordinatorPeople.map(name=>`<button type="button" data-coordinator-person="${esc(name)}">${esc(name)}</button>`).join('')}</div><div class="timeline-hint">${currentCoordinatorPerson==='all'?'Showing the full coordinator team.':`Showing only ${esc(currentCoordinatorPerson)}’s assignments.`}</div></div>`:''}
+      <div class="timeline-tools"><div class="moment-switch"><button type="button" data-moments="role">${esc(model.role==='Coordinator'&&currentCoordinatorPerson!=='all'?currentCoordinatorPerson:model.role)} tasks · ${roleTimeline.length}</button><button type="button" data-moments="all">Full day · ${allTimeline.length}</button></div><div class="timeline-hint">${currentMomentMode==='all'?'Complete day; this role is highlighted.':(isCoord&&currentCoordinatorPerson!=='all'?`Only moments where ${esc(currentCoordinatorPerson)} has a task.`:`Only moments where ${esc(model.role)} has a task.`)}</div></div>
+      <div class="timeline">${timeline.length?timeline.map(renderMergedMoment).join(''):`<div class="empty">No timeline moments are currently mapped to ${esc(isCoord&&currentCoordinatorPerson!=='all'?currentCoordinatorPerson:model.role)} for this plan.</div>`}</div>
     </div>
 
-    ${hasAdditional?`<div class="tab-panel" data-panel="additional" role="tabpanel">
-      <section class="section"><div class="section-head"><div><div class="section-kicker">Role-specific reference</div><h2>Additional timeline</h2><div class="section-sub">Supporting source tabs such as Photo Timeline or Hair & Makeup Timeline are shown here when relevant to this role.</div></div></div>${model.additional.map(renderAdditional).join('')}</section>
-    </div>`:''}
-
-    <div class="tab-panel" data-panel="docs" role="tabpanel">
-      <section class="section"><div class="section-head"><div><div class="section-kicker">Role reference library</div><h2>Detailed Docs</h2><div class="section-sub">Live references from the <b>Doc Details</b> tab for this staff role, separated into working documents and venue / setup video tours.</div></div></div>
-      ${(()=>{
-        const documents=(model.docs||[]).filter(d=>!(norm(d.type)==='video' || /\.(mp4|mov|m4v|webm)$/i.test(d.label||'')));
-        const videos=(model.docs||[]).filter(d=>norm(d.type)==='video' || /\.(mp4|mov|m4v|webm)$/i.test(d.label||''));
-        return `<div class="doc-library-grid">
-          <div class="doc-frame"><div class="doc-frame-head"><div><h3 class="doc-frame-title">Detailed Documents</h3><div class="doc-frame-sub">Layouts, scripts, guides, and other role references.</div></div><span class="doc-frame-count">${documents.length}</span></div><div class="doc-grid">${documents.length?documents.map(renderDoc).join(''):`<div class="empty">No detailed documents are currently mapped to ${esc(model.role)}.</div>`}</div></div>
-          <div class="doc-frame"><div class="doc-frame-head"><div><h3 class="doc-frame-title">Video Tours</h3><div class="doc-frame-sub">Venue, setup, and location walkthrough videos.</div></div><span class="doc-frame-count">${videos.length}</span></div><div class="doc-grid">${videos.length?videos.map(renderDoc).join(''):`<div class="empty">No video tours are currently mapped to ${esc(model.role)}.</div>`}</div></div>
-        </div>`;
-      })()}
-      </section>
+    <div class="tab-panel" data-panel="agenda" role="tabpanel">
+      <h2 class="panel-h">Agenda</h2>
+      <p class="panel-note">The main wedding-day moments for everyone: time, event, and venue only.</p>
+      <div class="timeline key-public-list">${keyTimeline.length?keyTimeline.map(renderKeyMoment).join(''):'<div class="empty">No agenda moments are currently listed for this plan.</div>'}</div>
     </div>
+
+    ${hasAdditional?`<div class="tab-panel" data-panel="additional" role="tabpanel"><h2 class="panel-h">${esc(additionalTabTitle)}</h2>${model.additional.map(renderAdditional).join('')}</div>`:''}
+
+    <div class="tab-panel" data-panel="docs" role="tabpanel"><h2 class="panel-h">Documents & videos</h2><p class="panel-note">Live references from the Doc Details sheet.</p><div class="doc-library-grid"><div class="doc-frame"><div class="doc-frame-head"><div><h3 class="doc-frame-title">Documents</h3><div class="doc-frame-sub">Scripts, layouts and guides.</div></div><span class="doc-frame-count">${docs.length}</span></div><div class="doc-grid">${docs.length?docs.map(renderDoc).join(''):'<div class="empty">No documents mapped to this role.</div>'}</div></div><div class="doc-frame"><div class="doc-frame-head"><div><h3 class="doc-frame-title">Video tours</h3><div class="doc-frame-sub">Venue and setup walkthroughs.</div></div><span class="doc-frame-count">${vids.length}</span></div><div class="doc-grid">${vids.length?vids.map(renderDoc).join(''):'<div class="empty">No video tours mapped to this role.</div>'}</div></div></div></div>
 
     <div class="tab-panel" data-panel="captains" role="tabpanel">
-      <section class="section"><div class="section-head"><div><div class="section-kicker">Human handoffs</div><h2>${(model.role==='Coordinator'||model.role==='Catering')?'Captains & staff/vendor contacts':'Family & Friend captains / collaborators'}</h2><div class="section-sub">${model.role==='Coordinator'?'Coordinator command-center view: every staff/vendor contact plus Family & Friend handoffs.':model.role==='Catering'?'Catering command-center view: every staff/vendor contact with food restrictions highlighted, plus Family & Friend handoffs.':'Operational Family & Friend roles sharing this team\'s Event IDs. Role-moment names jump here to the matching captain card.'}</div></div></div>
-      ${(model.role==='Coordinator'||model.role==='Catering')?`<div class="handoff-grid"><div class="handoff-box"><h3 class="handoff-box-title">All Staff / Vendor Contacts</h3><p class="handoff-box-sub">Live directory from Groups&Contact, ordered by role first for fast day-of lookup.${model.role==='Catering'?' Food restrictions are highlighted here for catering use.':''}</p><div class="staff-directory">${(DATA.staffContacts||[]).length?[...(DATA.staffContacts||[])].sort((a,b)=>categoryForContact(a).localeCompare(categoryForContact(b))||String(a.assignment||'').localeCompare(String(b.assignment||''))||String(a.name||'').localeCompare(String(b.name||''))).map(c=>renderStaffDirectoryContact(c,model.role==='Catering')).join(''):`<div class="empty">No staff contacts found in Groups&Contact.</div>`}</div></div><div class="handoff-box"><h3 class="handoff-box-title">Family & Friend Captains</h3><p class="handoff-box-sub">People coordinating guest/family execution with this team, shown by role first.</p><div class="collab-grid">${model.collaborators.length?model.collaborators.slice().sort((a,b)=>String(a.role||'').localeCompare(String(b.role||''))||String(a.name||'').localeCompare(String(b.name||''))).map(renderCollab).join(''):`<div class="empty">No Family & Friend captain/collaborator is currently linked to ${esc(model.role)} Event IDs.</div>`}</div></div></div>`:`<div class="collab-grid">${model.collaborators.length?model.collaborators.slice().sort((a,b)=>String(a.role||'').localeCompare(String(b.role||''))||String(a.name||'').localeCompare(String(b.name||''))).map(renderCollab).join(''):`<div class="empty">No Family & Friend captain/collaborator is currently linked to this role's Event IDs.</div>`}</div>`}
-      </section>
+      <h2 class="panel-h">All Contacts</h2>
+      <div class="handoff-grid">
+        <section class="handoff-box"><h3 class="handoff-box-title">All Staff / Vendor Contacts</h3><p class="handoff-box-sub">Role first for fast day-of lookup.${model.role==='Catering'?' Food restrictions and meal notes are highlighted for Catering.':''}</p><div class="staff-directory">${contacts.length?contacts.map(c=>renderStaffDirectoryContact(c,model.role==='Catering')).join(''):'<div class="empty">No staff contacts found.</div>'}</div></section>
+        <section class="handoff-box"><h3 class="handoff-box-title">Family & Friend Captains</h3><p class="handoff-box-sub">Full operational captain directory. Schedule links jump to the matching person here.</p><div class="collab-grid">${allCaptains.length?allCaptains.map(renderCollab).join(''):'<div class="empty">No Family & Friend captains found.</div>'}</div></section>
+      </div>
     </div>
 
-    <footer class="source-footer">Live source: <strong>${esc(DATA.meta?.source||'Agenda- All in 1')}</strong> · Master Timeline · Staff Tasks · Roles · Groups&Contact · Doc Details · Make up Timeline · Photo Timeline.<br>Change the Google Sheet first; this page refreshes the data instead of maintaining a second schedule.</footer>`;
+    <footer class="footer">Live from Agenda - All in 1. Update the Google Sheet first; this page does not contain a second hardcoded wedding schedule.</footer>`;
 
   document.querySelectorAll('.tab-btn').forEach(btn=>btn.addEventListener('click',()=>activateTab(btn.dataset.tab,true)));
   document.querySelectorAll('[data-moments]').forEach(btn=>{btn.classList.toggle('active',btn.dataset.moments===currentMomentMode);btn.addEventListener('click',()=>{currentMomentMode=btn.dataset.moments;render()})});
+  document.querySelectorAll('[data-coordinator-person]').forEach(btn=>{
+    btn.classList.toggle('active',btn.dataset.coordinatorPerson===currentCoordinatorPerson);
+    btn.addEventListener('click',()=>{currentCoordinatorPerson=btn.dataset.coordinatorPerson||'all';currentMomentMode='role';render()});
+  });
   document.querySelectorAll('.internal-captain-link').forEach(link=>link.addEventListener('click',e=>{
     e.preventDefault();
     const target=link.dataset.captainTarget;
-    activateTab('captains',false);
-    requestAnimationFrame(()=>{
+    currentTab='captains';
+    render();
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
       const el=document.getElementById(target);
       if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('focus-flash');setTimeout(()=>el.classList.remove('focus-flash'),1600)}
-      try{history.replaceState({},'',captainsTabLink({name:'',eventId:''}).split('#')[0]+'#'+target)}catch(_){}
-    });
+      try{const u=new URL(location.href);u.searchParams.set('role',currentRole);u.searchParams.set('tab','captains');u.searchParams.set('plan',currentPlan);u.searchParams.set('moments',currentMomentMode);u.hash=target;history.replaceState({},'',u)}catch(_){}
+    }));
   }));
   activateTab(currentTab,false);
-  if(location.hash && currentTab==='captains'){requestAnimationFrame(()=>{const el=document.getElementById(location.hash.slice(1));if(el)el.scrollIntoView({block:'center'})})}
+  if(location.hash&&currentTab==='captains'){requestAnimationFrame(()=>{const el=document.getElementById(location.hash.slice(1));if(el)el.scrollIntoView({block:'center'})})}
 }
 function populateRoleSelect(){
-  const s=$('#roleSelect');s.innerHTML='';ROLE_MODELS.forEach(m=>{const o=document.createElement('option');o.value=m.role;o.textContent=`${m.role} (${m.people.length})`;s.appendChild(o)}); if(!ROLE_MODELS.some(m=>m.role===currentRole))currentRole=ROLE_MODELS[0]?.role||'';s.value=currentRole;
+  const s=$('#roleSelect');s.innerHTML='';ROLE_MODELS.forEach(m=>{const o=document.createElement('option');o.value=m.role;o.textContent=m.role;s.appendChild(o)}); if(!ROLE_MODELS.some(m=>m.role===currentRole))currentRole=ROLE_MODELS[0]?.role||'';s.value=currentRole;
 }
 function setLiveState(mode,message){
-  $('#liveDot').className='dot'+(mode==='preview'?' preview':mode==='error'?' error':'');$('#liveText').textContent=message;$('#updatedText').textContent=DATA?.meta?.updatedAt?`Sheet read: ${DATA.meta.updatedAt}`:'';
+  $('#liveDot').className='dot'+(mode==='error'?' error':'');
+  $('#liveBar').classList.toggle('is-error',mode==='error');
+  $('#liveText').textContent=message;
+  $('#updatedText').textContent=DATA?.meta?.updatedAt?`Sheet read: ${DATA.meta.updatedAt}`:'';
 }
-function acceptData(payload,mode){
-  if(!payload||payload.ok===false) throw new Error(payload?.error||'The data endpoint returned an error.'); DATA=payload;buildModels();populateRoleSelect();render();setLiveState(mode,mode==='live'?'Live from Google Sheet':'Preview mode · connect Apps Script URL for live updates');
+function acceptData(payload){
+  if(!payload||payload.ok===false) throw new Error(payload?.error||'The data endpoint returned an error.');
+  DATA=payload;
+  buildModels();
+  populateRoleSelect();
+  render();
+  setLiveState('live','Live from Google Sheet');
 }
-function loadPreview(reason){
-  const p=JSON.parse(document.getElementById('preview-data').textContent);acceptData(p,'preview'); if(reason)$('#updatedText').textContent=reason;
+function showLiveError(message){
+  setLiveState('error',message);
+  if(!DATA){
+    $('#app').innerHTML='<div class="empty" style="margin-top:22px"><strong>Unable to load the live wedding data.</strong><br>Please refresh the page or check the connection. This handbook does not contain a hardcoded schedule copy.</div>';
+  }
+  $('#refreshBtn').textContent='Refresh';
 }
 function loadData(){
   $('#refreshBtn').textContent='Refreshing…';
   const api=String(CONFIG.API_URL||'').trim();
-  if(!api || api.includes('PASTE_YOUR_')){loadPreview('Preview snapshot · API URL not configured');$('#refreshBtn').textContent='Refresh sheet';return}
+  if(!api || api.includes('PASTE_YOUR_')){showLiveError('Apps Script URL is not configured');return}
   const cb='staffHandbookCb_'+Date.now()+'_'+Math.floor(Math.random()*100000); const script=document.createElement('script'); const sep=api.includes('?')?'&':'?'; let done=false;
   const cleanup=()=>{if(script.parentNode)script.remove();try{delete window[cb]}catch(e){window[cb]=undefined}};
-  const timer=setTimeout(()=>{if(done)return;done=true;cleanup();setLiveState('error','Live sheet timed out · live data unavailable');$('#refreshBtn').textContent='Refresh sheet'},15000);
-  window[cb]=payload=>{if(done)return;done=true;clearTimeout(timer);cleanup();try{acceptData(payload,'live')}catch(err){setLiveState('error','Live sheet error: '+err.message)}finally{$('#refreshBtn').textContent='Refresh sheet'}};
-  script.onerror=()=>{if(done)return;done=true;clearTimeout(timer);cleanup();setLiveState('error','Unable to load live wedding data. Please refresh or check your connection.');$('#refreshBtn').textContent='Refresh sheet'};
+  const timer=setTimeout(()=>{if(done)return;done=true;cleanup();showLiveError('Live sheet timed out')},15000);
+  window[cb]=payload=>{if(done)return;done=true;clearTimeout(timer);cleanup();try{acceptData(payload)}catch(err){showLiveError('Live sheet error: '+err.message)}finally{$('#refreshBtn').textContent='Refresh'}};
+  script.onerror=()=>{if(done)return;done=true;clearTimeout(timer);cleanup();showLiveError('Could not reach Apps Script')};
   script.src=api+sep+'callback='+encodeURIComponent(cb)+'&_='+Date.now();document.head.appendChild(script);
 }
-$('#roleSelect').addEventListener('change',e=>{currentRole=e.target.value;render();scrollTo({top:0,behavior:'smooth'})});
+$('#roleSelect').addEventListener('change',e=>{currentRole=e.target.value;if(currentRole!=='Coordinator')currentCoordinatorPerson='all';render();scrollTo({top:0,behavior:'smooth'})});
 $('#standardBtn').onclick=()=>{currentPlan='Standard';render()};$('#rainBtn').onclick=()=>{currentPlan='Rain';render()};$('#refreshBtn').onclick=loadData;
-$('#copyBtn').onclick=async()=>{updateURL();try{await navigator.clipboard.writeText(location.href);$('#copyBtn').textContent='Link copied';setTimeout(()=>$('#copyBtn').textContent='Copy role link',1300)}catch(e){prompt('Copy this link:',location.href)}};
+$('#copyBtn').onclick=async()=>{updateURL();try{await navigator.clipboard.writeText(location.href);$('#copyBtn').textContent='Link copied';setTimeout(()=>$('#copyBtn').textContent='Copy link',1300)}catch(e){prompt('Copy this link:',location.href)}};
 loadData();setInterval(()=>{if(!document.hidden)loadData()},CONFIG.AUTO_REFRESH_MS);
 </script>
 </body>
