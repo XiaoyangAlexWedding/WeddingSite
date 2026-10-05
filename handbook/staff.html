@@ -638,7 +638,7 @@ function loadData(){
   if(!api || api.includes('PASTE_YOUR_')){showLiveError('Apps Script URL is not configured');return}
   const cb='staffHandbookCb_'+Date.now()+'_'+Math.floor(Math.random()*100000); const script=document.createElement('script'); const sep=api.includes('?')?'&':'?'; let done=false;
   const cleanup=()=>{if(script.parentNode)script.remove();try{delete window[cb]}catch(e){window[cb]=undefined}};
-  const timer=setTimeout(()=>{if(done)return;done=true;cleanup();showLiveError('Live sheet timed out')},15000);
+  const timer=setTimeout(()=>{if(done)return;done=true;cleanup();showLiveError('Live sheet timed out')},40000);
   window[cb]=payload=>{if(done)return;done=true;clearTimeout(timer);cleanup();try{acceptData(payload)}catch(err){showLiveError('Live sheet error: '+err.message)}finally{$('#refreshBtn').textContent='Refresh'}};
   script.onerror=()=>{if(done)return;done=true;clearTimeout(timer);cleanup();showLiveError('Could not reach Apps Script')};
   script.src=api+sep+'callback='+encodeURIComponent(cb)+'&_='+Date.now();document.head.appendChild(script);
