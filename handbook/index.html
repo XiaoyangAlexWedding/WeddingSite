@@ -2875,6 +2875,41 @@
     font-style:inherit !important;
   }
 </style>
+
+<style id="first-duty-makeup-style">
+  .first-duty-makeup {
+    display:inline-block;
+    margin-top:8px !important;
+    padding-top:7px;
+    color:var(--site-rust-dark) !important;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:12px !important;
+    font-style:italic !important;
+    font-weight:400 !important;
+    line-height:1.3;
+    border-top:1px solid rgba(154,79,54,.20);
+  }
+
+  .first-duty-makeup[hidden] {
+    display:none !important;
+  }
+
+  .first-duty-makeup #makeupTime {
+    color:var(--site-rust) !important;
+    font-size:14px;
+    font-weight:400 !important;
+  }
+
+  @media (max-width:700px) {
+    .first-duty-makeup {
+      font-size:13px !important;
+    }
+
+    .first-duty-makeup #makeupTime {
+      font-size:15px;
+    }
+  }
+</style>
 </head>
 <body>
 <main class="page">
@@ -2898,9 +2933,6 @@
     <div class="membership-summary">
       <div class="membership-label">You are part of</div>
       <div class="big" id="personGroup">Wedding guest</div>
-      <div class="makeup-summary" id="makeupSummary" hidden>
-        Your professional makeup starts at <span id="makeupTime">—</span>
-      </div>
     </div>
 
     <div>
@@ -2915,8 +2947,10 @@
 
     <div class="first-duty-summary">
       <div class="big" id="firstDuty">—</div>
-      <div class="first-duty-role" id="firstDutyRole"></div>
       <div class="small">first duty</div>
+      <div class="makeup-summary first-duty-makeup" id="makeupSummary" hidden>
+        💄 Makeup starts · <span id="makeupTime">—</span>
+      </div>
     </div>
 
     <div class="day-contact-summary">
@@ -3287,14 +3321,6 @@ function render() {
     $("helpCount").textContent = String(helping.length);
     $("firstDuty").textContent = helping[0]?.time || "None";
 
-    const firstDutyRole = $("firstDutyRole");
-    if (firstDutyRole) {
-      firstDutyRole.textContent =
-        helping[0]?.roles?.length
-          ? helping[0].roles.join(" · ")
-          : "";
-    }
-
     // Same lookup result as the Makeup Timeline formula in My Duties.
     const makeupTime = (DATA.makeupTimes || {})[person] || "";
     const makeupSummary = $("makeupSummary");
@@ -3343,11 +3369,6 @@ function render() {
 
     if (resourceSummary) {
       resourceSummary.hidden = true;
-    }
-
-    const firstDutyRole = $("firstDutyRole");
-    if (firstDutyRole) {
-      firstDutyRole.textContent = "";
     }
 
     updatePersonalLinkButton("");
