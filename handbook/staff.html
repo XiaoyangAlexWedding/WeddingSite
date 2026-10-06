@@ -278,6 +278,9 @@ function buildModels(){
     if(/makeup|hair/.test(roleText)){
       if((DATA.makeupTimeline||[]).length) m.additional.push({type:'makeup',title:'Hair & Makeup Timeline',items:DATA.makeupTimeline});
     }
+    if(/transport/.test(roleText)){
+      if((DATA.transportationTimeline||[]).length) m.additional.push({type:'transportation',title:'Transportation',items:DATA.transportationTimeline});
+    }
   });
   ROLE_MODELS=[...map.values()].sort(roleSort);
 }
@@ -512,6 +515,7 @@ function photoOrderId(i,idx){
 function renderAdditional(a){
   if(a.type==='photo') return `<div class="ref-card"><h3>${esc(a.title)}</h3><div class="ref-list">${(a.items||[]).map((i,idx)=>`<div class="ref-item"><div class="ref-time">${esc(photoOrderId(i,idx))}</div><div class="ref-main"><b>${esc(i.flow||i.note||i.comments||'Photo group')}</b>${(i.note||i.comments)&&i.flow?`<div class="ref-note">${nl(i.note||i.comments)}</div>`:''}${i.names?.length?`<div class="ref-note">${i.names.map(esc).join(' · ')}</div>`:''}</div></div>`).join('')}</div></div>`;
   if(a.type==='makeup') return `<div><div class="makeup-grid">${renderMakeupSchedule('Ashley',"Ashley's Schedule",a.items)}${renderMakeupSchedule('Lupe',"Lupe's Schedule",a.items)}</div><div class="makeup-note">Each table follows its own column order from the Make up Timeline sheet; the two artists are not re-sorted into one combined schedule.</div></div>`;
+  if(a.type==='transportation') return `<div class="ref-card"><h3>${esc(a.title||'Transportation')}</h3><div class="ref-list">${(a.items||[]).map(i=>`<div class="ref-item"><div class="ref-time">${esc(i.time||'TBD')}</div><div class="ref-main"><b>${esc(i.activity||i.activityType||'Transportation')}</b>${i.activityType?`<div class="ref-note">${esc(i.activityType)}</div>`:''}${i.location?`<div class="ref-note">📍 ${esc(i.location)}</div>`:''}${i.notes?`<div class="ref-note">${nl(i.notes)}</div>`:''}${i.openTo?`<div class="ref-note"><span class="k">Open to:</span> ${esc(i.openTo)}</div>`:''}</div></div>`).join('')}</div></div>`;
   return '';
 }
 function render(){
