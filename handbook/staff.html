@@ -113,7 +113,11 @@ h1,h2,h3{margin:0;line-height:1.25}
 details.master-context,details.planning-note{margin-top:9px}
 details.master-context>summary,details.planning-note>summary{cursor:pointer;color:var(--terracotta);font-weight:650;font-size:.88rem;width:max-content;max-width:100%}
 .master-context-body{margin-top:8px;padding:11px 13px;background:var(--soft);border-radius:8px;font-size:.9rem}
-.context-grid{display:grid;gap:10px}.context b{display:block;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--label);margin-bottom:2px}.context div{white-space:pre-line}
+.context-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 18px;align-items:start}
+.context{min-width:0;overflow-wrap:anywhere}
+.context b{display:block;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--label);margin-bottom:4px}
+.context div{white-space:pre-line}
+.context-note{grid-column:1/-1;border-top:1px solid var(--line);padding-top:10px}
 .key-public .event-title{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-weight:500;font-size:1.05rem}.key-public-meta{color:var(--muted);font-size:.8rem;margin-bottom:2px}
 .vendor-lines{margin-top:4px;color:var(--muted);font-size:.92rem}.vendor-lines .hl{color:var(--text);font-weight:650}
 
@@ -136,6 +140,7 @@ details.master-context>summary,details.planning-note>summary{cursor:pointer;colo
 .footer{margin:34px 0 44px;color:var(--label);font-size:.83rem}
 
 @media(max-width:700px){
+  .context-grid{grid-template-columns:1fr}
   .wrap{padding:0 16px}.field{flex:1 1 100%}.field select{flex:1;min-width:0}.controls .copy-link{margin-left:0}.role-head h1{font-size:1.75rem}.role-cols,.handoff-grid,.doc-library-grid,.makeup-grid,.transport-grid{grid-template-columns:1fr}.event{grid-template-columns:1fr;gap:2px;padding:14px 0}.role-assignment-top{grid-template-columns:1fr}.assignment-right{justify-content:flex-start;text-align:left}.role-assignment-place{max-width:none}.tab-btn{padding:12px 9px 9px;font-size:.93rem}.moment-switch button{font-size:.83rem;padding:5px 9px}
 }
 @media print{.controls,.livebar,.tabbar,.moment-switch,.link-btn,.pill-link{display:none!important}.tab-panel{display:block!important;padding-top:12px}.event,.collab,.staff-contact-card,.ref-item{break-inside:avoid}.wrap{max-width:none}.dayof{background:none;border:1px solid var(--line)}}
@@ -176,6 +181,9 @@ let currentTab = new URLSearchParams(location.search).get('tab') || 'timeline';
 if(currentTab==='assignments' || currentTab==='master') currentTab='timeline';
 const VALID_TABS = ['timeline','agenda','additional','docs','captains'];
 if(!VALID_TABS.includes(currentTab)) currentTab='timeline';
+// Keep each moment's expand/collapse choice during re-renders and live sheet refreshes.
+// An unseen moment defaults to open.
+const momentDetailsState = new Map();
 let currentMomentMode = new URLSearchParams(location.search).get('moments') || 'role';
 if(!['role','key','all'].includes(currentMomentMode)) currentMomentMode='role';
 if(currentMomentMode==='key' && currentTab==='timeline') currentTab='agenda';
@@ -441,12 +449,18 @@ function renderMergedMoment(item){
   }
   let more='';
   if(e && currentMomentMode!=='key'){
-    const rows=[];
-    if(clean(e.family)) rows.push(['Wedding party & family',clean(e.family)]);
-    if(clean(e.vendor)) rows.push(['Planning team & vendors',clean(e.vendor)]);
-    if(clean(e.guest)) rows.push(['Guests',clean(e.guest)]);
-    if(clean(e.notes)) rows.push(['Timeline note',clean(e.notes)]);
-    if(rows.length) more=`<details class="master-context"><summary>More details · Overall wedding moment</summary><div class="master-context-body"><div class="context-grid">${rows.map(([k,v])=>`<div class="context"><b>${esc(k)}</b><div>${nl(v)}</div></div>`).join('')}</div></div></details>`;
+    // Always reserve the same three columns, even when the source sheet leaves one blank.
+    const columns=[
+      ['Wedding party & family',clean(e.family)],
+      ['Planning team & vendors',clean(e.vendor)],
+      ['Guests',clean(e.guest)]
+    ];
+    const note=clean(e.notes);
+    if(columns.some(([,value])=>value) || note){
+      const detailsKey=[e.eventId||'',e.plan||'',e.row||'',item.time||''].join('|');
+      const isOpen=momentDetailsState.get(detailsKey)!==false; // Open by default.
+      more=`<details class="master-context" data-context-id="${esc(detailsKey)}"${isOpen?' open':''}><summary>More details · Overall wedding moment</summary><div class="master-context-body"><div class="context-grid">${columns.map(([title,value])=>`<div class="context"><b>${esc(title)}</b><div>${value?nl(value):'<span class="muted">—</span>'}</div></div>`).join('')}${note?`<div class="context context-note"><b>Timeline note</b><div>${nl(note)}</div></div>`:''}</div></div></details>`;
+    }
   }
   return `<article class="event${mine?' role-moment':''}"><div class="event-time">${esc(item.time||'TBD')}</div><div class="event-body">${label.length?`<div class="event-label">${label.join('')}</div>`:''}${main}${more}</div></article>`;
 }
@@ -599,6 +613,9 @@ function render(){
 
     <footer class="footer">Live from Agenda - All in 1. Update the Google Sheet first; this page does not contain a second hardcoded wedding schedule.</footer>`;
 
+  document.querySelectorAll('details.master-context').forEach(detail=>{
+    detail.addEventListener('toggle',()=>momentDetailsState.set(detail.dataset.contextId,detail.open));
+  });
   document.querySelectorAll('.tab-btn').forEach(btn=>btn.addEventListener('click',()=>activateTab(btn.dataset.tab,true)));
   document.querySelectorAll('[data-moments]').forEach(btn=>{btn.classList.toggle('active',btn.dataset.moments===currentMomentMode);btn.addEventListener('click',()=>{currentMomentMode=btn.dataset.moments;render()})});
   document.querySelectorAll('[data-coordinator-person]').forEach(btn=>{
