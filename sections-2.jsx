@@ -120,7 +120,7 @@ const Travel = () =>
 
     <div>
       <span style={{ fontSize: 15, fontWeight: 500 }}>Reception · Lan Su Chinese Garden</span>
-      <div style={{ fontSize: 15, marginTop: 4 }}>Ample street parking, plus a lot at Flanders &amp; 3rd.</div>
+      <div style={{ fontSize: 15, marginTop: 4 }}>Ample street parking, plus a lot at Flanders &amp; 3rd. Please be extra cautious in the street area outside Lan Su Garden; taking a shuttle or car is recommended over walking. </div>
     </div>
   </div>
 
@@ -154,8 +154,8 @@ const Travel = () =>
   </ul>
 
   <p style={{ fontSize: 13, color: "var(--ink-soft)", fontStyle: "italic", margin: 0, lineHeight: 1.5, borderTop: "1px solid var(--rule)", paddingTop: 12 }}>
-    <span style={{ fontWeight: 500 }}>Seats are limited</span> and reserved from your RSVP. Didn't reserve a seat but would like one? Email us at{" "}
-    <a href="mailto:xiaoalex.joachli@gmail.com" style={{ fontSize: 13, fontWeight: 400 }}>xiaoalex.joachli@gmail.com</a> by Friday, October&nbsp;9.
+    <span style={{ fontWeight: 500 }}>Seats are limited</span> and reserved from your RSVP. Something changed last mininute? Contact our friend Rebecca Levin, as the Transportation Captain{" "}
+    <a href="mailto:xiaoalex.joachli@gmail.com" style={{ fontSize: 13, fontWeight: 400 }}>845-661-8360/a>.
   </p>
 </div>
             
@@ -320,41 +320,6 @@ const Registry = () =>
   </section>;
 
 
-const Notes = () =>
-<section id="notes" style={{ background: "var(--bg-deep)" }}>
-    <div className="shell">
-      <Reveal>
-        <div className="eyebrow" style={{ textAlign: "center" }}>Words from family</div>
-        <h2 className="section-title">家 人 寄 语</h2>
-        <div className="section-title-cn">N o t e s &nbsp; F r o m &nbsp; F a m i l y</div>
-      </Reveal>
-
-      <Reveal>
-        <div className="notes-grid">
-          <div className="note">
-            <h4>From the Bride's Mother</h4>
-            <p>"愿你们的爱情像一首歌 — 简单、真诚、长长久久。从你们第一次见面那天起，我就知道这一天会到来。"</p>
-            <p style={{ fontStyle: "normal", fontSize: 13, letterSpacing: "0.1em", marginTop: 8 }}>— 妈 妈</p>
-          </div>
-          <div className="note">
-            <h4>From the Groom's Father</h4>
-            <p>"Two stubborn, wonderful people — we couldn't be prouder. Welcome to the family, Xiaoyang. Take good care of him; he means the world to us."</p>
-            <p style={{ fontStyle: "normal", fontSize: 13, letterSpacing: "0.1em", marginTop: 8 }}>— Dad &amp; Mom</p>
-          </div>
-          <div className="note">
-            <h4>From the Bride's Sister</h4>
-            <p>"姐姐，你终于嫁出去啦！开个玩笑 — 看到你这么幸福，我也跟着幸福。Alex，请永远对她好。"</p>
-            <p style={{ fontStyle: "normal", fontSize: 13, letterSpacing: "0.1em", marginTop: 8 }}>— 妹 妹</p>
-          </div>
-          <div className="note">
-            <h4>From the Groom's Best Man</h4>
-            <p>"I've watched this man wait seven years to ask the right question to the right person. He finally did. Couldn't be happier for them both."</p>
-            <p style={{ fontStyle: "normal", fontSize: 13, letterSpacing: "0.1em", marginTop: 8 }}>— Daniel</p>
-          </div>
-        </div>
-      </Reveal>
-    </div>
-  </section>;
 
 
 const FAQ = () => {
