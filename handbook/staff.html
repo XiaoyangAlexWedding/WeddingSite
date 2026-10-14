@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Rebecca & Alex · Staff Handbook</title>
-<meta name="description" content="Live role-based day-of handbook for Rebecca & Alex's wedding staff and vendors." />
+<title>Xiaoyang & Alex · Staff Handbook</title>
+<meta name="description" content="Live role-based day-of handbook for Xiaoyang & Alex's wedding staff and vendors." />
 <style>
 :root{
   --text:#3f3933; --muted:#746d65; --label:#81786e;
@@ -113,11 +113,7 @@ h1,h2,h3{margin:0;line-height:1.25}
 details.master-context,details.planning-note{margin-top:9px}
 details.master-context>summary,details.planning-note>summary{cursor:pointer;color:var(--terracotta);font-weight:650;font-size:.88rem;width:max-content;max-width:100%}
 .master-context-body{margin-top:8px;padding:11px 13px;background:var(--soft);border-radius:8px;font-size:.9rem}
-.context-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 18px;align-items:start}
-.context{min-width:0;overflow-wrap:anywhere}
-.context b{display:block;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--label);margin-bottom:4px}
-.context div{white-space:pre-line}
-.context-note{grid-column:1/-1;border-top:1px solid var(--line);padding-top:10px}
+.context-grid{display:grid;gap:10px}.context b{display:block;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--label);margin-bottom:2px}.context div{white-space:pre-line}
 .key-public .event-title{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-weight:500;font-size:1.05rem}.key-public-meta{color:var(--muted);font-size:.8rem;margin-bottom:2px}
 .vendor-lines{margin-top:4px;color:var(--muted);font-size:.92rem}.vendor-lines .hl{color:var(--text);font-weight:650}
 
@@ -125,7 +121,15 @@ details.master-context>summary,details.planning-note>summary{cursor:pointer;colo
 .doc-library-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.doc-frame{min-width:0}.doc-frame-head{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:5px}.doc-frame-title{font-size:1.05rem}.doc-frame-sub{color:var(--muted);font-size:.84rem}.doc-frame-count{font-size:.78rem;color:var(--label)}
 .doc-grid{border-top:1px solid var(--line)}.doc-card{display:flex;gap:11px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--text)}.doc-icon{flex:0 0 30px;width:30px;height:30px;display:grid;place-items:center;border-radius:7px;background:var(--soft);color:var(--terracotta)}.doc-copy b{display:block}.doc-meta{font-size:.83rem;color:var(--muted)}
 .makeup-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.schedule-title{font-weight:750;margin-bottom:6px}.schedule-table-wrap{overflow-x:auto}.schedule-table{width:100%;border-collapse:collapse;font-size:.88rem}.schedule-table th{text-align:left;color:var(--label);font-size:.71rem;letter-spacing:.05em;text-transform:uppercase}.schedule-table th,.schedule-table td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}.schedule-time{font-weight:700;white-space:nowrap}.schedule-marker{font-weight:750}.makeup-note{margin-top:8px;color:var(--muted);font-size:.82rem}.ref-card{margin-bottom:20px}.ref-card h3{font-size:1.05rem}.ref-list{border-top:1px solid var(--line);margin-top:6px}.ref-item{display:grid;grid-template-columns:55px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}.ref-time{font-weight:750;color:var(--label)}.ref-main b{display:block}.ref-note{color:var(--muted);font-size:.85rem;margin-top:2px}
-.transport-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}.transport-group{min-width:0}.transport-group h3{font-size:1.05rem;margin-bottom:6px;color:var(--terracotta)}.transport-group .ref-list{margin-top:0}
+
+/* Transportation groups */
+.transport-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.transport-group{min-width:0}.transport-group h3{font-size:1.05rem;margin-bottom:6px}
+.transport-list{border-top:1px solid var(--line)}
+.transport-item{padding:11px 0;border-bottom:1px solid var(--line)}
+.transport-time{font-weight:750;color:var(--terracotta)}
+.transport-activity{font-weight:750;margin-top:2px}
+.transport-meta,.transport-note{font-size:.86rem;color:var(--muted);margin-top:3px;white-space:pre-line}
 
 /* Contacts: role first. Coordinator/Catering use two columns. */
 .handoff-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}.handoff-box{min-width:0}.handoff-box-title{font-size:1.05rem;margin-bottom:3px}.handoff-box-sub{color:var(--muted);font-size:.84rem;margin:0 0 8px}
@@ -140,7 +144,6 @@ details.master-context>summary,details.planning-note>summary{cursor:pointer;colo
 .footer{margin:34px 0 44px;color:var(--label);font-size:.83rem}
 
 @media(max-width:700px){
-  .context-grid{grid-template-columns:1fr}
   .wrap{padding:0 16px}.field{flex:1 1 100%}.field select{flex:1;min-width:0}.controls .copy-link{margin-left:0}.role-head h1{font-size:1.75rem}.role-cols,.handoff-grid,.doc-library-grid,.makeup-grid,.transport-grid{grid-template-columns:1fr}.event{grid-template-columns:1fr;gap:2px;padding:14px 0}.role-assignment-top{grid-template-columns:1fr}.assignment-right{justify-content:flex-start;text-align:left}.role-assignment-place{max-width:none}.tab-btn{padding:12px 9px 9px;font-size:.93rem}.moment-switch button{font-size:.83rem;padding:5px 9px}
 }
 @media print{.controls,.livebar,.tabbar,.moment-switch,.link-btn,.pill-link{display:none!important}.tab-panel{display:block!important;padding-top:12px}.event,.collab,.staff-contact-card,.ref-item{break-inside:avoid}.wrap{max-width:none}.dayof{background:none;border:1px solid var(--line)}}
@@ -159,8 +162,8 @@ details.master-context>summary,details.planning-note>summary{cursor:pointer;colo
     <div class="plan-toggle" aria-label="Weather plan"><button id="standardBtn" class="active">Standard</button><button id="rainBtn">Rain plan</button></div>
     <button class="link-btn copy-link" id="copyBtn" type="button">Copy link</button>
   </div>
-  <div class="livebar" id="liveBar"><span class="dot" id="liveDot"></span><span id="liveText">Loading…</span><span id="updatedText"></span><button class="link-btn" id="refreshBtn" type="button">Refresh</button></div>
-  <div id="app"><div class="empty" style="margin-top:22px">Loading staff handbook…</div></div>
+  <div class="livebar" id="liveBar"><span class="dot" id="liveDot"></span><span id="liveText">Loading Staff…</span><span id="updatedText"></span><button class="link-btn" id="refreshBtn" type="button">Refresh</button></div>
+  <div id="app"><div class="empty" style="margin-top:22px"><strong>Loading Staff…</strong><br>Please wait up to 10 seconds for the real-time arrangements to load. If loading fails, try refreshing the page.<br>For feedback or suggestions about the handbook, please contact Xiaoyang &amp; Alex.</div></div>
 </main>
 
 <script>
@@ -181,9 +184,6 @@ let currentTab = new URLSearchParams(location.search).get('tab') || 'timeline';
 if(currentTab==='assignments' || currentTab==='master') currentTab='timeline';
 const VALID_TABS = ['timeline','agenda','additional','docs','captains'];
 if(!VALID_TABS.includes(currentTab)) currentTab='timeline';
-// Keep each moment's expand/collapse choice during re-renders and live sheet refreshes.
-// An unseen moment defaults to open.
-const momentDetailsState = new Map();
 let currentMomentMode = new URLSearchParams(location.search).get('moments') || 'role';
 if(!['role','key','all'].includes(currentMomentMode)) currentMomentMode='role';
 if(currentMomentMode==='key' && currentTab==='timeline') currentTab='agenda';
@@ -449,18 +449,12 @@ function renderMergedMoment(item){
   }
   let more='';
   if(e && currentMomentMode!=='key'){
-    // Always reserve the same three columns, even when the source sheet leaves one blank.
-    const columns=[
-      ['Wedding party & family',clean(e.family)],
-      ['Planning team & vendors',clean(e.vendor)],
-      ['Guests',clean(e.guest)]
-    ];
-    const note=clean(e.notes);
-    if(columns.some(([,value])=>value) || note){
-      const detailsKey=[e.eventId||'',e.plan||'',e.row||'',item.time||''].join('|');
-      const isOpen=momentDetailsState.get(detailsKey)!==true; // close by default.
-      more=`<details class="master-context" data-context-id="${esc(detailsKey)}"${isOpen?' open':''}><summary>More details · Overall wedding moment</summary><div class="master-context-body"><div class="context-grid">${columns.map(([title,value])=>`<div class="context"><b>${esc(title)}</b><div>${value?nl(value):'<span class="muted">—</span>'}</div></div>`).join('')}${note?`<div class="context context-note"><b>Timeline note</b><div>${nl(note)}</div></div>`:''}</div></div></details>`;
-    }
+    const rows=[];
+    if(clean(e.family)) rows.push(['Wedding party & family',clean(e.family)]);
+    if(clean(e.vendor)) rows.push(['Planning team & vendors',clean(e.vendor)]);
+    if(clean(e.guest)) rows.push(['Guests',clean(e.guest)]);
+    if(clean(e.notes)) rows.push(['Timeline note',clean(e.notes)]);
+    if(rows.length) more=`<details class="master-context"><summary>More details · Overall wedding moment</summary><div class="master-context-body"><div class="context-grid">${rows.map(([k,v])=>`<div class="context"><b>${esc(k)}</b><div>${nl(v)}</div></div>`).join('')}</div></div></details>`;
   }
   return `<article class="event${mine?' role-moment':''}"><div class="event-time">${esc(item.time||'TBD')}</div><div class="event-body">${label.length?`<div class="event-label">${label.join('')}</div>`:''}${main}${more}</div></article>`;
 }
@@ -489,8 +483,14 @@ function renderKeyMoment(item){
 function renderPerson(p){
   return `<div class="person">${p.assignment?`<div class="person-role">${nl(p.assignment)}</div>`:''}<div class="person-name">${esc(p.name)}</div><div class="person-meta">${p.phone?`<a href="tel:${esc(String(p.phone).replace(/[^+\d]/g,''))}">${esc(p.phone)}</a>`:''}${p.phone&&p.email?' · ':''}${p.email?`<a href="mailto:${esc(p.email)}">${esc(p.email)}</a>`:''}</div></div>`;
 }
-function renderCollab(c){
-  return `<div class="collab" id="${esc(captainAnchor(c))}"><div class="collab-role">${esc(c.role||'Family / Friend Captain')}</div><div class="collab-name">${esc(c.name)}</div><div class="collab-meta">${esc(c.time||'')}${c.stage?' · '+esc(c.stage):''}${c.location?' · '+esc(c.location):''}</div><div class="collab-duty">${nl(c.duty)}</div><div class="collab-links"><a class="pill-link" href="${esc(familyLink(c.name))}" target="_blank" rel="noopener">Open ${esc(c.name)}'s Family handbook ↗</a></div></div>`;
+function renderCollab(c,showContact=false){
+  const phone=String(c.phone||'').trim();
+  const email=String(c.email||'').trim();
+  const phoneHref=phone.replace(/[^+\d]/g,'');
+  const privateLinks=showContact&&(phone||email)
+    ? `<div class="collab-links">${phone?`<a class="pill-link" href="tel:${esc(phoneHref)}">☎ ${esc(phone)}</a>`:''}${email?`<a class="pill-link" href="mailto:${esc(email)}">✉ ${esc(email)}</a>`:''}</div>`
+    : '';
+  return `<div class="collab" id="${esc(captainAnchor(c))}"><div class="collab-role">${esc(c.role||'Family / Friend Captain')}</div><div class="collab-name">${esc(c.name)}</div><div class="collab-meta">${esc(c.time||'')}${c.stage?' · '+esc(c.stage):''}${c.location?' · '+esc(c.location):''}</div><div class="collab-duty">${nl(c.duty)}</div>${privateLinks}<div class="collab-links"><a class="pill-link" href="${esc(familyLink(c.name))}" target="_blank" rel="noopener">Open ${esc(c.name)}'s Family handbook ↗</a></div></div>`;
 }
 function renderDoc(d){
   const isVideo=norm(d.type)==='video' || /\.(mp4|mov|m4v|webm)$/i.test(d.label||'');
@@ -532,10 +532,10 @@ function renderAdditional(a){
   if(a.type==='makeup') return `<div><div class="makeup-grid">${renderMakeupSchedule('Ashley',"Ashley's Schedule",a.items)}${renderMakeupSchedule('Lupe',"Lupe's Schedule",a.items)}</div><div class="makeup-note">Each table follows its own column order from the Make up Timeline sheet; the two artists are not re-sorted into one combined schedule.</div></div>`;
   if(a.type==='transportation'){
     const items=a.items||[];
-    const groups=[...new Set(items.map(i=>clean(i.group||i.groups)).filter(Boolean))];
-    const renderRows=rows=>`<div class="ref-list">${rows.map(i=>`<div class="ref-item"><div class="ref-time">${esc(i.time||'TBD')}</div><div class="ref-main"><b>${esc(i.activity||i.activityType||'Transportation')}</b>${i.activityType?`<div class="ref-note">${esc(i.activityType)}</div>`:''}${i.location?`<div class="ref-note">📍 ${esc(i.location)}</div>`:''}${i.notes?`<div class="ref-note">${nl(i.notes)}</div>`:''}${i.openTo?`<div class="ref-note"><span class="k">Apply to:</span> ${esc(i.openTo)}</div>`:''}</div></div>`).join('')}</div>`;
-    if(groups.length>1) return `<div class="transport-grid">${groups.map(g=>`<section class="transport-group"><h3>${esc(g)}</h3>${renderRows(items.filter(i=>clean(i.group||i.groups)===g))}</section>`).join('')}</div>`;
-    return `<div class="ref-card"><h3>${esc(a.title||'Transportation')}</h3>${renderRows(items)}</div>`;
+    const groups=[...new Set(items.map(i=>clean(i.group)).filter(Boolean))];
+    const fallbackGroups=groups.length?groups:['Transportation'];
+    const renderItem=i=>`<div class="transport-item"><div class="transport-time">${esc(i.time||'TBD')}</div><div class="transport-activity">${esc(i.activity||i.activityType||'Transportation')}</div>${i.activityType&&i.activityType!==i.activity?`<div class="transport-meta">${esc(i.activityType)}</div>`:''}${i.location?`<div class="transport-meta">📍 ${esc(i.location)}</div>`:''}${i.openTo?`<div class="transport-meta"><b>Open to:</b> ${esc(i.openTo)}</div>`:''}${i.notes?`<div class="transport-note">${nl(i.notes)}</div>`:''}</div>`;
+    return `<div class="transport-grid">${fallbackGroups.map(group=>{const rows=groups.length?items.filter(i=>clean(i.group)===group):items;return `<section class="transport-group"><h3>${esc(group)}</h3><div class="transport-list">${rows.map(renderItem).join('')||'<div class="empty">No transportation items in this group.</div>'}</div></section>`}).join('')}</div>`;
   }
   return '';
 }
@@ -607,15 +607,12 @@ function render(){
       <h2 class="panel-h">All Contacts</h2>
       <div class="handoff-grid">
         <section class="handoff-box"><h3 class="handoff-box-title">All Staff / Vendor Contacts</h3><p class="handoff-box-sub">Role first for fast day-of lookup.${model.role==='Catering'?' Food restrictions and meal notes are highlighted for Catering.':''}</p><div class="staff-directory">${contacts.length?contacts.map(c=>renderStaffDirectoryContact(c,model.role==='Catering')).join(''):'<div class="empty">No staff contacts found.</div>'}</div></section>
-        <section class="handoff-box"><h3 class="handoff-box-title">Family & Friend Captains</h3><p class="handoff-box-sub">Full operational captain directory. Schedule links jump to the matching person here.</p><div class="collab-grid">${allCaptains.length?allCaptains.map(renderCollab).join(''):'<div class="empty">No Family & Friend captains found.</div>'}</div></section>
+        <section class="handoff-box"><h3 class="handoff-box-title">Family & Friend Captains</h3><p class="handoff-box-sub">Full operational captain directory. Schedule links jump to the matching person here.</p><div class="collab-grid">${allCaptains.length?allCaptains.map(c=>renderCollab(c,isCoord)).join(''):'<div class="empty">No Family & Friend captains found.</div>'}</div></section>
       </div>
     </div>
 
     <footer class="footer">Live from Agenda - All in 1. Update the Google Sheet first; this page does not contain a second hardcoded wedding schedule.</footer>`;
 
-  document.querySelectorAll('details.master-context').forEach(detail=>{
-    detail.addEventListener('toggle',()=>momentDetailsState.set(detail.dataset.contextId,detail.open));
-  });
   document.querySelectorAll('.tab-btn').forEach(btn=>btn.addEventListener('click',()=>activateTab(btn.dataset.tab,true)));
   document.querySelectorAll('[data-moments]').forEach(btn=>{btn.classList.toggle('active',btn.dataset.moments===currentMomentMode);btn.addEventListener('click',()=>{currentMomentMode=btn.dataset.moments;render()})});
   document.querySelectorAll('[data-coordinator-person]').forEach(btn=>{
@@ -656,7 +653,7 @@ function acceptData(payload){
 function showLiveError(message){
   setLiveState('error',message);
   if(!DATA){
-    $('#app').innerHTML='<div class="empty" style="margin-top:22px"><strong>Unable to load the live wedding data.</strong><br>Please refresh the page or check the connection. This handbook does not contain a hardcoded schedule copy.</div>';
+    $('#app').innerHTML='<div class="empty" style="margin-top:22px"><strong>Unable to load the live wedding data.</strong><br>Please refresh the page and try again. If it still fails, please contact Xiaoyang &amp; Alex. This handbook does not contain a hardcoded schedule copy.</div>';
   }
   $('#refreshBtn').textContent='Refresh';
 }
