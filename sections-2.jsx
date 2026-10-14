@@ -137,11 +137,13 @@ const Travel = () =>
     <span style={{ fontWeight: 500, whiteSpace: "nowrap" }}>1:30 pm</span>
     <span>Shuttle arrives at The Benson (309 SW Broadway)</span>
     <span style={{ fontWeight: 500, whiteSpace: "nowrap" }}>1:45 pm</span>
-    <span><strong style={{ fontWeight: 500 }}>Departs The Benson</strong> for Providence Academy</span>
+    <span><strong style={{ fontWeight: 500 }}>Departs The Benson Hotel</strong> for Providence Academy</span>
     <span style={{ whiteSpace: "nowrap", color: "var(--ink-soft)" }}>2:30 pm</span>
     <span style={{ fontStyle: "italic", color: "var(--ink-soft)" }}>Ceremony begins</span>
-    <span style={{ fontWeight: 500, whiteSpace: "nowrap" }}>4:00 pm</span>
-    <span><strong style={{ fontWeight: 500 }}>Departs Providence Academy</strong> for Lan Su Chinese Garden</span>
+    <span style={{ fontWeight: 500, whiteSpace: "nowrap" }}>3:30 pm</span>
+    <span>Departs Providence to The Benson Hotel, for guest to check-in and rest</span>
+    <span style={{ fontWeight: 500, whiteSpace: "nowrap" }}>4:20 pm</span>
+    <span><strong style={{ fontWeight: 500 }}>Departs The Benson Hotel</strong> for Lan Su Chinese Garden</span>
     <span style={{ whiteSpace: "nowrap", color: "var(--ink-soft)" }}>4:30 pm</span>
     <span style={{ fontStyle: "italic", color: "var(--ink-soft)" }}>Reception begins</span>
   </div>
