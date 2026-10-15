@@ -77,7 +77,6 @@ const PAGES = {
   travel:   () => <Travel />,
   gallery:  () => <Gallery />,
   registry: () => <Registry />,
-  notes:    () => <Notes />,
   faq:      () => <FAQ />,
   rsvp:     () => <RSVP />,
 };
