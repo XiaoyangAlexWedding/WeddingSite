@@ -138,6 +138,7 @@ details.master-context>summary,details.planning-note>summary{cursor:pointer;colo
 .staff-contact-role,.collab-role{display:block;color:var(--terracotta);font-size:.78rem;font-weight:800;letter-spacing:.045em;text-transform:uppercase;white-space:pre-line}
 .staff-contact-name,.collab-name{font-weight:750;margin-top:2px}
 .contact-links,.collab-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:5px}.contact-link,.pill-link{font-size:.84rem}.collab-meta{font-size:.84rem;color:var(--muted);margin-top:2px}.collab-duty{font-size:.9rem;margin-top:5px;white-space:pre-line}
+.captain-private-contact{margin-top:7px}.captain-private-contact>summary{cursor:pointer;width:max-content;max-width:100%;color:var(--terracotta);font-size:.84rem;font-weight:700}.captain-private-contact[open]>summary{margin-bottom:4px}.captain-private-contact .collab-links{padding:7px 9px;background:var(--soft);border-radius:7px;width:max-content;max-width:100%}
 .food-note{margin-top:8px;padding:8px 10px;border-left:3px solid #c58e55;background:#fff3de;color:#744d20;font-size:.88rem;font-weight:750}
 .focus-flash{outline:3px solid #d6b67c;outline-offset:3px;transition:outline-color .3s ease}
 .empty{padding:15px;border:1px dashed var(--line-strong);border-radius:8px;color:var(--muted)}
@@ -488,7 +489,7 @@ function renderCollab(c,showContact=false){
   const email=String(c.email||'').trim();
   const phoneHref=phone.replace(/[^+\d]/g,'');
   const privateLinks=showContact&&(phone||email)
-    ? `<div class="collab-links">${phone?`<a class="pill-link" href="tel:${esc(phoneHref)}">☎ ${esc(phone)}</a>`:''}${email?`<a class="pill-link" href="mailto:${esc(email)}">✉ ${esc(email)}</a>`:''}</div>`
+    ? `<details class="captain-private-contact"><summary>Show contact info</summary><div class="collab-links">${phone?`<a class="pill-link" href="tel:${esc(phoneHref)}">☎ ${esc(phone)}</a>`:''}${email?`<a class="pill-link" href="mailto:${esc(email)}">✉ ${esc(email)}</a>`:''}</div></details>`
     : '';
   return `<div class="collab" id="${esc(captainAnchor(c))}"><div class="collab-role">${esc(c.role||'Family / Friend Captain')}</div><div class="collab-name">${esc(c.name)}</div><div class="collab-meta">${esc(c.time||'')}${c.stage?' · '+esc(c.stage):''}${c.location?' · '+esc(c.location):''}</div><div class="collab-duty">${nl(c.duty)}</div>${privateLinks}<div class="collab-links"><a class="pill-link" href="${esc(familyLink(c.name))}" target="_blank" rel="noopener">Open ${esc(c.name)}'s Family handbook ↗</a></div></div>`;
 }
