@@ -154,7 +154,7 @@ const Travel = () =>
   </ul>
 
   <p style={{ fontSize: 13, color: "var(--ink-soft)", fontStyle: "italic", margin: 0, lineHeight: 1.5, borderTop: "1px solid var(--rule)", paddingTop: 12 }}>
-    <span style={{ fontWeight: 500 }}>Seats are limited</span> and reserved from your RSVP.
+    <span style={{ fontWeight: 500 }}>Seats are limited</span> and reserved from your RSVP. Something changed last minute? Look for the balloon and our bus captain Rebecca Levin, who will coordinate the shuttle departures.
   </p>
 </div>
             
