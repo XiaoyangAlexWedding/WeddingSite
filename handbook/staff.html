@@ -140,6 +140,7 @@ details.master-context>summary,details.planning-note>summary{cursor:pointer;colo
 .contact-links,.collab-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:5px}.contact-link,.pill-link{font-size:.84rem}.collab-meta{font-size:.84rem;color:var(--muted);margin-top:2px}.collab-duty{font-size:.9rem;margin-top:5px;white-space:pre-line}
 .captain-private-contact{margin-top:7px}.captain-private-contact>summary{cursor:pointer;width:max-content;max-width:100%;color:var(--terracotta);font-size:.84rem;font-weight:700}.captain-private-contact[open]>summary{margin-bottom:4px}.captain-private-contact .collab-links{padding:7px 9px;background:var(--soft);border-radius:7px;width:max-content;max-width:100%}
 .food-note{margin-top:8px;padding:8px 10px;border-left:3px solid #c58e55;background:#fff3de;color:#744d20;font-size:.88rem;font-weight:750}
+.captain-access-box{margin:8px 0 12px;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--soft);font-size:.88rem}.captain-contact-links{margin-top:8px}
 .focus-flash{outline:3px solid #d6b67c;outline-offset:3px;transition:outline-color .3s ease}
 .empty{padding:15px;border:1px dashed var(--line-strong);border-radius:8px;color:var(--muted)}
 .footer{margin:34px 0 44px;color:var(--label);font-size:.83rem}
@@ -188,6 +189,9 @@ if(!VALID_TABS.includes(currentTab)) currentTab='timeline';
 let currentMomentMode = new URLSearchParams(location.search).get('moments') || 'role';
 if(!['role','key','all'].includes(currentMomentMode)) currentMomentMode='role';
 if(currentMomentMode==='key' && currentTab==='timeline') currentTab='agenda';
+let captainContactsUnlocked = false;
+let captainAccessCode = '';
+let captainUnlockInProgress = false;
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const nl = s => esc(s).replace(/\n/g,'<br>');
@@ -489,7 +493,7 @@ function renderCollab(c,showContact=false){
   const email=String(c.email||'').trim();
   const phoneHref=phone.replace(/[^+\d]/g,'');
   const privateLinks=showContact&&(phone||email)
-    ? `<details class="captain-private-contact"><summary>Show contact info</summary><div class="collab-links">${phone?`<a class="pill-link" href="tel:${esc(phoneHref)}">☎ ${esc(phone)}</a>`:''}${email?`<a class="pill-link" href="mailto:${esc(email)}">✉ ${esc(email)}</a>`:''}</div></details>`
+    ? `<div class="collab-links captain-contact-links">${phone?`<a class="pill-link" href="tel:${esc(phoneHref)}">☎ ${esc(phone)}</a>`:''}${email?`<a class="pill-link" href="mailto:${esc(email)}">✉ ${esc(email)}</a>`:''}</div>`
     : '';
   return `<div class="collab" id="${esc(captainAnchor(c))}"><div class="collab-role">${esc(c.role||'Family / Friend Captain')}</div><div class="collab-name">${esc(c.name)}</div><div class="collab-meta">${esc(c.time||'')}${c.stage?' · '+esc(c.stage):''}${c.location?' · '+esc(c.location):''}</div><div class="collab-duty">${nl(c.duty)}</div>${privateLinks}<div class="collab-links"><a class="pill-link" href="${esc(familyLink(c.name))}" target="_blank" rel="noopener">Open ${esc(c.name)}'s Family handbook ↗</a></div></div>`;
 }
@@ -608,7 +612,7 @@ function render(){
       <h2 class="panel-h">All Contacts</h2>
       <div class="handoff-grid">
         <section class="handoff-box"><h3 class="handoff-box-title">All Staff / Vendor Contacts</h3><p class="handoff-box-sub">Role first for fast day-of lookup.${model.role==='Catering'?' Food restrictions and meal notes are highlighted for Catering.':''}</p><div class="staff-directory">${contacts.length?contacts.map(c=>renderStaffDirectoryContact(c,model.role==='Catering')).join(''):'<div class="empty">No staff contacts found.</div>'}</div></section>
-        <section class="handoff-box"><h3 class="handoff-box-title">Family & Friend Captains</h3><p class="handoff-box-sub">Full operational captain directory. Schedule links jump to the matching person here.</p><div class="collab-grid">${allCaptains.length?allCaptains.map(c=>renderCollab(c,isCoord)).join(''):'<div class="empty">No Family & Friend captains found.</div>'}</div></section>
+        <section class="handoff-box"><h3 class="handoff-box-title">Family & Friend Captains</h3><p class="handoff-box-sub">Full operational captain directory. Schedule links jump to the matching person here.</p>${isCoord?`<div class="captain-access-box">${captainContactsUnlocked?`<span class="badge confirmed">Contact info unlocked</span> <button class="link-btn" id="lockCaptainContactsBtn" type="button">Hide contact info</button>`:`<button class="link-btn" id="unlockCaptainContactsBtn" type="button">Unlock contact info</button><span class="muted"> · Coordinator code required</span>`}</div>`:''}<div class="collab-grid">${allCaptains.length?allCaptains.map(c=>renderCollab(c,isCoord&&captainContactsUnlocked)).join(''):'<div class="empty">No Family & Friend captains found.</div>'}</div></section>
       </div>
     </div>
 
@@ -631,6 +635,21 @@ function render(){
       try{const u=new URL(location.href);u.searchParams.set('role',currentRole);u.searchParams.set('tab','captains');u.searchParams.set('plan',currentPlan);u.searchParams.set('moments',currentMomentMode);u.hash=target;history.replaceState({},'',u)}catch(_){}
     }));
   }));
+  const unlockBtn=document.getElementById('unlockCaptainContactsBtn');
+  if(unlockBtn) unlockBtn.addEventListener('click',()=>{
+    if(captainUnlockInProgress)return;
+    const code=prompt('Enter the Coordinator contact code:');
+    if(code===null)return;
+    captainUnlockInProgress=true;
+    unlockBtn.textContent='Checking…';
+    loadData(code,true);
+  });
+  const lockBtn=document.getElementById('lockCaptainContactsBtn');
+  if(lockBtn) lockBtn.addEventListener('click',()=>{
+    captainAccessCode='';
+    captainContactsUnlocked=false;
+    loadData('',false);
+  });
   activateTab(currentTab,false);
   if(location.hash&&currentTab==='captains'){requestAnimationFrame(()=>{const el=document.getElementById(location.hash.slice(1));if(el)el.scrollIntoView({block:'center'})})}
 }
@@ -646,6 +665,7 @@ function setLiveState(mode,message){
 function acceptData(payload){
   if(!payload||payload.ok===false) throw new Error(payload?.error||'The data endpoint returned an error.');
   DATA=payload;
+  captainContactsUnlocked=payload?.meta?.contactAccess==='unlocked';
   buildModels();
   populateRoleSelect();
   render();
@@ -658,16 +678,30 @@ function showLiveError(message){
   }
   $('#refreshBtn').textContent='Refresh';
 }
-function loadData(){
+function loadData(accessCodeOverride,unlockAttempt=false){
   $('#refreshBtn').textContent='Refreshing…';
   const api=String(CONFIG.API_URL||'').trim();
   if(!api || api.includes('PASTE_YOUR_')){showLiveError('Apps Script URL is not configured');return}
+  const code=String(accessCodeOverride!==undefined?accessCodeOverride:captainAccessCode||'').trim();
   const cb='staffHandbookCb_'+Date.now()+'_'+Math.floor(Math.random()*100000); const script=document.createElement('script'); const sep=api.includes('?')?'&':'?'; let done=false;
   const cleanup=()=>{if(script.parentNode)script.remove();try{delete window[cb]}catch(e){window[cb]=undefined}};
-  const timer=setTimeout(()=>{if(done)return;done=true;cleanup();showLiveError('Live sheet timed out')},40000);
-  window[cb]=payload=>{if(done)return;done=true;clearTimeout(timer);cleanup();try{acceptData(payload)}catch(err){showLiveError('Live sheet error: '+err.message)}finally{$('#refreshBtn').textContent='Refresh'}};
-  script.onerror=()=>{if(done)return;done=true;clearTimeout(timer);cleanup();showLiveError('Could not reach Apps Script')};
-  script.src=api+sep+'callback='+encodeURIComponent(cb)+'&_='+Date.now();document.head.appendChild(script);
+  const timer=setTimeout(()=>{if(done)return;done=true;cleanup();captainUnlockInProgress=false;showLiveError('Live sheet timed out')},40000);
+  window[cb]=payload=>{if(done)return;done=true;clearTimeout(timer);cleanup();try{
+    acceptData(payload);
+    if(unlockAttempt){
+      if(captainContactsUnlocked){
+        captainAccessCode=code;
+        currentRole='Coordinator';
+        currentTab='captains';
+        render();
+      }else{
+        captainAccessCode='';
+        alert('Incorrect coordinator code. Contact info remains hidden.');
+      }
+    }
+  }catch(err){showLiveError('Live sheet error: '+err.message)}finally{captainUnlockInProgress=false;$('#refreshBtn').textContent='Refresh'}};
+  script.onerror=()=>{if(done)return;done=true;clearTimeout(timer);cleanup();captainUnlockInProgress=false;showLiveError('Could not reach Apps Script')};
+  script.src=api+sep+'callback='+encodeURIComponent(cb)+(code?'&accessCode='+encodeURIComponent(code):'')+'&_='+Date.now();document.head.appendChild(script);
 }
 $('#roleSelect').addEventListener('change',e=>{currentRole=e.target.value;if(currentRole!=='Coordinator')currentCoordinatorPerson='all';render();scrollTo({top:0,behavior:'smooth'})});
 $('#standardBtn').onclick=()=>{currentPlan='Standard';render()};$('#rainBtn').onclick=()=>{currentPlan='Rain';render()};$('#refreshBtn').onclick=loadData;
