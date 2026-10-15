@@ -2910,6 +2910,29 @@
     }
   }
 </style>
+
+<style id="partner-personal-link-style">
+  /* Partner names link quietly to each person's own handbook page. */
+  .partner-link {
+    color:inherit !important;
+    text-decoration:none !important;
+    border-bottom:1px solid rgba(154,79,54,.22);
+    padding-bottom:1px;
+    transition:color .15s ease, border-color .15s ease;
+  }
+
+  .partner-link:hover,
+  .partner-link:focus-visible {
+    color:var(--site-rust) !important;
+    border-bottom-color:var(--site-rust);
+  }
+
+  .partner-link:focus-visible {
+    outline:2px solid rgba(154,79,54,.18);
+    outline-offset:3px;
+  }
+</style>
+
 </head>
 <body>
 <main class="page">
@@ -3230,9 +3253,22 @@ function renderPartners(person, selectedTags) {
     <div class="partner-row">
       <div class="partner-tag">${escapeHtml(group.tag)}</div>
       <div class="partner-names">
-        ${group.people.map(name =>
-          `<span class="partner-name">${escapeHtml(name)}</span>`
-        ).join("")}
+        ${group.people.map(name => {
+          const hasPersonalPage =
+            (DATA.people || []).some(person => person.name === name);
+
+          if (!hasPersonalPage) {
+            return `<span class="partner-name">${escapeHtml(name)}</span>`;
+          }
+
+          const url = escapeHtml(personalHandbookUrl(name));
+
+          return `<a
+            class="partner-name partner-link"
+            href="${url}"
+            aria-label="Open ${escapeHtml(name)}'s personal guide"
+          >${escapeHtml(name)}</a>`;
+        }).join("")}
       </div>
     </div>
   `).join("");
