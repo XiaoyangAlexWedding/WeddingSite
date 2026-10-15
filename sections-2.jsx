@@ -154,8 +154,7 @@ const Travel = () =>
   </ul>
 
   <p style={{ fontSize: 13, color: "var(--ink-soft)", fontStyle: "italic", margin: 0, lineHeight: 1.5, borderTop: "1px solid var(--rule)", paddingTop: 12 }}>
-    <span style={{ fontWeight: 500 }}>Seats are limited</span> and reserved from your RSVP. Something changed last minute? Contact our friend Rebecca Levin, as the Transportation Captain{" "}
-    <a href="tel:+18456618360" style={{ fontSize: 13, fontWeight: 400 }}>845-661-8360</a>.
+    <span style={{ fontWeight: 500 }}>Seats are limited</span> and reserved from your RSVP.
   </p>
 </div>
             
