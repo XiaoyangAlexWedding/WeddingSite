@@ -1,0 +1,97 @@
+/* Top navigation — ARCHIVE copy of the Portland wedding site nav.
+   The live banquet site lives at "/"; this nav links back to it. */
+
+const { useState: useNavState, useEffect: useNavEff } = React;
+
+const NAV_ITEMS = [
+  { id: "home", label: "Home" },
+  { id: "story", label: "Our Story" },
+  { id: "details", label: "Details" },
+  { id: "dress", label: "Dress" },
+ // { id: "schedule", label: "Schedule" },
+  { id: "travel", label: "Travel" },
+  { id: "gallery", label: "Gallery" },
+  { id: "registry", label: "Registry" },
+ // { id: "faq", label: "FAQ" },
+];
+
+const Nav = ({ active, onNavigate }) => {
+  const [open, setOpen] = useNavState(false);
+
+  const handle = (e, id) => {
+    e.preventDefault();
+    setOpen(false);
+    onNavigate(id);
+  };
+
+  // On phones the links are a horizontally scrolling row; keep the current
+  // page's link in view so guests can see where they are.
+  useNavEff(() => {
+    const el = document.querySelector(".nav-links a.active");
+    if (el) el.scrollIntoView({ block: "nearest", inline: "center" });
+  }, [active]);
+
+  return (
+    <nav className="nav scrolled">
+      <button className="nav-mono" onClick={(e) => handle(e, "home")} aria-label="Back to home">
+        X &amp; A
+      </button>
+
+      {/* Phone-only link back to the live banquet site */}
+      <a href="../" className="nav-rsvp nav-rsvp-mobile">
+        答谢宴 →
+      </a>
+
+      <button
+        className="nav-burger"
+        onClick={() => setOpen((o) => !o)}
+        aria-label="Toggle menu"
+        aria-expanded={open}
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+          {open ? (
+            <>
+              <path d="M5 5 L19 19" />
+              <path d="M19 5 L5 19" />
+            </>
+          ) : (
+            <>
+              <path d="M4 7 L20 7" />
+              <path d="M4 12 L20 12" />
+              <path d="M4 17 L20 17" />
+            </>
+          )}
+        </svg>
+      </button>
+
+      <div className={`nav-links ${open ? "open" : ""}`}>
+        {NAV_ITEMS.map((it) => (
+          <a
+            key={it.id}
+            href={`#${it.id}`}
+            onClick={(e) => handle(e, it.id)}
+            className={active === it.id ? "active" : ""}
+          >
+            {it.label}
+          </a>
+        ))}
+
+        {/* Standalone page at a real path — full navigation, not a hash route */}
+        <a
+          href="/things-to-do/"
+          onClick={() => setOpen(false)}
+          className={active === "things-to-do" ? "active" : ""}
+        >
+          Things to Do
+        </a>
+
+        {/* Back to the live banquet site */}
+        <a href="../" className="nav-rsvp" onClick={() => setOpen(false)}>
+          答谢宴网站 →
+        </a>
+      </div>
+    </nav>
+  );
+};
+
+Object.assign(window, { Nav });

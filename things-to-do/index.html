@@ -6,12 +6,13 @@
   <title>Things to Do · Xiaoyang &amp; Alex · Portland</title>
   <link rel="canonical" href="https://xiaoyangalex.wedding/things-to-do/">
 
+  <link rel="stylesheet" href="/fonts/fonts.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Allura&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;1,400&family=Tangerine:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Allura&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;1,400&family=Tangerine:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
-  <!-- styles.css provides the shared :root design tokens the component maps onto -->
-  <link rel="stylesheet" href="/styles.css?v=24" />
+  <!-- The archive's styles.css provides the :root design tokens the component maps onto -->
+  <link rel="stylesheet" href="/portland/styles.css?v=1" />
 
   <style>
     /* The shared site nav is fixed on top of this page; give the masthead
@@ -29,17 +30,17 @@
 <body>
   <div id="ttd-root"></div>
 
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="/vendor/react-18.3.1.production.min.js"></script>
+  <script src="/vendor/react-dom-18.3.1.production.min.js"></script>
+  <script src="/vendor/babel-standalone-7.29.0.min.js"></script>
 
-  <!-- Shared site nav bar — same component and styles as the main site -->
-  <script type="text/babel" src="/nav.jsx"></script>
-  <script type="text/babel" src="/ThingsToDo.jsx"></script>
+  <!-- Nav bar from the Portland wedding site archive (/portland/) -->
+  <script type="text/babel" src="/portland/nav.jsx"></script>
+  <script type="text/babel" src="/portland/ThingsToDo.jsx"></script>
   <script type="text/babel">
     ReactDOM.createRoot(document.getElementById("ttd-root")).render(
       <>
-        <Nav active="things-to-do" onNavigate={(id) => { window.location.href = "/#" + id; }} />
+        <Nav active="things-to-do" onNavigate={(id) => { window.location.href = "/portland/#" + id; }} />
         <ThingsToDo />
       </>
     );
