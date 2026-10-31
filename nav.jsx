@@ -1,25 +1,18 @@
-/* Top navigation — page-switcher mode */
+/* Top navigation — banquet site (Chinese-first).
+   The Portland wedding site lives on, unchanged, at /portland/ (美国婚礼纪念). */
 
-const { useState: useNavState, useEffect: useNavEff } = React;
+const { useEffect: useNavEff } = React;
 
 const NAV_ITEMS = [
-  { id: "home", label: "Home" },
-  { id: "story", label: "Our Story" },
-  { id: "details", label: "Details" },
-  { id: "dress", label: "Dress" },
- // { id: "schedule", label: "Schedule" },
-  { id: "travel", label: "Travel" },
-  { id: "gallery", label: "Gallery" },
-  { id: "registry", label: "Registry" },
- // { id: "faq", label: "FAQ" },
+  { id: "home", label: "首页", en: "Home" },
+  { id: "story", label: "我们的故事", en: "Our Story" },
+  { id: "banquets", label: "三城答谢宴", en: "Banquets" },
+  { id: "memories", label: "婚礼回顾", en: "Memories" },
 ];
 
 const Nav = ({ active, onNavigate }) => {
-  const [open, setOpen] = useNavState(false);
-
   const handle = (e, id) => {
     e.preventDefault();
-    setOpen(false);
     onNavigate(id);
   };
 
@@ -31,39 +24,17 @@ const Nav = ({ active, onNavigate }) => {
   }, [active]);
 
   return (
-    <nav className="nav scrolled">
-      <button className="nav-mono" onClick={(e) => handle(e, "home")} aria-label="Back to home">
-        X &amp; A
-      </button>
-
-      {/* Phone-only RSVP in the top bar; the in-row RSVP is hidden on phones */}
-      <a href="/RSVP/" className="nav-rsvp nav-rsvp-mobile">
-        RSVP
+    <nav className="nav scrolled nav-cn">
+      <a className="nav-mono" href="#home" onClick={(e) => handle(e, "home")} aria-label="返回首页 · Home">
+        晓扬 <span className="nav-mono-amp">&amp;</span> Alex
       </a>
 
-      <button
-        className="nav-burger"
-        onClick={() => setOpen((o) => !o)}
-        aria-label="Toggle menu"
-        aria-expanded={open}
-      >
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-          {open ? (
-            <>
-              <path d="M5 5 L19 19" />
-              <path d="M19 5 L5 19" />
-            </>
-          ) : (
-            <>
-              <path d="M4 7 L20 7" />
-              <path d="M4 12 L20 12" />
-              <path d="M4 17 L20 17" />
-            </>
-          )}
-        </svg>
-      </button>
+      {/* Phone-only RSVP in the top bar; the in-row RSVP is hidden on phones */}
+      <a href={rsvpHref()} className="nav-rsvp nav-rsvp-mobile">
+        赴宴回执
+      </a>
 
-      <div className={`nav-links ${open ? "open" : ""}`}>
+      <div className="nav-links">
         {NAV_ITEMS.map((it) => (
           <a
             key={it.id}
@@ -72,25 +43,23 @@ const Nav = ({ active, onNavigate }) => {
             className={active === it.id ? "active" : ""}
           >
             {it.label}
+            <span className="nav-en">{it.en}</span>
           </a>
         ))}
 
-        {/* Standalone page at a real path — full navigation, not a hash route */}
-        <a
-          href="/things-to-do/"
-          onClick={() => setOpen(false)}
-          className={active === "things-to-do" ? "active" : ""}
-        >
-          Things to Do
+        {/* Archive of the Portland wedding website — a separate page */}
+        <a href="portland/" className="nav-archive">
+          美国婚礼纪念
+          <span className="nav-en">Portland Wedding</span>
         </a>
 
-        {/* Standalone page at a real path — full navigation, not a hash route */}
-        <a href="/RSVP/" className="nav-rsvp" onClick={() => setOpen(false)}>
-          RSVP
+        <a href={rsvpHref()} className="nav-rsvp">
+          赴宴回执
+          <span className="nav-en">RSVP</span>
         </a>
       </div>
     </nav>
   );
 };
 
-Object.assign(window, { Nav });
+Object.assign(window, { Nav, NAV_ITEMS });

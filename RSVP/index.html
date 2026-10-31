@@ -1,67 +1,72 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RSVP · Xiaoyang &amp; Alex · 17 October 2026</title>
+  <title>赴宴回执 · RSVP | 晓扬 &amp; Alex 婚礼答谢宴</title>
+  <meta name="description" content="婚礼答谢宴 · 赴宴回执：北京 12月19日 · 山西忻州 12月11日 · 江苏泰州 12月13日" />
   <link rel="canonical" href="https://xiaoyangalex.wedding/RSVP/">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Allura&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;1,400&family=Tangerine:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../fonts/fonts.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2210%22 fill=%22%23a3302a%22/%3E%3Ctext x=%2232%22 y=%2246%22 font-size=%2240%22 text-anchor=%22middle%22 fill=%22%23fffaf2%22%3E%E5%9B%8D%3C/text%3E%3C/svg%3E" />
 
-  <link rel="stylesheet" href="/styles.css?v=24" />
+  <link rel="stylesheet" href="../styles.css?v=30" />
 
   <style>
     /* Standalone page: clear the fixed nav and center the form column */
-    body { padding-top: 0; }
     .rsvp-page { padding-top: 72px; }
-    .rsvp-page .rsvp-block iframe { display: block; width: 100%; border: 0; }
+    .rsvp-page section { padding-top: 56px; }
+    .rsvp-intro { font-family: var(--font-cn); font-size: 17px; line-height: 1.9; text-align: center; margin: 0 auto 28px; }
+    .rsvp-paper {
+      background: var(--paper); border: 1px solid var(--cn-gold-soft);
+      padding: 20px 16px 8px; box-shadow: 0 8px 24px rgba(42, 30, 22, 0.07);
+    }
+    .rsvp-paper iframe { display: block; width: 100%; border: 0; min-height: 640px; }
+    .rsvp-help { font-family: var(--font-cn); font-size: 14px; color: var(--ink-soft); text-align: center; line-height: 1.9; margin-top: 24px; }
+    .rsvp-help a { white-space: nowrap; }
+    .rsvp-nav-links { display: flex; gap: 18px; align-items: center; }
+    .rsvp-nav-links a { font-family: var(--font-cn); font-size: 15px; letter-spacing: 0.1em; color: var(--ink); border: 0; padding: 8px 2px; }
+    @media (max-width: 600px) {
+      .rsvp-page section { padding-top: 32px; }
+      .rsvp-paper { padding: 12px 6px 4px; }
+      .rsvp-nav-links .hide-sm { display: none; }
+    }
   </style>
 </head>
 <body>
-  <!-- Header — matches the site nav, monogram links back home -->
-  <nav class="nav scrolled">
-    <a class="nav-mono" href="/" aria-label="Back to home" style="border-bottom:0;">X &amp; A</a>
+  <!-- Header — matches the site nav; links back to the banquet site -->
+  <nav class="nav scrolled nav-cn" style="flex-wrap: nowrap;">
+    <a class="nav-mono" href="../" aria-label="返回首页 · Home">晓扬 <span class="nav-mono-amp">&amp;</span> Alex</a>
+    <div class="rsvp-nav-links">
+      <a href="../#banquets" class="hide-sm">三城答谢宴</a>
+      <a href="../">返回首页</a>
+    </div>
   </nav>
 
   <main class="rsvp-page">
     <section id="rsvp" style="background: var(--bg-deep)">
       <div class="shell-narrow">
-        <div class="eyebrow" style="text-align:center">Kindly respond</div>
-        <h2 class="section-title">RSVP</h2>
-        <div class="section-title-cn">回 复 卡</div>
-
-        <div class="rsvp-block">
-          <p style="font-style:italic; color:var(--ink-soft); margin-bottom:24px">
-            Your reply means the world to us.
-          </p>
-          <p style="font-style:italic; color:var(--ink-soft); margin-bottom:32px">
-            期 待 您 的 回 复
-          </p>
-
-          <div class="rsvp-embed">
-            <iframe data-tally-src="https://tally.so/embed/b5Ddqo?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-                    loading="lazy" width="100%" height="500" frameborder="0"
-                    marginheight="0" marginwidth="0" title="Wedding RSVP"></iframe>
-          </div>
-          <script>
-            var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(null==d.querySelector('script[src="'+w+'"]')){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
-          </script>
-
-          <div style="margin-top:36px; padding-top:32px; border-top:1px solid var(--rule)">
-            <p style="color:var(--ink); font-size:20px; font-weight:500; margin-bottom:10px">
-              Haven't filled out our guest info form yet?
-            </p>
-            <p style="color:var(--ink); font-size:16px; margin-bottom:24px">
-              We need your contact information and the names of everyone in your party.
-              Please take a moment to share them so we can finalize invitations and stay in touch.
-            </p>
-            <a class="btn" href="/guestinfo/" style="font-size:15px; padding:14px 34px">
-              Share your guest info →
-            </a>
-          </div>
+        <div class="cn-heading" style="margin-bottom: 28px">
+          <div class="cn-eyebrow">赴 宴 回 执</div>
+          <h1 class="cn-title">婚礼答谢宴 · 赴宴回执</h1>
+          <div class="cn-title-en">Wedding Celebration RSVP</div>
+          <div class="cn-rule" aria-hidden="true"><span>◆</span></div>
         </div>
+
+        <p class="rsvp-intro">
+          诚邀您与我们分享新婚的喜悦！<br>请填写以下信息，以便我们提前安排席位。
+        </p>
+
+        <div class="rsvp-paper">
+          <iframe id="rsvp-form" title="婚礼答谢宴 · 赴宴回执" loading="eager" width="100%" height="900"
+                  frameborder="0" marginheight="0" marginwidth="0"></iframe>
+        </div>
+
+        <p class="rsvp-help">
+          表单加载较慢或无法显示？
+          <a id="rsvp-direct" href="https://tally.so/r/dbExNr" target="_blank" rel="noopener">点此在新页面打开回执</a><br>
+          也可以直接微信告诉晓扬或家人您的出席情况。
+        </p>
       </div>
     </section>
   </main>
@@ -70,14 +75,55 @@
     <div class="shell">
       <div class="footer-monogram">X &amp; A</div>
       <div class="divider"></div>
-      <div class="footer-meta" style="margin-top:24px">Xiaoyang Li &nbsp;·&nbsp; Alexander Joachim</div>
-      <div class="footer-meta" style="margin-top:8px">17 · 10 · 2026 &nbsp;·&nbsp; Portland, Oregon</div>
+      <div class="footer-names">晓扬 &amp; Alex</div>
+      <div class="footer-cn" style="margin-top: 16px">北京 · 12月19日　山西忻州 · 12月11日　江苏泰州 · 12月13日</div>
       <div class="footer-hash">#XiaoyangAndAlex</div>
-      <div class="footer-meta" style="margin-top:32px; font-size:12px">
-        <a href="/">Back to the wedding site →</a>
+      <div class="footer-meta" style="margin-top: 32px; font-size: 12px">
+        <a href="../">返回答谢宴网站 · Back to the site →</a>
       </div>
     </div>
   </footer>
 
+  <script>
+    /* Build the Tally form link. ?city=beijing|shanxi|jiangsu pre-selects a banquet;
+       with no city, Beijing is selected. The option text must match the form exactly. */
+    (function () {
+      var FORM_ID = "dbExNr";
+      var OPTIONS = {
+        beijing: "北京 · 12月19日（周六）中午",
+        shanxi: "山西忻州 · 12月11日（周五）中午",
+        jiangsu: "江苏泰州 · 12月13日（周日）晚上"
+      };
+      var m = /[?&]city=([a-z]+)/i.exec(location.search);
+      var city = m && OPTIONS[m[1].toLowerCase()] ? m[1].toLowerCase() : "beijing";
+      var pre = "preselect=" + encodeURIComponent(OPTIONS[city]);
+
+      document.getElementById("rsvp-direct").href = "https://tally.so/r/" + FORM_ID + "?" + pre;
+
+      var iframe = document.getElementById("rsvp-form");
+      iframe.setAttribute("data-tally-src",
+        "https://tally.so/embed/" + FORM_ID + "?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&" + pre);
+
+      /* Tally's loader resizes the frame to fit; if it can't load, show the form anyway */
+      var d = document, w = "https://tally.so/widgets/embed.js";
+      var v = function () {
+        if (typeof Tally !== "undefined") Tally.loadEmbeds();
+        else d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function (e) { e.src = e.dataset.tallySrc; });
+      };
+      if (typeof Tally !== "undefined") v();
+      else if (d.querySelector('script[src="' + w + '"]') == null) {
+        var s = d.createElement("script");
+        s.src = w; s.onload = v; s.onerror = v;
+        d.body.appendChild(s);
+        /* don't wait forever for the loader on slow networks */
+        setTimeout(function () {
+          if (typeof Tally === "undefined" && !iframe.src) {
+            iframe.src = iframe.getAttribute("data-tally-src");
+            iframe.removeAttribute("data-tally-src"); /* so a late loader won't reload it */
+          }
+        }, 4000);
+      }
+    })();
+  </script>
 </body>
 </html>

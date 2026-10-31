@@ -1,27 +1,55 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Xiaoyang &amp; Alex · 17 October 2026 · Portland, Oregon</title>
+  <title>婚礼礼成 · 感恩有你 | 晓扬 &amp; Alex 婚礼答谢宴</title>
+  <meta name="description" content="2026年10月17日，晓扬与Alex在美国波特兰举办了婚礼。12月，我们回到山西忻州、江苏泰州（姜堰）和北京举办答谢宴，诚邀亲友欢聚一堂。" />
+  <meta name="theme-color" content="#f4ebe0" />
+  <link rel="canonical" href="https://xiaoyangalex.wedding/" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Allura&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;1,400&family=Tangerine:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Link preview (WeChat reads the title, description and first large image) -->
+  <meta property="og:title" content="婚礼礼成 · 感恩有你 | 晓扬 & Alex" />
+  <meta property="og:description" content="爱跨越山海 · 喜归故里 — 北京 · 山西忻州 · 江苏泰州 婚礼答谢宴" />
+  <meta property="og:image" content="https://xiaoyangalex.wedding/assets/web/engagement-2.jpg" />
+  <meta property="og:url" content="https://xiaoyangalex.wedding/" />
 
-  <link rel="stylesheet" href="styles.css?v=24" />
+  <!-- Old links to the Portland wedding pages (#travel, #registry, …) now live in the archive -->
+  <script>
+    (function () {
+      var h = (location.hash || "").replace("#", "");
+      var archived = { details: 1, dress: 1, schedule: 1, travel: 1, registry: 1, faq: 1, gallery: 1 };
+      if (archived[h]) location.replace("portland/#" + h);
+      else if (h === "rsvp") location.replace("RSVP/");
+    })();
+  </script>
+
+  <!-- Fonts are self-hosted (Google Fonts is unreliable in mainland China);
+       Chinese text uses the phone's built-in Song/Hei fonts -->
+  <link rel="stylesheet" href="fonts/fonts.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2210%22 fill=%22%23a3302a%22/%3E%3Ctext x=%2232%22 y=%2246%22 font-size=%2240%22 text-anchor=%22middle%22 fill=%22%23fffaf2%22%3E%E5%9B%8D%3C/text%3E%3C/svg%3E" />
+
+  <link rel="stylesheet" href="styles.css?v=30" />
 </head>
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <!-- Shown while the page loads (and if scripts can't run) -->
+    <div class="boot">
+      <div class="xi-seal" aria-hidden="true">囍</div>
+      <h1 class="hero-cn-title">婚礼礼成 · 感恩有你</h1>
+      <p class="hero-motto">爱跨越山海 · 喜归故里</p>
+      <p class="boot-names">晓扬 &amp; Alex</p>
+      <p class="boot-loading">页面加载中…</p>
+      <p><a class="btn btn-cn btn-red" href="RSVP/">填写赴宴回执 · RSVP</a></p>
+    </div>
+  </div>
 
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <!-- Libraries are self-hosted (no CDN) so the site works in mainland China -->
+  <script src="vendor/react-18.3.1.production.min.js"></script>
+  <script src="vendor/react-dom-18.3.1.production.min.js"></script>
+  <script src="vendor/babel-standalone-7.29.0.min.js"></script>
 
-  <!-- Tally embed loader — auto-resizes the RSVP iframe -->
-  <script async src="https://tally.so/widgets/embed.js"></script>
-
-  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="content.jsx"></script>
   <script type="text/babel" src="illustrations.jsx"></script>
   <script type="text/babel" src="nav.jsx"></script>
   <script type="text/babel" src="sections-1.jsx"></script>

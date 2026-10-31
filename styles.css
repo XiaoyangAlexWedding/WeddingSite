@@ -1,4 +1,4 @@
-/* ---------- Theme tokens (set on :root, swapped by Tweaks) ---------- */
+/* ---------- Theme tokens ---------- */
 :root {
   --bg: #f4ebe0;
   --bg-deep: #ecdfd0;
@@ -10,9 +10,10 @@
   --line: #c9a48a;
   --rule: rgba(138, 74, 53, 0.25);
 
-  --font-display: "Cormorant Garamond", "Cormorant", serif;
+  /* Latin fonts first; Chinese characters fall through to the system Song/Hei fonts */
+  --font-display: "Cormorant Garamond", "Cormorant", Georgia, "Songti SC", "STSong", "Noto Serif SC", "Noto Serif CJK SC", "Microsoft YaHei", serif;
   --font-script: "Pinyon Script", "Allura", cursive;
-  --font-body: "EB Garamond", "Cormorant Garamond", Georgia, serif;
+  --font-body: "EB Garamond", "Cormorant Garamond", Georgia, "Songti SC", "STSong", "Noto Serif SC", "Noto Serif CJK SC", "Microsoft YaHei", serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
@@ -1310,4 +1311,256 @@ footer {
   .registry-qr { width: 100px; height: 100px; }
   section { padding: 64px 0; }
   .section-title { font-size: 44px; }
+}
+
+/* =====================================================================
+   BANQUET SITE (Chinese-first) — December 2026 appreciation banquets
+   Terracotta & cream base, with cinnabar-red and gold accents.
+   Chinese text is never set in italic (fake-italic CJK looks broken).
+   ===================================================================== */
+:root {
+  --cn-red: #a3302a;
+  --cn-red-deep: #86231f;
+  --cn-gold: #a8842f;
+  --cn-gold-soft: rgba(176, 141, 60, 0.45);
+  --font-cn: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", "Noto Serif CJK SC", "Microsoft YaHei", "PingFang SC", serif;
+}
+
+html[lang="zh-CN"] body { line-height: 1.75; }
+
+.shell-wide { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+
+/* ---------- Loading screen (static HTML inside #root) ---------- */
+.boot {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; padding: 24px;
+}
+.boot p { margin: 6px 0; }
+.boot-names { font-family: var(--font-display); font-style: italic; font-size: 40px; color: var(--accent-deep); }
+.boot-loading { font-family: var(--font-cn); color: var(--ink-soft); font-size: 14px; letter-spacing: 0.2em; margin-bottom: 20px !important; }
+
+/* ---------- Nav (Chinese labels) ---------- */
+.nav-cn .nav-mono { font-size: 24px; border-bottom: 0; }
+.nav-cn .nav-mono-amp { font-family: var(--font-script); color: var(--accent); }
+.nav-cn .nav-links a {
+  font-family: var(--font-cn); font-style: normal; text-transform: none;
+  font-size: 15px; letter-spacing: 0.12em;
+  display: inline-flex; flex-direction: column; align-items: center; line-height: 1.25;
+}
+.nav-cn .nav-en {
+  font-family: var(--font-body); font-size: 10px; font-style: italic;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); margin-top: 2px;
+}
+.nav-cn .nav-rsvp {
+  font-family: var(--font-cn); font-style: normal;
+  background: var(--cn-red); border-color: var(--cn-red) !important;
+  letter-spacing: 0.2em; padding: 8px 18px;
+}
+.nav-cn .nav-rsvp .nav-en { color: rgba(255, 250, 242, 0.85); }
+.nav-cn .nav-rsvp:hover { background: var(--cn-red-deep); border-color: var(--cn-red-deep) !important; }
+@media (max-width: 820px) {
+  .nav-cn .nav-en { display: none; }
+  .nav-cn .nav-mono { font-size: 22px; }
+  .nav-cn .nav-links a { padding: 10px 4px; font-size: 15px; }
+  .nav-cn .nav-rsvp-mobile { font-size: 15px; letter-spacing: 0.15em; padding: 9px 16px; }
+}
+
+/* ---------- Buttons ---------- */
+.btn-cn {
+  font-family: var(--font-cn); font-style: normal; text-transform: none;
+  letter-spacing: 0.16em; font-size: 17px; padding: 14px 30px; line-height: 1.3;
+}
+.btn-red { background: var(--cn-red); border-color: var(--cn-red); color: #fffaf2; }
+.btn-red:hover { background: var(--cn-red-deep); border-color: var(--cn-red-deep); color: #fffaf2; }
+.btn-cn.btn-ghost { background: transparent; color: var(--accent-deep); border-color: var(--line); }
+.btn-cn.btn-ghost:hover { background: var(--accent-deep); color: var(--paper); border-color: var(--accent-deep); }
+.btn-big { font-size: 19px; padding: 18px 40px; }
+
+/* ---------- Section headings ---------- */
+.cn-heading { text-align: center; margin-bottom: 48px; }
+.cn-eyebrow {
+  font-family: var(--font-cn); font-size: 15px; letter-spacing: 0.45em;
+  color: var(--cn-gold); text-align: center; margin-bottom: 12px;
+}
+.cn-title {
+  font-family: var(--font-cn); font-weight: 600; font-size: clamp(28px, 5vw, 42px);
+  letter-spacing: 0.16em; color: var(--accent-deep); margin: 0 0 8px; line-height: 1.35;
+}
+.cn-title-en { font-family: var(--font-display); font-style: italic; font-size: 20px; color: var(--ink-soft); }
+.cn-rule {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  color: var(--cn-gold); font-size: 9px; margin-top: 16px;
+}
+.cn-rule::before, .cn-rule::after { content: ""; height: 1px; width: 72px; background: var(--cn-gold-soft); }
+
+/* ---------- Hero ---------- */
+.hero-cn-banquet { min-height: 94vh; padding-left: 16px; padding-right: 16px; }
+.xi-seal {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 58px; height: 58px; margin: 0 auto 22px;
+  font-family: var(--font-cn); font-size: 34px; line-height: 1; color: var(--cn-red);
+  border: 2px solid var(--cn-red); border-radius: 6px;
+  box-shadow: inset 0 0 0 3px var(--bg), inset 0 0 0 4px rgba(163, 48, 42, 0.6);
+}
+.hero-cn-title {
+  font-family: var(--font-cn); font-weight: 600; font-size: clamp(32px, 7vw, 66px);
+  letter-spacing: 0.12em; color: var(--cn-red); margin: 6px 0 14px; line-height: 1.3;
+}
+.hero-names-inline { font-size: clamp(52px, 10vw, 112px); }
+.hero-name-cn { font-family: var(--font-cn); font-style: normal; font-size: 0.7em; letter-spacing: 0.06em; }
+.hero-motto { font-family: var(--font-cn); font-size: clamp(20px, 4vw, 28px); letter-spacing: 0.28em; color: var(--ink); margin-top: 26px; }
+.hero-motto-en { font-family: var(--font-display); font-style: italic; font-size: 21px; color: var(--ink-soft); margin-top: 4px; letter-spacing: 0.04em; }
+.hero-date {
+  margin-top: 22px; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  font-family: var(--font-cn); font-size: 16px; letter-spacing: 0.14em; color: var(--accent-deep);
+}
+.hero-date-en { font-family: var(--font-body); font-style: italic; letter-spacing: 0.06em; font-size: 15px; color: var(--ink-soft); }
+.hero-actions { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+/* ---------- Invitation letter ---------- */
+.invite-section { padding: 88px 0; }
+.invite-card {
+  position: relative; background: var(--paper); text-align: center;
+  border: 1px solid var(--cn-gold-soft); outline: 1px solid var(--cn-gold-soft); outline-offset: -9px;
+  padding: 52px 44px 40px; box-shadow: 0 10px 30px rgba(42, 30, 22, 0.08);
+}
+.invite-corner { position: absolute; width: 18px; height: 18px; border: 0 solid var(--cn-red); }
+.invite-corner.tl { top: 16px; left: 16px; border-width: 2px 0 0 2px; }
+.invite-corner.tr { top: 16px; right: 16px; border-width: 2px 2px 0 0; }
+.invite-corner.bl { bottom: 16px; left: 16px; border-width: 0 0 2px 2px; }
+.invite-corner.br { bottom: 16px; right: 16px; border-width: 0 2px 2px 0; }
+.invite-text {
+  font-family: var(--font-cn); font-size: 18px; line-height: 2.05; letter-spacing: 0.04em;
+  text-align: justify; text-indent: 2em; color: var(--ink);
+}
+.invite-sign { font-family: var(--font-cn); text-align: right; font-size: 19px; letter-spacing: 0.2em; color: var(--cn-red); margin-top: 20px; }
+.invite-en {
+  font-style: italic; color: var(--ink-soft); font-size: 16px; line-height: 1.6;
+  border-top: 1px solid var(--rule); padding-top: 20px; margin: 24px 0 0;
+}
+
+/* ---------- Highlight film ---------- */
+.film-section { background: var(--bg-deep); }
+.film-frame {
+  position: relative; max-width: 820px; margin: 0 auto; height: 0; padding-top: 56.25%; /* 16:9 */
+  background: #1d1612; border: 1px solid var(--cn-gold-soft); overflow: hidden;
+  box-shadow: 0 16px 40px rgba(42, 30, 22, 0.25);
+}
+.film-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
+.film-play {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+  background: rgba(20, 14, 10, 0.28); border: 0; cursor: pointer; color: #fff;
+}
+.film-play-icon {
+  width: 76px; height: 76px; border-radius: 50%; padding-left: 4px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(163, 48, 42, 0.92); color: #fffaf2; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+.film-play-label { font-family: var(--font-cn); letter-spacing: 0.2em; font-size: 16px; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6); }
+.film-soon { background: radial-gradient(ellipse at 50% 40%, rgba(184, 107, 75, 0.3), transparent 70%), #2a1e16; }
+.film-soon-inner {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; color: #f4ebe0; padding: 16px;
+}
+.film-soon .film-play-icon { margin-bottom: 16px; opacity: 0.7; }
+.film-soon-cn { font-family: var(--font-cn); letter-spacing: 0.28em; font-size: 18px; }
+.film-soon-en { font-style: italic; opacity: 0.75; font-size: 15px; margin-top: 4px; }
+.film-note { text-align: center; font-family: var(--font-cn); font-size: 13px; color: var(--ink-soft); margin-top: 14px; letter-spacing: 0.08em; }
+
+/* ---------- Banquet cards ---------- */
+.banquets-section { background: var(--bg); }
+.banquet-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 16px; }
+.banquet-card {
+  position: relative; display: flex; flex-direction: column; text-align: center;
+  background: var(--paper); border: 1px solid var(--cn-gold-soft);
+  padding: 40px 26px 26px; box-shadow: 0 8px 24px rgba(42, 30, 22, 0.07);
+}
+.banquet-card::before { content: ""; position: absolute; inset: 6px; border: 1px solid var(--rule); pointer-events: none; }
+.banquet-num {
+  position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+  width: 36px; height: 36px; border-radius: 4px; background: var(--cn-red); color: #fffaf2;
+  font-family: var(--font-cn); font-size: 17px; display: flex; align-items: center; justify-content: center;
+}
+.banquet-city { font-family: var(--font-cn); font-weight: 600; font-size: 26px; letter-spacing: 0.1em; color: var(--accent-deep); line-height: 1.4; }
+.banquet-city-en { font-family: var(--font-display); font-style: italic; font-size: 18px; color: var(--ink-soft); }
+.banquet-meaning { font-family: var(--font-cn); font-size: 15px; color: var(--cn-red); margin: 10px 0 18px; letter-spacing: 0.08em; }
+.banquet-meaning i { font-family: var(--font-body); color: var(--ink-soft); letter-spacing: 0; }
+.banquet-facts { margin: 0 0 22px; text-align: left; border-top: 1px solid var(--rule); position: relative; }
+.banquet-facts > div { display: grid; grid-template-columns: 3em 1fr; gap: 10px; padding: 10px 2px; border-bottom: 1px solid var(--rule); }
+.banquet-facts dt { font-family: var(--font-cn); color: var(--cn-gold); font-size: 14px; letter-spacing: 0.2em; padding-top: 2px; }
+.banquet-facts dd { margin: 0; font-family: var(--font-cn); font-size: 16px; color: var(--ink); line-height: 1.55; }
+.banquet-en { display: block; font-family: var(--font-body); font-style: italic; font-size: 14px; color: var(--ink-soft); letter-spacing: 0.02em; }
+.banquet-actions { margin-top: auto; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; position: relative; }
+.banquet-actions .btn { padding: 11px 20px; font-size: 16px; letter-spacing: 0.12em; }
+.banquet-map-soon { font-family: var(--font-cn); font-size: 13px; color: var(--ink-soft); width: 100%; }
+.banquets-more { text-align: center; margin-top: 32px; font-family: var(--font-cn); letter-spacing: 0.08em; }
+.banquets-intro { text-align: center; font-family: var(--font-cn); font-size: 17px; line-height: 2; max-width: 680px; margin: -16px auto 48px; }
+.banquets-note { text-align: center; font-family: var(--font-cn); font-size: 15px; line-height: 1.9; color: var(--ink-soft); max-width: 680px; margin: 44px auto 0; }
+@media (max-width: 900px) {
+  .banquet-grid { grid-template-columns: 1fr; max-width: 480px; margin: 16px auto 0; gap: 40px; }
+}
+
+/* ---------- RSVP call to action ---------- */
+.rsvp-cta-section { background: var(--bg-deep); }
+.rsvp-cta { text-align: center; }
+.rsvp-cta p { font-family: var(--font-cn); font-size: 17px; margin-bottom: 28px; }
+
+/* ---------- Share card (QR) ---------- */
+.share-section { padding: 56px 0 72px; }
+.share-card {
+  display: flex; gap: 28px; align-items: center; justify-content: center;
+  background: var(--paper); border: 1px solid var(--rule); padding: 24px;
+}
+.share-qr { width: 140px; height: 140px; display: block; background: #fff; padding: 6px; border: 1px solid var(--rule); flex: 0 0 auto; }
+.share-text { font-family: var(--font-cn); font-size: 15px; margin: 4px 0; }
+.share-url { font-family: var(--font-body); font-size: 21px; color: var(--accent-deep); letter-spacing: 0.04em; margin: 0; -webkit-user-select: all; user-select: all; }
+@media (max-width: 520px) {
+  .share-card { flex-direction: column; text-align: center; }
+  .share-card .cn-eyebrow { text-align: center !important; }
+}
+
+/* ---------- Story (Chinese version) ---------- */
+.story-cn { max-width: 700px; margin: 0 auto; background: var(--paper); border-left: 3px solid var(--cn-red); padding: 28px 32px; }
+.story-cn p { font-family: var(--font-cn); font-size: 17px; line-height: 2; margin-bottom: 14px; }
+.story-cn p:last-child { margin-bottom: 0; }
+.story-cn b { color: var(--accent-deep); font-weight: 600; letter-spacing: 0.05em; }
+
+/* ---------- Memories ---------- */
+.memories-later { background: var(--bg-deep); }
+.memories-venues { display: flex; flex-wrap: wrap; gap: 16px 48px; justify-content: center; text-align: center; margin-bottom: 40px; }
+.memories-venue-cn { font-family: var(--font-cn); font-size: 17px; letter-spacing: 0.06em; color: var(--accent-deep); }
+.soon-card { max-width: 640px; margin: 0 auto; text-align: center; border: 1px dashed var(--line); padding: 40px 24px; background: rgba(250, 243, 233, 0.6); }
+.soon-cn { font-family: var(--font-cn); font-size: 18px; letter-spacing: 0.08em; color: var(--ink); margin-bottom: 6px; line-height: 1.8; }
+
+/* ---------- Footer (Chinese) ---------- */
+.footer-names { font-family: var(--font-cn); font-size: 22px; letter-spacing: 0.2em; color: var(--accent-deep); margin-top: 24px; }
+.footer-cn { font-family: var(--font-cn); font-size: 14px; letter-spacing: 0.12em; color: var(--ink-soft); }
+
+/* ---------- Phone-only floating RSVP button ---------- */
+.mobile-rsvp-bar { display: none; }
+@media (max-width: 820px) {
+  .mobile-rsvp-bar {
+    display: block; position: fixed; z-index: 90;
+    left: 16px; right: 16px; bottom: 14px; bottom: calc(14px + env(safe-area-inset-bottom));
+    background: var(--cn-red); color: #fffaf2; border: 0; border-radius: 999px;
+    text-align: center; font-family: var(--font-cn); font-size: 17px; letter-spacing: 0.18em;
+    padding: 14px 16px; box-shadow: 0 8px 24px rgba(134, 35, 31, 0.35);
+  }
+  .mobile-rsvp-bar:hover { color: #fffaf2; background: var(--cn-red-deep); }
+  #root footer { padding-bottom: 130px; }
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 600px) {
+  .hide-sm { display: none; }
+  .shell, .shell-narrow, .shell-wide { padding: 0 16px; }
+  .invite-card { padding: 44px 22px 32px; }
+  .invite-text { font-size: 17px; }
+  .story-cn { padding: 22px 18px; }
+  .hero-motto { letter-spacing: 0.18em; }
+  .hero-actions .btn { width: 100%; max-width: 320px; }
+  .hero-cn-banquet .hero-corner { width: 88px; height: 88px; opacity: 0.35; }
+  .hero-cn-banquet .hero-corner.bl, .hero-cn-banquet .hero-corner.br { display: none; }
+  .btn-big { width: 100%; padding: 16px 20px; }
 }

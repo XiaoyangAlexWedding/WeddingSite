@@ -1,417 +1,123 @@
-/* Lower-page sections */
+/* Banquets page, memories page, footer */
 
-const Schedule = () =>
-<section id="schedule" style={{ background: "var(--bg-deep)" }}>
-    <div className="shell">
+/* ---------- 三城答谢宴 (full details) ---------- */
+const Banquets = () =>
+  <section id="banquets" className="banquets-section banquets-page">
+    <div className="shell-wide">
+      <CnHeading cn="三城答谢 · 与爱团圆" en="Three Cities, Three Homecomings" eyebrow="婚 礼 答 谢 宴" />
+
       <Reveal>
-        <div className="eyebrow" style={{ textAlign: "center" }}>The order of the day</div>
-        <h2 className="section-title">Schedule</h2>
-        <div className="section-title-cn">流 程 安 排</div>
+        <p className="banquets-intro">
+          父亲的故乡山西、母亲的故乡江苏，以及晓扬成长的北京——<br className="hide-sm" />
+          三座城市，三场团圆，感谢一路陪伴我们的每一位亲友。
+          <span className="banquet-en">Dad's hometown, Mom's hometown, and the city where Xiaoyang grew up.</span>
+        </p>
       </Reveal>
 
       <Reveal>
-        <div className="timeline">
-          {[
-        { t: "1:30 pm", title: "Guest Arrival", desc: "Welcome at Providence — light refreshments", cn: "宾客入场" },
-        { t: "2:00 pm", title: "Ceremony Begins", desc: "Please be seated by 1:50 pm · Providence", cn: "婚礼仪式" },
-        { t: "2:45 pm", title: "Shuttle to Lan Su", desc: "15-minute ride · provided for all guests", cn: "接驳车 · 前往兰苏园" },
-        { t: "3:15 pm", title: "Cocktail Hour", desc: "Garden lounge · canapés · live strings", cn: "鸡尾酒会" },
-        { t: "4:15 pm", title: "Tea Ceremony", desc: "A traditional offering of tea to family", cn: "敬 茶 仪 式" },
-        { t: "5:00 pm", title: "Reception &amp; Dinner", desc: "Toasts, family-style courses", cn: "晚宴开席" },
-        { t: "6:30 pm", title: "First Dance &amp; Dancing", desc: "The floor opens — please join us", cn: "第一支舞" },
-        { t: "9:00 pm", title: "Send-Off", desc: "Sparklers under the lanterns", cn: "送别仪式" }].
-        map((it, i) =>
-        <div className="tl-item" key={i}>
-              <div className="tl-time">{it.t}</div>
-              <h4 dangerouslySetInnerHTML={{ __html: it.title }}>Guest Arrival</h4>
-              <p>{it.desc} · <span style={{ fontStyle: "normal" }}>{it.cn}</span></p>
+        <div className="banquet-grid">
+          {BANQUETS.map((b, i) => <BanquetCard key={b.id} b={b} index={i} full />)}
+        </div>
+      </Reveal>
+
+      <Reveal>
+        <p className="banquets-note">
+          具体时间与座位安排将另行通知。如有任何问题，欢迎直接微信联系我们。
+          <span className="banquet-en">Exact times will be shared closer to the date. Questions? Message us on WeChat.</span>
+        </p>
+      </Reveal>
+    </div>
+  </section>;
+
+/* ---------- 婚礼回顾 (memories) ---------- */
+const Memories = ({ onNavigate }) => {
+  const photos = WEDDING_PHOTOS || [];
+  return (
+    <>
+      <section id="memories" className="memories-section">
+        <div className="shell">
+          <CnHeading cn="婚礼回顾" en="Our Wedding Day · Portland, 17 October 2026" />
+          <Reveal>
+            <div className="memories-venues">
+              <div>
+                <div className="memories-venue-cn">仪式 · Providence Academy</div>
+                <div className="banquet-en">Ceremony · Vancouver, Washington</div>
+              </div>
+              <div>
+                <div className="memories-venue-cn">晚宴 · 兰苏园 Lan Su Chinese Garden</div>
+                <div className="banquet-en">Reception · Portland, Oregon</div>
+              </div>
             </div>
-        )}
+          </Reveal>
+
+          <Reveal>
+            {photos.length ?
+              <div className="gallery memories-gallery">
+                {photos.map((p, i) =>
+                  <div className="g-cell" key={i}>
+                    <img src={p.src} alt={p.cn || p.en || "婚礼照片"} loading="lazy" />
+                    {(p.cn || p.en) && <span className="g-cap">{[p.cn, p.en].filter(Boolean).join(" · ")}</span>}
+                  </div>
+                )}
+              </div> :
+              <div className="soon-card">
+                <div className="soon-cn">婚礼照片整理中 · 敬请期待</div>
+                <div className="banquet-en">Wedding photos are on their way.</div>
+              </div>
+            }
+          </Reveal>
         </div>
-      </Reveal>
-    </div>
-  </section>;
+      </section>
 
+      <HighlightVideo />
 
-const Travel = () =>
-<section id="travel">
-    <div className="shell">
-      <Reveal>
-        <div className="eyebrow" style={{ textAlign: "center" }}>Travel &amp; Lodging</div>
-        <h2 className="section-title">Getting There</h2>
-        <div className="section-title-cn">交 通 与 住 宿</div>
-      </Reveal>
-
-      <Reveal>
-        <div className="travel-grid">
-
-  {/* AIRPORT CARD */}
-  <div className="travel-card">
-    <div className="label">Airport · 机场</div>
-    <h4>Portland International (PDX)</h4>
-
-    <p style={{ marginBottom: 12, fontSize: 15 }}>
-      <strong style={{ fontWeight: 500 }}>By Car:</strong> ~25 minutes to the hotel. Rideshare and rental cars are available curbside.
-    </p>
-
-    <div style={{ marginBottom: 8, fontSize: 15, fontWeight: 500 }}>
-      Light Rail to Hotel (~40 mins):
-    </div>
-    <ul style={{ margin: "4px 0 0", paddingLeft: 18, fontSize: 15 }}>
-      <li style={{ marginBottom: 6 }}>
-        Take the <a href="https://trimet.org/max/" target="_blank" rel="noopener noreferrer">MAX Red Line</a> from the <a href="https://share.google/ogAruhHK9elXU09eo" target="_blank" rel="noopener noreferrer">PDX Station</a> to <a href="https://maps.app.goo.gl/wdYeft6W9gcVRZoy5" target="_blank" rel="noopener noreferrer">Pioneer Square North</a>.
-      </li>
-      <li>
-        Tap on with a credit card or purchase a ticket. Each tap/ticket is valid for 2.5 hours of service. <em>Do not tap a second time within this 2.5-hour window.</em>
-      </li>
-    </ul>
-  </div>
-
-  {/* HOTEL CARD */}
-  <div className="travel-card">
-    <div className="label">Hotel Block · 酒店</div>
-    <h4>The Benson Portland</h4>
-    <p style={{ marginBottom: 16, fontSize: 15 }}>
-      Curio Collection by Hilton<br />
-      309 SW Broadway, Portland, OR 97205
-    </p>
-    <p style={{ marginBottom: 8, fontSize: 15 }}>
-      Group rate is <span style={{ fontWeight: 500 }}>$159/night</span> for a King Urban View or Two Queen Urban View <em>(Note: the final price may appear differently until checkout)</em>.
-    </p>
-    <p style={{ marginBottom: 16 }}>
-      <a href="https://group.curiocollection.com/293rd7" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 500 }}>
-        Book your room online here →
-      </a>
-    </p>
-    <p style={{ fontSize: 13, color: "var(--ink-soft)", fontStyle: "italic", margin: 0, lineHeight: 1.5, borderTop: "1px solid var(--rule)", paddingTop: 12 }}>
-      <span style={{ fontWeight: 500 }}>Booking issues?</span> Contact Danny Feist, Reservation Coordinator:<br />
-      <a href="mailto:DFeist@bensonhotel.com" style={{ fontSize: 13, fontWeight: 400 }}>DFeist@bensonhotel.com</a> &nbsp;·&nbsp; 503.228.2000 x 161
-    </p>
-  </div>
-
-  {/* PARKING CARD */}
-  <div className="travel-card">
-    <div className="label">Parking · 停 车</div>
-    <h4>Driving &amp; Parking</h4>
-
-    <p style={{ color: "var(--accent-deep)", fontStyle: "italic", fontSize: 15, marginBottom: 16 }}>
-      Please do not leave belongings or valuables visible in your vehicles.
-    </p>
-
-    <div style={{ marginBottom: 16 }}>
-      <span style={{ fontSize: 15, fontWeight: 500 }}>The Benson</span>
-      <ul style={{ margin: "4px 0 0", paddingLeft: 18, fontSize: 15 }}>
-        <li style={{ marginBottom: 4 }}>Valet parking: $44/night for wedding guests</li>
-        <li style={{ marginBottom: 4 }}>
-          Cheaper: Union Bank Garage (403 SW Broadway)<br />
-          <a href="https://parkmobile.io/parking/locations/or/portland-parking/parking-lot/union-bank-garage" target="_blank" rel="noopener noreferrer">Reserve via ParkMobile →</a>
-        </li>
-        <li>
-          Cheapest: City Owned Garage (0.3 miles walking)<br />
-          <a href="https://maps.app.goo.gl/ZhuFuv2U6bCnqYQt5" target="_blank" rel="noopener noreferrer">View on Google Maps →</a>
-        </li>
-      </ul>
-    </div>
-
-    <div style={{ marginBottom: 16 }}>
-      <span style={{ fontSize: 15, fontWeight: 500 }}>Ceremony · Providence Academy</span>
-      <div style={{ fontSize: 15, marginTop: 4 }}>Onsite complimentary parking is available.</div>
-    </div>
-
-    <div>
-      <span style={{ fontSize: 15, fontWeight: 500 }}>Reception · Lan Su Chinese Garden</span>
-      <div style={{ fontSize: 15, marginTop: 4 }}>Ample street parking, plus a lot at Flanders &amp; 3rd. Please be extra cautious in the street area outside Lan Su Garden; taking a shuttle or car is recommended over walking. </div>
-    </div>
-  </div>
-
-  {/* SHUTTLE CARD */}
-<div className="travel-card">
-  <div className="label">Shuttle · 接 驳 车</div>
-  <h4>The Benson → Providence → Lan Su</h4>
-  
-  <p style={{ fontSize: 15, marginBottom: 12 }}>
-    A complimentary shuttle runs the full route on Saturday, October 17:
-  </p>
-
-  <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", columnGap: 14, rowGap: 6, fontSize: 15, lineHeight: 1.4, marginBottom: 16 }}>
-    <span style={{ fontWeight: 500, whiteSpace: "nowrap" }}>1:30 pm</span>
-    <span>Shuttle arrives at The Benson (309 SW Broadway)</span>
-    <span style={{ fontWeight: 500, whiteSpace: "nowrap" }}>1:45 pm</span>
-    <span><strong style={{ fontWeight: 500 }}>Departs The Benson Hotel</strong> for Providence Academy</span>
-    <span style={{ whiteSpace: "nowrap", color: "var(--ink-soft)" }}>2:30 pm</span>
-    <span style={{ fontStyle: "italic", color: "var(--ink-soft)" }}>Ceremony begins</span>
-    <span style={{ fontWeight: 500, whiteSpace: "nowrap" }}>3:30 pm</span>
-    <span>Departs Providence to The Benson Hotel, for guest to check-in and rest</span>
-    <span style={{ fontWeight: 500, whiteSpace: "nowrap" }}>4:20 pm</span>
-    <span><strong style={{ fontWeight: 500 }}>Departs The Benson Hotel</strong> for Lan Su Chinese Garden</span>
-    <span style={{ whiteSpace: "nowrap", color: "var(--ink-soft)" }}>4:30 pm</span>
-    <span style={{ fontStyle: "italic", color: "var(--ink-soft)" }}>Reception begins</span>
-  </div>
-
-  <ul style={{ fontSize: 15, paddingLeft: 20, lineHeight: 1.5, marginBottom: 12 }}>
-    <li style={{ marginBottom: 4 }}>Please be on board by 1:45 pm. The shuttle leaves on time.</li>
-    <li>You're welcome to leave bags and coats on the shuttle during the ceremony.</li>
-  </ul>
-
-  <p style={{ fontSize: 13, color: "var(--ink-soft)", fontStyle: "italic", margin: 0, lineHeight: 1.5, borderTop: "1px solid var(--rule)", paddingTop: 12 }}>
-    <span style={{ fontWeight: 500 }}>Seats are limited</span> and reserved from your RSVP. Something changed last minute? Look for the balloon and our bus captain Rebecca Levin, who will coordinate the shuttle departures.
-  </p>
-</div>
-            
-</div>
-      </Reveal>
-
-      <Reveal>
-        <div className="travel-map">
-          
-          <iframe 
-            src="https://www.google.com/maps/d/u/0/embed?mid=1nLR6raRxSCf0YJpbVlEh-2ZD1cZ4URY&ehbc=2E312F&noprof=1" 
-            width="100%" 
-            height="480" 
-            style={{ border: 0, display: "block" }} 
-            allowFullScreen="" 
-            loading="lazy" 
-            title="Wedding Locations Map"
-          ></iframe>
-
-        </div>
-      </Reveal>
-    </div>
-  </section>;
-
-
-const Gallery = () =>
-<section id="gallery" style={{ background: "var(--bg-deep)" }}>
-    <div className="shell">
-      <Reveal>
-        <div className="eyebrow" style={{ textAlign: "center" }}>Moments</div>
-        <h2 className="section-title">Gallery</h2>
-        <div className="section-title-cn">回 忆 集</div>
-      </Reveal>
-
-      {/* GUESTCAM — link out; GuestCam has no embed option */}
-      <Reveal>
-        <div className="guestcam">
-          <div className="guestcam-body">
-            <h3>Share your photos and videos</h3>
-            <p>Upload straight from your phone — no app or account needed.</p>
-            <a
-              className="btn guestcam-btn"
-              href="https://guestcam.co/guest/aRGfIkFS64"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Upload photos &amp; videos →
-            </a>
-          </div>
-          <img
-            className="guestcam-qr"
-            src="assets/guestcam-qr.png"
-            alt="QR code to upload photos and videos on GuestCam"
-          />
-        </div>
-      </Reveal>
-
-      <Reveal>
-        <div className="gallery">
-          <div className="g-cell"><img src="assets/20211016_141118.jpg" alt="park,houston" loading="lazy" style={{ objectPosition: "50% 30%" }} /><span className="g-cap">2019 · Hermann Park, Houston</span></div>
-          <div className="g-cell"><img src="assets/20190713_203004.jpg" alt="Hermann Park, Houston" loading="lazy" style={{ objectPosition: "50% 60%" }} /><span className="g-cap">2020· Woodland, Houston</span></div>
-          <div className="g-cell g-contain"><img src="assets/IMG_3650.JPG" alt="Run Alex Run sign" loading="lazy" style={{ objectFit: "contain", background: "var(--bg-deep)" }} /><span className="g-cap">Houston， Alex at Marathon · Run, Alex, Run!</span></div>
-          <div className="g-cell"><img src="assets/macy.jpg" alt="Macy's Parade, NYC" loading="lazy" style={{ objectPosition: "40% 30%" }} /><span className="g-cap">Nov 2019 · NYC, Macy's Parade</span></div>
-          <div className="g-cell"><img src="assets/20201216_132654.jpg" alt="Sand dunes" loading="lazy" style={{ objectPosition: "50% 55%" }} /><span className="g-cap">Dec 2020 · Road trip at White sand beach</span></div>
-          <div className="g-cell"><img src="assets/20210117_193339.jpg" alt="Date night" loading="lazy" style={{ objectPosition: "50% 20%" }} /><span className="g-cap">Jan 2021 · date night</span></div>
-          <div className="g-cell"><img src="assets/christmas-cat.jpg" alt="Christmas with the cat" loading="lazy" style={{ objectPosition: "50% 40%" }} /><span className="g-cap">Christmas · with our cat Luigi</span></div>
-          <div className="g-cell"><img src="assets/vegas.jpg" alt="A toast" loading="lazy" style={{ objectPosition: "50% 50%" }} /><span className="g-cap">May 2023 · Las Vagas</span></div>
-          <div className="g-cell"><img src="assets/20240831_191608.jpg" alt="Kayaking" loading="lazy" style={{ objectPosition: "50% 50%" }} /><span className="g-cap">Aug 2024 · kayaking</span></div>
-          <div className="g-cell"><img src="assets/mmexport1728564791837.jpg" alt="Qing Feng pavilion, China" loading="lazy" style={{ objectPosition: "80% 70%" }} /><span className="g-cap">2024 · 南锣鼓巷 Nanluoguxiang, Beijing· China</span></div>
-          <div className="g-cell"><img src="assets/20250411_141737.jpg" alt="Tulip fields" loading="lazy" style={{ objectPosition: "50% 50%" }} /><span className="g-cap">Apr 2025 · Japan Trip</span></div>
-          <div className="g-cell"><img src="assets/van-show.jpg" alt="RV show" loading="lazy" style={{ objectPosition: "50% 45%" }} /><span className="g-cap">2025 · van life dreams</span></div>
-          <div className="g-cell"><img src="assets/halloween-2025.jpg" alt="Halloween 2025" loading="lazy" style={{ objectPosition: "50% 35%" }} /><span className="g-cap">Halloween 2025 · Saiki K</span></div>
-          <div className="g-cell"><img src="assets/20241005_105830.jpg" alt="Japan trip" loading="lazy" style={{ objectPosition: "50% 60%" }} /><span className="g-cap">Oct 2024 · Jiangsu, China</span></div>
-        </div>
-        <p style={{ textAlign: "center", marginTop: 24, fontStyle: "italic", color: "var(--ink-soft)", fontSize: 14 }}>
-          More moments coming soon — closer to the day.
-        </p>
-      </Reveal>
-    </div>
-  </section>;
-
-
-const Registry = () =>
-<section id="registry">
-    <div className="shell-narrow">
-      <Reveal>
-        <div className="eyebrow" style={{ textAlign: "center" }}>With grateful hearts</div>
-        <h2 className="section-title">Gift Registry</h2>
-        <div className="section-title-cn">礼 物 心 意</div>
-      </Reveal>
-
-      <Reveal>
-        <p style={{ textAlign: "center", color: "var(--ink-soft)", fontStyle: "italic", marginBottom: 40 }}>
-          Your presence is the greatest gift. If you'd like to give something more, our registry is below — along with a few ways to send a gift from afar.
-        </p>
-
-        {/* AMAZON REGISTRY — primary. Amazon blocks iframes (X-Frame-Options),
-            so this links out to the live registry in a new tab. */}
-        <div className="registry-feature">
-          <div className="eyebrow">Our Registry · 礼 物 清 单</div>
-          <h3>Amazon Wedding Registry</h3>
-          <p>
-            We've put together a registry of things for our home and our life together.
-            Gifts ship straight to us, and Amazon marks items as purchased so nothing is doubled up.
-          </p>
-          <a
-            className="btn"
-            href="https://www.amazon.com/wedding/share/xiaoyangalexwedding"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View our registry →
-          </a>
-          <div className="registry-feature-note">Opens Amazon in a new tab</div>
-        </div>
-
-        <h4 className="registry-subhead">Prefer to give a cash gift? · 红 包 与 转 账</h4>
-
-        {/* HOME FUND (Zelle QR) */}
-        <div className="registry-row">
-          <div className="registry-qr">
-            <img src="assets/Alex Zelle.jfif" alt="Home Fund Zelle QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
-          </div>
-          <div>
-            <h4>Home Fund</h4>
-            <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
-             We'd love for you to contribute to a chapter of our life together. Whether it's our kitchen, our living room, a cozy bedroom retreat, or our entertainment setup, feel free to Zelle us toward whatever feels right, and leave a note in the comments letting us know which part of our home you'd like to help build.
+      <section className="memories-section">
+        <div className="shell">
+          <CnHeading cn="三城答谢回忆" en="Banquet Memories" />
+          <Reveal>
+            <div className="soon-card">
+              <div className="soon-cn">12月答谢宴之后，我们会在这里分享与大家相聚的照片。</div>
+              <div className="banquet-en">Photos from the banquets in Shanxi, Jiangsu and Beijing will be shared here after December.</div>
+            </div>
+          </Reveal>
+          <Reveal>
+            <p className="banquets-more" style={{ marginTop: 48 }}>
+              <a href="portland/">美国婚礼纪念 · 查看波特兰婚礼网站存档 →</a>
             </p>
-            <a href="assets/Alex Zelle.jfif">Request Transfer Details</a>
-          </div>
+          </Reveal>
         </div>
-
-           {/* HONEYMOON FUND (Kept the botanical icon here) */}
-        <div className="registry-row">
-          <div className="registry-qr">
-            <img src="assets/Xiaoyang Zelle.jfif" alt="WeChat and Zelle QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
-          </div>
-          <div>
-            <h4>The Honeymoon Fund</h4>
-            <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
-              Help us toast somewhere new — a coffee in Lisbon, a sunset in Kyoto.
-            </p>
-            <a href="assets/Xiaoyang Zelle.jfif">Request Transfer Details →</a>
-          </div>
-        </div>
-
-        {/* WECHAT(Updated with QR code) */}
-        <div className="registry-row">
-          <div className="registry-qr">
-            <img src="assets/xiao-alipay.jpeg" alt="Alipay QR Code" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
-          </div>
-          <div>
-            <h4>Alipay; 红包</h4>
-            <p style={{ margin: "0 0 8px", color: "var(--ink-soft)", fontStyle: "italic" }}>
-              For family abroad — a traditional 红包 by Alipay is warmly received.
-            </p>
-            <a href="assets/Xiaoyang Wechat.jfif">Request transfer details →</a>
-          </div>
-        </div>
-      </Reveal>
-    </div>
-  </section>;
-
-
-
-
-const FAQ = () => {
-  const items = [
-  { q: "What time should I arrive?", a: "Doors open at 1:30 pm at Providence. Please be seated by 1:50 pm — the ceremony begins promptly at 2:00 pm. A complimentary shuttle will then take guests to Lan Su for the tea ceremony and reception (about 15 minutes)." },
-  { q: "Is the venue indoor or outdoor?", a: "The ceremony is in a covered garden chapel; the reception flows between the pavilion and the stone garden, all roofed in case of rain." },
-  { q: "Are children welcome?", a: "We adore your kids, but we've planned an adult evening. Childcare can be arranged at the host hotel — please ask us if you'd like a referral." },
-  { q: "Will there be vegetarian / halal options?", a: "Yes — please let us know on your RSVP and we'll make sure you're well looked after." },
-  { q: "Can I bring a plus-one?", a: "Plus-ones are listed on your invitation. If you don't see one and would like to bring someone, please reach out and we'll do our best." },
-  { q: "When should I RSVP by?", a: "Please respond no later than August 15, 2026 (请于2026年8月15日前回复) so we can finalize the seating chart." }];
-
-  return (
-    <section id="faq">
-      <div className="shell-narrow">
-        <Reveal>
-          <div className="eyebrow" style={{ textAlign: "center" }}>Good to know</div>
-          <h2 className="section-title">FAQ</h2>
-          <div className="section-title-cn">常 见 问 题</div>
-        </Reveal>
-        <Reveal>
-          {items.map((it, i) =>
-          <details key={i} className="faq-item">
-              <summary className="faq-q">{it.q} <span className="plus">+</span></summary>
-              <div className="faq-a">{it.a}</div>
-            </details>
-          )}
-        </Reveal>
-      </div>
-    </section>);
-
+      </section>
+    </>);
 };
 
-const RSVP = () => {
-  // Let Tally's embed.js (loaded in index.html) wire up the iframe so it
-  // auto-resizes. The component mounts after the page transition, so we
-  // re-run loadEmbeds once it's on screen.
-  React.useEffect(() => {
-    if (window.Tally) window.Tally.loadEmbeds();
-  }, []);
+/* ---------- Phone-only floating RSVP bar ---------- */
+const MobileRsvpBar = () =>
+  <a className="mobile-rsvp-bar" href={rsvpHref()}>
+    填写赴宴回执 <span className="banquet-en" style={{ display: "inline", color: "inherit" }}>RSVP</span> →
+  </a>;
 
-  return (
-    <section id="rsvp" style={{ background: "var(--bg-deep)" }}>
-      <div className="shell-narrow">
-        <Reveal>
-          <div className="eyebrow" style={{ textAlign: "center" }}>Kindly respond</div>
-          <h2 className="section-title">RSVP</h2>
-          <div className="section-title-cn">回 复 卡</div>
-        </Reveal>
-
-        <Reveal>
-          <div className="rsvp-block">
-            <p style={{ fontStyle: "italic", color: "var(--ink-soft)", marginBottom: 24 }}>
-              Your reply means the world to us.
-            </p>
-            <p style={{ fontStyle: "italic", color: "var(--ink-soft)", marginBottom: 32 }}>
-              期 待 您 的 回 复
-            </p>
-            <iframe
-              data-tally-src="https://tally.so/embed/b5Ddqo?alignLeft=1&transparentBackground=1&dynamicHeight=1"
-              src="https://tally.so/embed/b5Ddqo?alignLeft=1&transparentBackground=1&dynamicHeight=1"
-              width="100%"
-              height="900"
-              frameBorder="0"
-              marginHeight="0"
-              marginWidth="0"
-              title="Wedding RSVP"
-            ></iframe>
-          </div>
-        </Reveal>
-      </div>
-    </section>);
-
-};
-
-
-const Footer = ({ onNavigate }) =>
-<footer>
+/* ---------- Footer ---------- */
+const Footer = () =>
+  <footer>
     <div className="shell">
       <Reveal>
         <div className="footer-monogram">X &amp; A</div>
         <div className="divider"><Botanical variant="sprig" size={24} /></div>
-        <div className="footer-meta" style={{ marginTop: 24 }}>Xiaoyang Li &nbsp;·&nbsp; Alexander Joachim</div>
-        <div className="footer-meta" style={{ marginTop: 8 }}>17 · 10 · 2026 &nbsp;·&nbsp; Portland, Oregon</div>
+        <div className="footer-names">晓扬 &amp; Alex</div>
+        <div className="footer-meta" style={{ marginTop: 8 }}>Xiaoyang Li &nbsp;·&nbsp; Alexander Joachim</div>
+        <div className="footer-cn" style={{ marginTop: 16 }}>2026.10.17 美国波特兰 · 2026.12 山西 · 江苏 · 北京</div>
         <div className="footer-hash">#XiaoyangAndAlex</div>
         <div className="footer-meta" style={{ marginTop: 32, fontSize: 12 }}>
+          <a href="portland/">美国婚礼纪念 · Portland wedding archive</a>
+        </div>
+        <div className="footer-meta" style={{ marginTop: 12, fontSize: 12 }}>
           <a href="mailto:xiaoalex.joachli@gmail.com">XIAOYANGALEX.WEDDING</a>
         </div>
-        <div className="footer-meta" style={{ marginTop: 32, fontSize: 11, opacity: 0.6, letterSpacing: "0.3em" }}>
-          With love · 用 爱 相 守
+        <div className="footer-cn" style={{ marginTop: 32, opacity: 0.7 }}>
+          感 恩 有 你 · With love
         </div>
       </Reveal>
     </div>
   </footer>;
 
-
-Object.assign(window, { Schedule, Travel, Gallery, Registry, FAQ, RSVP, Footer });
+Object.assign(window, { Banquets, Memories, MobileRsvpBar, Footer });
