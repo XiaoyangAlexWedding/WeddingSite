@@ -8,7 +8,8 @@
      show a friendly "待定 / to be confirmed" instead of a blank.
    ===================================================================== */
 
-/* ---------- Three banquets (shown in this order) ----------
+/* ---------- Three banquets (cards and RSVP list use this order;
+   the home-page timeline sorts them by date) ----------
    venueCn / venueEn : venue name in Chinese / English
    address           : full Chinese address, once final
    mapKeyword        : what to search on Amap/Baidu (usually the Chinese
@@ -19,6 +20,7 @@
 const BANQUETS = [
   {
     id: "beijing",
+    date: "2026-12-19",
     city: "北京",
     cityEn: "Beijing",
     province: "北京市",
@@ -38,6 +40,7 @@ const BANQUETS = [
   },
   {
     id: "shanxi",
+    date: "2026-12-11",
     city: "山西忻州",
     cityEn: "Xinzhou, Shanxi",
     province: "山西省",
@@ -57,6 +60,7 @@ const BANQUETS = [
   },
   {
     id: "jiangsu",
+    date: "2026-12-13",
     city: "江苏泰州（姜堰）",
     cityEn: "Jiangyan, Taizhou, Jiangsu",
     province: "江苏省",

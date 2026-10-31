@@ -8,24 +8,23 @@ const { useEffect: useAppEff, useState: useAppState } = React;
 const PAGES = {
   home: (p) => (
     <>
-      <Hero onNavigate={p.onNavigate} />
+      <Hero />
       <HeroPhoto />
-      <Invitation />
-      <BanquetPreview onNavigate={p.onNavigate} />
+      <Intro />
+      <Journey onNavigate={p.onNavigate} />
       <HighlightVideo />
-      <RsvpCta />
-      <ShareCard />
+      <RsvpSection />
     </>
   ),
   story: () => <Story />,
-  banquets: () => <><Banquets /><RsvpCta /></>,
-  memories: (p) => <Memories onNavigate={p.onNavigate} />,
+  banquets: () => <><Banquets /><RsvpSection /></>,
+  memories: () => <Memories />,
 };
 
 const PAGE_TITLES = {
-  home: "婚礼礼成 · 感恩有你 | 晓扬 & Alex 婚礼答谢宴",
+  home: "婚礼礼成 · 感恩有你 | 晓扬 & Alex",
   story: "我们的故事 | 晓扬 & Alex",
-  banquets: "三城答谢宴 | 晓扬 & Alex",
+  banquets: "答谢宴 | 晓扬 & Alex",
   memories: "婚礼回顾 | 晓扬 & Alex",
 };
 
@@ -60,10 +59,7 @@ const App = () => {
   }, [page]);
 
   const navigate = (id) => {
-    if (id === page) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
+    if (id === page) return;
     setTransitioning(true);
     setTimeout(() => {
       window.history.pushState(null, "", `#${id}`);
@@ -84,7 +80,6 @@ const App = () => {
       </main>
 
       <Footer />
-      <MobileRsvpBar />
     </>
   );
 };

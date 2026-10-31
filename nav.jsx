@@ -1,13 +1,13 @@
-/* Top navigation — banquet site (Chinese-first).
-   The Portland wedding site lives on, unchanged, at /portland/ (美国婚礼纪念). */
+/* Top navigation — same layout as the original wedding site.
+   The Portland wedding site lives on, unchanged, at /portland/. */
 
 const { useEffect: useNavEff } = React;
 
 const NAV_ITEMS = [
-  { id: "home", label: "首页", en: "Home" },
-  { id: "story", label: "我们的故事", en: "Our Story" },
-  { id: "banquets", label: "三城答谢宴", en: "Banquets" },
-  { id: "memories", label: "婚礼回顾", en: "Memories" },
+  { id: "home", label: "首页" },
+  { id: "story", label: "我们的故事" },
+  { id: "banquets", label: "答谢宴" },
+  { id: "memories", label: "婚礼回顾" },
 ];
 
 const Nav = ({ active, onNavigate }) => {
@@ -25,14 +25,12 @@ const Nav = ({ active, onNavigate }) => {
 
   return (
     <nav className="nav scrolled nav-cn">
-      <a className="nav-mono" href="#home" onClick={(e) => handle(e, "home")} aria-label="返回首页 · Home">
-        晓扬 <span className="nav-mono-amp">&amp;</span> Alex
+      <a className="nav-mono" href="#home" onClick={(e) => handle(e, "home")} aria-label="首页 · Home">
+        X &amp; A
       </a>
 
       {/* Phone-only RSVP in the top bar; the in-row RSVP is hidden on phones */}
-      <a href={rsvpHref()} className="nav-rsvp nav-rsvp-mobile">
-        赴宴回执
-      </a>
+      <a href={rsvpHref()} className="nav-rsvp nav-rsvp-mobile">赴宴回执</a>
 
       <div className="nav-links">
         {NAV_ITEMS.map((it) => (
@@ -43,20 +41,13 @@ const Nav = ({ active, onNavigate }) => {
             className={active === it.id ? "active" : ""}
           >
             {it.label}
-            <span className="nav-en">{it.en}</span>
           </a>
         ))}
 
-        {/* Archive of the Portland wedding website — a separate page */}
-        <a href="portland/" className="nav-archive">
-          美国婚礼纪念
-          <span className="nav-en">Portland Wedding</span>
-        </a>
+        {/* Archive of the Portland wedding website */}
+        <a href="portland/">波特兰婚礼</a>
 
-        <a href={rsvpHref()} className="nav-rsvp">
-          赴宴回执
-          <span className="nav-en">RSVP</span>
-        </a>
+        <a href={rsvpHref()} className="nav-rsvp">赴宴回执</a>
       </div>
     </nav>
   );
