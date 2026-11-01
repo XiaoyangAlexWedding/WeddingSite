@@ -48,8 +48,13 @@
 
 <script>
 (function () {
-  if (location.pathname.toLowerCase().replace(/\/+$/, '') === '/rsvp') {
+  var path = location.pathname.toLowerCase().replace(/\/+$/, '');
+  if (path === '/rsvp') {
     location.replace('/RSVP/' + location.search + location.hash);
+  } else if (path === '/china') {
+    location.replace('/china/' + location.search + location.hash);
+  } else if (path === '/china/rsvp') {
+    location.replace('/china/rsvp/' + location.search + location.hash);
   }
 })();
 </script>

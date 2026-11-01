@@ -84,6 +84,11 @@ const Nav = ({ active, onNavigate }) => {
           Things to Do
         </a>
 
+        {/* December banquets in China — separate pages under /china/ */}
+        <a href="/china/" onClick={() => setOpen(false)}>
+          China · <span style={{ fontStyle: "normal" }}>答谢宴</span>
+        </a>
+
         {/* Standalone page at a real path — full navigation, not a hash route */}
         <a href="/RSVP/" className="nav-rsvp" onClick={() => setOpen(false)}>
           RSVP
