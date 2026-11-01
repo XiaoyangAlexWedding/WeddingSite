@@ -133,7 +133,7 @@ const Journey = ({ onNavigate }) => {
               <div className="tl-time">2025</div>
               <div className="tl-place">SUNNYVALE</div>
               <h4>The proposal <span className="cn">· 求婚</span></h4>
-              <p>A quiet question on a produce run, and a yes.</p>
+              <p>At home after an ordinary weekend, rings in hand.</p>
             </div>
             <div className="tl-item">
               <div className="tl-time">Oct 17</div>
@@ -257,7 +257,7 @@ const Story = () =>
             </h2>
             <div className="section-rule"></div>
 
-            <p className="cn">2018年跨年夜，我们在休斯顿的一场派对上相遇。之后一起搬到加州，养了两只猫，走过许多地方。2025年，Alex 在我们最爱的菜市场向晓扬求婚。2026年10月17日，我们在美国波特兰举行了婚礼；12月，我们回到山西、江苏和北京，与家人朋友们一起庆祝。</p>
+            <p className="cn">2018年跨年夜，我们在休斯顿的一场派对上相遇。之后一起搬到加州，养了两只猫，走过许多地方。2025年，一个平常的周末过后，Alex 在我们硅谷的家中拿出戒指，向晓扬求婚。2026年10月17日，我们在美国波特兰举行了婚礼；12月，我们回到山西、江苏和北京，与家人朋友们一起庆祝。</p>
 
             <p>We met on New Year's Eve, 2018 — two strangers at a party that turned into seven years, three cities, and two furry friends. Houston, Sunnyvale, and now Sacramento have each shaped us in their own way.</p>
 
@@ -276,7 +276,7 @@ const Story = () =>
             <div className="story-chapter">
               <div className="year">2025 · SUNNYVALE, CA</div>
               <h4>The proposal</h4>
-              <p>Alex had been quietly planning for a while — surprising Xiaoyang with a visit to a jewelry store where the two picked out her ring together. She just didn't know when he'd actually pop the question. That moment came during one of their favorite rituals, a produce run to Felipe's Market. A quiet question, an answer they'd both known for years, and a yes that felt completely inevitable.</p>
+              <p>Alex had been quietly planning for a while — surprising Xiaoyang with a visit to a jewelry store where the two picked out her ring together. She just didn't know when he'd actually pop the question. That moment came at home in Silicon Valley, at the end of an ordinary weekend, rings in hand. A quiet question, an answer they'd both known for years, and a yes that felt completely inevitable.</p>
             </div>
 
             <div className="story-chapter">
