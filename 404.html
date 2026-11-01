@@ -1,14 +1,15 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>页面未找到 · 晓扬 &amp; Alex</title>
+  <title>Page not found · Xiaoyang &amp; Alex</title>
 
-  <link rel="stylesheet" href="/fonts/fonts.css" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2210%22 fill=%22%238a4a35%22/%3E%3Ctext x=%2232%22 y=%2246%22 font-size=%2240%22 text-anchor=%22middle%22 fill=%22%23fffaf2%22%3E%E5%9B%8D%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Allura&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;1,400&family=Tangerine:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/styles.css?v=31" />
+  <link rel="stylesheet" href="/styles.css?v=24" />
 
   <style>
     body { padding-top: 0; }
@@ -18,7 +19,7 @@
 </head>
 <body>
   <nav class="nav scrolled">
-    <a class="nav-mono" href="/" aria-label="返回首页" style="border-bottom:0;">X &amp; A</a>
+    <a class="nav-mono" href="/" aria-label="Back to home" style="border-bottom:0;">X &amp; A</a>
   </nav>
 
   <main class="nf-page">
@@ -27,12 +28,10 @@
         <div class="eyebrow" style="text-align:center">A little lost</div>
         <h2 class="section-title">404</h2>
         <div class="section-title-cn">页 面 未 找 到</div>
-        <p style="color:var(--ink-soft); margin-bottom:8px">抱歉，您访问的页面不存在。</p>
         <p style="font-style:italic; color:var(--ink-soft); margin-bottom:32px">
           This page seems to have wandered off. Let's get you back to the celebration.
         </p>
-        <a class="btn cn" href="/">返回首页 · Home</a>
-        <p style="margin-top:20px"><a href="/RSVP/">赴宴回执 · RSVP →</a></p>
+        <a class="btn" href="/">Return home &nbsp;·&nbsp; 返 回 首 页</a>
       </div>
     </section>
   </main>
@@ -42,6 +41,7 @@
       <div class="footer-monogram">X &amp; A</div>
       <div class="divider"></div>
       <div class="footer-meta" style="margin-top:24px">Xiaoyang Li &nbsp;·&nbsp; Alexander Joachim</div>
+      <div class="footer-meta" style="margin-top:8px">17 · 10 · 2026 &nbsp;·&nbsp; Portland, Oregon</div>
       <div class="footer-hash">#XiaoyangAndAlex</div>
     </div>
   </footer>
@@ -51,8 +51,10 @@
   var path = location.pathname.toLowerCase().replace(/\/+$/, '');
   if (path === '/rsvp') {
     location.replace('/RSVP/' + location.search + location.hash);
-  } else if (path === '/portland') {
-    location.replace('/portland/' + location.hash);
+  } else if (path === '/china') {
+    location.replace('/china/' + location.search + location.hash);
+  } else if (path === '/china/rsvp') {
+    location.replace('/china/rsvp/' + location.search + location.hash);
   }
 })();
 </script>

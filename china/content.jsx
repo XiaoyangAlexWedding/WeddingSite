@@ -81,7 +81,8 @@ const BANQUETS = [
 ];
 
 /* ---------- Highlight video (about 90 seconds) ----------
-   Put the files in assets/video/ and fill in the paths below.
+   Put the files in assets/video/ and fill in the paths below, starting with "../"
+   (e.g. "../assets/video/highlight.mp4") because this page lives in /china/.
    src         : an .mp4 (H.264 + AAC, 720p, "faststart") — plays in WeChat
    poster      : a .jpg thumbnail shown before playing
    subtitlesZh : optional Chinese subtitles, a .vtt file
@@ -95,15 +96,22 @@ const HIGHLIGHT_VIDEO = {
 
 /* ---------- Wedding-day photos (婚礼回顾) ----------
    Add one line per photo, e.g.
-   { src: "assets/wedding/ceremony-01.jpg", cn: "Providence Academy · 仪式", en: "Ceremony" },
+   { src: "../assets/wedding/ceremony-01.jpg", cn: "Providence Academy · 仪式", en: "Ceremony" },
    Resize photos to about 1600px wide first so the page stays fast in China. */
-const WEDDING_PHOTOS = [];
+const WEDDING_PHOTOS = [
+  { src: "../assets/web/wedding-12.jpg", cn: "仪式", en: "Providence Academy" },
+  { src: "../assets/web/wedding-25.jpg", cn: "礼成", en: "Just married" },
+  { src: "../assets/web/wedding-33.jpg", cn: "兰苏园", en: "Lan Su Chinese Garden" },
+  { src: "../assets/web/wedding-35.jpg", cn: "兰苏园", en: "Lan Su Chinese Garden" },
+  { src: "../assets/web/wedding-42.jpg", cn: "", en: "" },
+  { src: "../assets/web/wedding-44.jpg", cn: "抛绣球", en: "Silk ball toss" },
+];
 
 /* ---------- Links ---------- */
-const SITE_URL = "https://xiaoyangalex.wedding/";
+const SITE_URL = "https://xiaoyangalex.wedding/china/";
 
 /* RSVP page link, optionally pre-selecting a banquet (beijing/shanxi/jiangsu) */
-const rsvpHref = (banquetId) => "RSVP/" + (banquetId ? "?city=" + banquetId : "");
+const rsvpHref = (banquetId) => "rsvp/" + (banquetId ? "?city=" + banquetId : "");
 
 /* Map search links — Amap (高德) and Baidu (百度) work inside mainland China and WeChat */
 const amapHref = (b) =>
