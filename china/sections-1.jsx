@@ -72,7 +72,7 @@ const Hero = () =>
     </Reveal>
 
     <Reveal delay={300}>
-      <div className="hero-sub">Portland, Oregon · 17 October 2026</div>
+      <div className="hero-sub">December 2026 · China</div>
       <div className="hero-cn">爱跨越山海 · 喜归故里</div>
     </Reveal>
   </section>;
