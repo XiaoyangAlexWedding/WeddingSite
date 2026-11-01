@@ -10,7 +10,7 @@ const Banquets = () =>
       <Reveal>
         <p className="soft-note" style={{ marginTop: -24, marginBottom: 48 }}>
           <span className="cn">婚后回门，与家人亲友团聚，共享新婚喜悦。</span><br />
-          <span className="cn">感谢李双田、李云凤夫妇的支持与付出，让这三场答谢宴得以圆满举办。</span>
+          <span className="cn">感谢晓扬父母：李双田、李云凤的支持与付出，让这三场答谢宴得以圆满举办。</span>
         </p>
       </Reveal>
 
