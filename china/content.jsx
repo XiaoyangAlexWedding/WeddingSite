@@ -88,10 +88,10 @@ const BANQUETS = [
    subtitlesZh : optional Chinese subtitles, a .vtt file
    While src is "", a "coming soon" card is shown instead. */
 const HIGHLIGHT_VIDEO = {
-  src: "",
-  poster: "",
-  subtitlesZh: "",
-  lengthCn: "约 90 秒",
+  src: "../assets/video/highlight-720.mp4",      // 720p copy of "Wedding Summary 2min-compressed.mp4"
+  poster: "../assets/video/highlight-poster.jpg",
+  subtitlesZh: "",                                // subtitles are already in the video
+  aspect: "1:1",                                  // the video is square
 };
 
 /* ---------- Wedding-day photos (婚礼回顾) ----------
@@ -100,11 +100,14 @@ const HIGHLIGHT_VIDEO = {
    Resize photos to about 1600px wide first so the page stays fast in China. */
 const WEDDING_PHOTOS = [
   { src: "../assets/web/wedding-12.jpg", cn: "仪式", en: "Providence Academy" },
+  { src: "../assets/web/wedding-16.jpg", cn: "伴娘", en: "Bridesmaids" },
+  { src: "../assets/web/wedding-19.jpg", cn: "伴郎", en: "Groomsmen" },
   { src: "../assets/web/wedding-25.jpg", cn: "礼成", en: "Just married" },
   { src: "../assets/web/wedding-33.jpg", cn: "兰苏园", en: "Lan Su Chinese Garden" },
   { src: "../assets/web/wedding-35.jpg", cn: "兰苏园", en: "Lan Su Chinese Garden" },
   { src: "../assets/web/wedding-42.jpg", cn: "", en: "" },
   { src: "../assets/web/wedding-44.jpg", cn: "抛绣球", en: "Silk ball toss" },
+  { src: "../assets/web/wedding-47.jpg", cn: "家人", en: "Family" },
 ];
 
 /* ---------- Links ---------- */

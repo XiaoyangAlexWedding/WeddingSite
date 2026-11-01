@@ -167,6 +167,10 @@ const HighlightVideo = ({ background }) => {
   const videoRef = useRef(null);
   const [started, setStarted] = useState(false);
   if (!v.src) return null;
+  const [aw, ah] = (v.aspect || "16:9").split(":").map(Number);
+  // padding-top % is measured against the parent's width, so the wrapper sets the width
+  const framePad = (ah / aw) * 100 + "%";
+  const frameMax = aw === ah ? 560 : 760;
 
   const start = () => {
     setStarted(true);
@@ -182,7 +186,8 @@ const HighlightVideo = ({ background }) => {
       <div className="shell">
         <SectionHead eyebrow="The highlights" title="Our Wedding Film" cn="婚 礼 精 彩 影 片" />
         <Reveal>
-          <div className="film-frame">
+          <div style={{ maxWidth: frameMax, margin: "0 auto" }}>
+          <div className="film-frame" style={{ paddingTop: framePad }}>
             <video
               ref={videoRef}
               className="film-video"
@@ -201,6 +206,7 @@ const HighlightVideo = ({ background }) => {
                 <span><svg viewBox="0 0 24 24" width="28" height="28"><path d="M8 5v14l11-7z" fill="currentColor" /></svg></span>
               </button>
             }
+          </div>
           </div>
         </Reveal>
       </div>
