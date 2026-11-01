@@ -9,7 +9,8 @@ const Banquets = () =>
       <SectionHead eyebrow="December 2026" title="Banquets" cn="回 门 答 谢 宴" />
       <Reveal>
         <p className="soft-note" style={{ marginTop: -24, marginBottom: 48 }}>
-          <span className="cn">婚后回门，与家人亲友团聚，共享新婚喜悦。</span>
+          <span className="cn">婚后回门，与家人亲友团聚，共享新婚喜悦。</span><br />
+          <span className="cn">感谢晓扬的父母李双田、李云凤为三场答谢宴悉心操持。</span>
         </p>
       </Reveal>
 
