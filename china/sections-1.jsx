@@ -104,7 +104,7 @@ const Intro = () =>
       <Reveal>
         <p className="cn-p">2026年10月17日，我们在美国波特兰举办了婚礼，开启了人生的新篇章。</p>
         <p className="cn-p">如今，我们带着这份幸福跨越山海，回到父亲的故乡山西、母亲的故乡江苏，以及晓扬成长的北京。诚邀亲朋好友欢聚一堂，共同分享我们的新婚喜悦！</p>
-        <p className="sign">李晓扬 &amp; Alexander Joachim 敬邀</p>
+        <p className="sign">晓扬父母 &amp; 李晓扬 &amp; Alexander Joachim 敬邀</p>
         <p className="en-p">
           On 17 October 2026 we were married in Portland. This December we are bringing the celebration
           home — to Dad's hometown in Shanxi, Mom's hometown in Jiangsu, and Beijing, where Xiaoyang grew up.
