@@ -257,7 +257,7 @@ const Story = () =>
             </h2>
             <div className="section-rule"></div>
 
-            <p className="cn">2018年跨年夜，我们在休斯顿的一场派对上相遇。之后一起搬到加州，养了两只猫，走过许多地方。2025年，一个平常的周末过后，Alex 在我们硅谷的家中拿出戒指，向晓扬求婚。2026年10月17日，我们在美国波特兰举行了婚礼；12月，我们回到山西、江苏和北京，与家人朋友们一起庆祝。</p>
+            <p className="cn">2018年跨年夜，我们在休斯顿的一场派对上相遇。之后一起搬到加州，养了两只猫，走过许多地方。2025年，一个平常的周末，Alex 在家中拿出早已准备好的钻戒，向晓扬求婚。2026年10月17日，我们在美国波特兰举行了婚礼；12月，我们回到山西、江苏和北京，与家人朋友们一起庆祝。</p>
 
             <p>We met on New Year's Eve, 2018 — two strangers at a party that turned into seven years, three cities, and two furry friends. Houston, Sunnyvale, and now Sacramento have each shaped us in their own way.</p>
 
