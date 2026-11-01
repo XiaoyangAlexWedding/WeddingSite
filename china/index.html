@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../fonts/fonts.css" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2210%22 fill=%22%238a4a35%22/%3E%3Ctext x=%2232%22 y=%2246%22 font-size=%2240%22 text-anchor=%22middle%22 fill=%22%23fffaf2%22%3E%E5%9B%8D%3C/text%3E%3C/svg%3E" />
 
-  <link rel="stylesheet" href="styles.css?v=31" />
+  <link rel="stylesheet" href="styles.css?v=32" />
 </head>
 <body>
   <div id="root">
@@ -43,5 +43,27 @@
   <script type="text/babel" src="sections-1.jsx"></script>
   <script type="text/babel" src="sections-2.jsx"></script>
   <script type="text/babel" src="app.jsx"></script>
+  <!-- Click any gallery photo to see the whole picture (not cropped) -->
+  <script>
+    (function () {
+      var box = null;
+      function close() { if (box) { box.remove(); box = null; document.body.style.overflow = ""; } }
+      document.addEventListener("click", function (e) {
+        var cell = e.target.closest && e.target.closest(".gallery .g-cell");
+        var img = cell && cell.querySelector("img");
+        if (!img) { return; }
+        box = document.createElement("div");
+        box.className = "lightbox";
+        var big = document.createElement("img");
+        big.src = img.getAttribute("src");
+        big.alt = img.getAttribute("alt") || "";
+        box.appendChild(big);
+        box.addEventListener("click", close);
+        document.body.appendChild(box);
+        document.body.style.overflow = "hidden";
+      });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape") { close(); } });
+    })();
+  </script>
 </body>
 </html>

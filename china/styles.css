@@ -1382,3 +1382,11 @@ footer {
 
 /* Banquets: what each city means to us, right under the city name */
 .banquet-meaning { font-size: 18px; color: var(--accent-deep); margin: 0 0 10px; letter-spacing: 0.06em; }
+
+/* ---------- Gallery lightbox: shows the whole photo, uncropped ---------- */
+.lightbox {
+  position: fixed; inset: 0; z-index: 500; cursor: zoom-out;
+  background: rgba(20, 14, 10, 0.92);
+  display: flex; align-items: center; justify-content: center; padding: 16px;
+}
+.lightbox img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
