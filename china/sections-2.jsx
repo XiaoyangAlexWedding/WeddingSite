@@ -6,7 +6,12 @@ const BANQUET_ICONS = ["pavilion", "arch", "floral"];
 const Banquets = () =>
   <section id="banquets" style={{ background: "var(--bg-deep)" }}>
     <div className="shell">
-      <SectionHead eyebrow="December 2026" title="Banquets" cn="三 城 答 谢 宴" />
+      <SectionHead eyebrow="December 2026" title="Banquets" cn="回 门 答 谢 宴" />
+      <Reveal>
+        <p className="soft-note" style={{ marginTop: -24, marginBottom: 48 }}>
+          <span className="cn">婚后回门，与家人亲友团聚，共享新婚喜悦。</span>
+        </p>
+      </Reveal>
 
       <Reveal>
         <div className="detail-grid three">

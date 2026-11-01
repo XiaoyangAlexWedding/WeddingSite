@@ -7,10 +7,10 @@ const PAGES = {
   home: (p) => (
     <>
       <Hero />
+      <HighlightVideo />
       <HeroPhoto />
       <Intro />
       <Journey onNavigate={p.onNavigate} />
-      <HighlightVideo />
       <RsvpSection />
     </>
   ),
@@ -22,7 +22,7 @@ const PAGES = {
 const PAGE_TITLES = {
   home: "婚礼礼成 · 感恩有你 | 晓扬 & Alex",
   story: "我们的故事 | 晓扬 & Alex",
-  banquets: "答谢宴 | 晓扬 & Alex",
+  banquets: "回门答谢宴 | 晓扬 & Alex",
   memories: "婚礼回顾 | 晓扬 & Alex",
 };
 
