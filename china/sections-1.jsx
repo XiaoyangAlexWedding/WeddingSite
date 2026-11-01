@@ -133,7 +133,7 @@ const Journey = ({ onNavigate }) => {
               <div className="tl-time">2025</div>
               <div className="tl-place">SUNNYVALE</div>
               <h4>The proposal <span className="cn">· 求婚</span></h4>
-              <p>At home after an ordinary weekend, rings in hand.</p>
+              <p>A quiet question on a produce run, and a yes.</p>
             </div>
             <div className="tl-item">
               <div className="tl-time">Oct 17</div>
@@ -276,7 +276,7 @@ const Story = () =>
             <div className="story-chapter">
               <div className="year">2025 · SUNNYVALE, CA</div>
               <h4>The proposal</h4>
-              <p>Alex had been quietly planning for a while — surprising Xiaoyang with a visit to a jewelry store where the two picked out her ring together. She just didn't know when he'd actually pop the question. That moment came at home in Silicon Valley, at the end of an ordinary weekend, rings in hand. A quiet question, an answer they'd both known for years, and a yes that felt completely inevitable.</p>
+              <p>Alex had been quietly planning for a while — surprising Xiaoyang with a visit to a jewelry store where the two picked out her ring together. She just didn't know when he'd actually pop the question. That moment came during one of their favorite rituals, a produce run to Felipe's Market. A quiet question, an answer they'd both known for years, and a yes that felt completely inevitable.</p>
             </div>
 
             <div className="story-chapter">
