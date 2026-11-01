@@ -107,7 +107,7 @@ const Intro = () =>
         <p className="sign">李双田　李云凤<br />携女儿 李晓扬<br />女婿 <span style={{ letterSpacing: "0.04em" }}>Alexander Joachim</span><br />敬邀</p>
         <p className="en-p">
           On 17 October 2026 we were married in Portland. This December we are bringing the celebration
-          home — to Xiaoyang's father's hometown in Shanxi, her mother's hometown in Jiangsu, and Beijing, where Xiaoyang grew up.
+          home — to the hometowns of Xiaoyang's father, Tian, in Shanxi and her mother, Feng, in Jiangsu, and to Beijing, where Xiaoyang grew up.
         </p>
       </Reveal>
     </div>
