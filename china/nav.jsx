@@ -4,10 +4,10 @@
 const { useEffect: useNavEff } = React;
 
 const NAV_ITEMS = [
-  { id: "home", label: "首页" },
-  { id: "story", label: "我们的故事" },
-  { id: "banquets", label: "答谢宴" },
-  { id: "memories", label: "婚礼回顾" },
+  { id: "home", label: "首页", en: "Home" },
+  { id: "story", label: "我们的故事", en: "Our Story" },
+  { id: "banquets", label: "答谢宴", en: "Banquets" },
+  { id: "memories", label: "婚礼回顾", en: "Memories" },
 ];
 
 const Nav = ({ active, onNavigate }) => {
@@ -30,7 +30,7 @@ const Nav = ({ active, onNavigate }) => {
       </a>
 
       {/* Phone-only RSVP in the top bar; the in-row RSVP is hidden on phones */}
-      <a href={rsvpHref()} className="nav-rsvp nav-rsvp-mobile">赴宴回执</a>
+      <a href={rsvpHref()} className="nav-rsvp nav-rsvp-mobile">赴宴回执<span className="nav-en">RSVP</span></a>
 
       <div className="nav-links">
         {NAV_ITEMS.map((it) => (
@@ -41,12 +41,11 @@ const Nav = ({ active, onNavigate }) => {
             className={active === it.id ? "active" : ""}
           >
             {it.label}
+            <span className="nav-en">{it.en}</span>
           </a>
         ))}
 
-        {/* The main wedding website (gallery, photographer photos) */}
-
-        <a href={rsvpHref()} className="nav-rsvp">赴宴回执</a>
+        <a href={rsvpHref()} className="nav-rsvp">赴宴回执<span className="nav-en">RSVP</span></a>
       </div>
     </nav>
   );
