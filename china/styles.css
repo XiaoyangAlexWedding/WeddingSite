@@ -1379,3 +1379,6 @@ footer {
   .intro .cn-p { font-size: 17px; text-align: left; }
   .shell, .shell-narrow { padding: 0 20px; }
 }
+
+/* Banquets: what each city means to us, right under the city name */
+.banquet-meaning { font-size: 18px; color: var(--accent-deep); margin: 0 0 10px; letter-spacing: 0.06em; }

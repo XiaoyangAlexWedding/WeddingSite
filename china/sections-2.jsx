@@ -16,6 +16,7 @@ const Banquets = () =>
               <div key={b.id} id={`banquet-${b.id}`}>
                 <div className="detail-illus"><Botanical variant={BANQUET_ICONS[i] || "sprig"} size={72} /></div>
                 <h3 className="cn">{b.city}</h3>
+                <div className="banquet-meaning"><span className="cn">{b.meaningCn}</span> · <i>{b.meaningEn}</i></div>
                 <div className="where">{b.cityEn}</div>
                 <div className="when cn">{b.dateCn.slice(5)}（{b.weekdayCn}）· {b.mealCn}</div>
                 <div className="when">{b.dateEn} · {b.mealEn}</div>
@@ -24,7 +25,6 @@ const Banquets = () =>
                     <><span className="cn">{b.venueCn}</span>{b.venueCn && b.venueEn && " · "}{b.venueEn}</> :
                     <><span className="cn">场地待定</span> · Venue to be confirmed</>}
                   {b.address && <><br /><span className="cn">{b.address}</span></>}
-                  <br /><span className="cn">{b.meaningCn}</span> · {b.meaningEn}
                 </div>
                 <div className="detail-links cn">
                   <a href={rsvpHref(b.id)}>赴宴回执</a>
