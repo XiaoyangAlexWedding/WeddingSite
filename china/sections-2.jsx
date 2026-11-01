@@ -69,6 +69,8 @@ const Memories = () => {
               </p>
             }
             <p className="soft-note">
+              <a href="../" className="cn">波特兰婚礼网站 · Portland wedding site →</a>
+              <br />
               <a href="../#gallery" className="cn">婚礼相册 · Full wedding gallery →</a>
             </p>
           </Reveal>
