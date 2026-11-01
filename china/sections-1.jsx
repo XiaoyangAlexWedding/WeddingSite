@@ -146,7 +146,7 @@ const Journey = ({ onNavigate }) => {
                 <div className="tl-time">Dec {Number(b.date.slice(8))}</div>
                 <div className="tl-place"><span className="cn">{b.city}</span> · {b.cityEn.split(",")[0].toUpperCase()}</div>
                 <h4><span className="cn">{b.meaningCn}</span></h4>
-                <p>{b.meaningEn} · <span className="cn">{b.mealCn}</span> {b.mealEn}{(b.venueCn || b.venueEn) ? <> · {b.venueCn || b.venueEn}</> : null}</p>
+                <p>{b.meaningEn} · <span className="cn">{b.mealCn}</span> {b.mealEn}{(b.venueCn || b.venueEn) ? <> · <span className="cn">{b.venueCn || b.venueEn}</span></> : null}</p>
               </div>
             )}
           </div>

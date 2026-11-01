@@ -20,7 +20,9 @@ const Banquets = () =>
                 <div className="when cn">{b.dateCn.slice(5)}（{b.weekdayCn}）· {b.mealCn}</div>
                 <div className="when">{b.dateEn} · {b.mealEn}</div>
                 <div className="addr" style={{ marginTop: 12 }}>
-                  {venue ? venue : <><span className="cn">场地待定</span> · Venue to be confirmed</>}
+                  {venue ?
+                    <><span className="cn">{b.venueCn}</span>{b.venueCn && b.venueEn && " · "}{b.venueEn}</> :
+                    <><span className="cn">场地待定</span> · Venue to be confirmed</>}
                   {b.address && <><br /><span className="cn">{b.address}</span></>}
                   <br /><span className="cn">{b.meaningCn}</span> · {b.meaningEn}
                 </div>
