@@ -80,7 +80,7 @@ const Footer = () =>
         <div className="footer-monogram">X &amp; A</div>
         <div className="divider"><Botanical variant="sprig" size={24} /></div>
         <div className="footer-meta" style={{ marginTop: 24 }}>Xiaoyang Li &nbsp;·&nbsp; Alexander Joachim</div>
-        <div className="footer-meta" style={{ marginTop: 8 }}>Portland &nbsp;→&nbsp; China &nbsp;·&nbsp; 2026</div>
+        <div className="footer-meta" style={{ marginTop: 8 }}>United States &nbsp;→&nbsp; China &nbsp;·&nbsp; 2026</div>
         <div className="footer-hash">#XiaoyangAndAlex</div>
         <div className="footer-meta" style={{ marginTop: 32, fontSize: 12 }}>
           <a href="mailto:xiaoalex.joachli@gmail.com">XIAOYANGALEX.WEDDING</a>
