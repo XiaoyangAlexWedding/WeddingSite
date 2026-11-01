@@ -100,9 +100,9 @@ const HIGHLIGHT_VIDEO = {
    Resize photos to about 1600px wide first so the page stays fast in China. */
 const WEDDING_PHOTOS = [
   { src: "../assets/web/wedding-12.jpg", cn: "仪式", en: "Providence Academy" },
-  { src: "../assets/web/wedding-16.jpg", cn: "伴娘", en: "Bridesmaids" },
-  { src: "../assets/web/wedding-19.jpg", cn: "伴郎", en: "Groomsmen" },
   { src: "../assets/web/wedding-25.jpg", cn: "礼成", en: "Just married" },
+  { src: "../assets/web/wedding-19.jpg", cn: "伴郎", en: "Groomsmen" },
+  { src: "../assets/web/wedding-16.jpg", cn: "伴娘", en: "Bridesmaids" },
   { src: "../assets/web/wedding-33.jpg", cn: "兰苏园", en: "Lan Su Chinese Garden" },
   { src: "../assets/web/wedding-35.jpg", cn: "兰苏园", en: "Lan Su Chinese Garden" },
   { src: "../assets/web/wedding-42.jpg", cn: "", en: "" },

@@ -1,5 +1,5 @@
 /* Top navigation for the banquet pages (/china/).
-   "婚礼网站" links back to the main wedding site at /. */
+   The main wedding site is linked from the 婚礼回顾 page. */
 
 const { useEffect: useNavEff } = React;
 
@@ -45,7 +45,6 @@ const Nav = ({ active, onNavigate }) => {
         ))}
 
         {/* The main wedding website (gallery, photographer photos) */}
-        <a href="../">婚礼网站</a>
 
         <a href={rsvpHref()} className="nav-rsvp">赴宴回执</a>
       </div>

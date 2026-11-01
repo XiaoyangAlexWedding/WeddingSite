@@ -6,7 +6,12 @@ const BANQUET_ICONS = ["pavilion", "arch", "floral"];
 const Banquets = () =>
   <section id="banquets" style={{ background: "var(--bg-deep)" }}>
     <div className="shell">
-      <SectionHead eyebrow="December 2026" title="Banquets" cn="三 城 答 谢 宴" />
+      <SectionHead eyebrow="December 2026" title="Banquets" cn="回 门 答 谢 宴" />
+      <Reveal>
+        <p className="soft-note" style={{ marginTop: -24, marginBottom: 48 }}>
+          <span className="cn">婚后回门，与家人亲友团聚，共享新婚喜悦。</span>
+        </p>
+      </Reveal>
 
       <Reveal>
         <div className="detail-grid three">
@@ -43,7 +48,9 @@ const Memories = () => {
   const photos = WEDDING_PHOTOS || [];
   return (
     <>
-      <section id="memories">
+      <HighlightVideo />
+
+      <section id="memories" style={{ background: "var(--bg-deep)" }}>
         <div className="shell">
           <SectionHead eyebrow="Portland · 17 October 2026" title="Memories" cn="婚 礼 回 顾" />
           <Reveal>
@@ -62,13 +69,14 @@ const Memories = () => {
               </p>
             }
             <p className="soft-note">
+              <a href="../" className="cn">波特兰婚礼网站 · Portland wedding site →</a>
+              <br />
               <a href="../#gallery" className="cn">婚礼相册 · Full wedding gallery →</a>
             </p>
           </Reveal>
         </div>
       </section>
 
-      <HighlightVideo background="var(--bg-deep)" />
     </>);
 };
 
