@@ -30,7 +30,7 @@ const BANQUETS = [
     mealCn: "中午",
     mealEn: "Lunch",
     venueCn: "北京丽亭华苑酒店",
-    venueEn: "",
+    venueEn: "Radisson Hotel",
     address: "",
     mapKeyword: "北京丽亭华苑酒店",
     mapCity: "北京",
