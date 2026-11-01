@@ -184,7 +184,7 @@ const HighlightVideo = ({ background }) => {
   return (
     <section id="film" style={background ? { background } : undefined}>
       <div className="shell">
-        <SectionHead eyebrow="The highlights" title="Our Wedding Film" cn="婚 礼 精 彩 影 片" />
+        <SectionHead eyebrow="A 2-minute preview" title="Wedding Film" cn="婚 礼 短 片" />
         <Reveal>
           <div style={{ maxWidth: frameMax, margin: "0 auto" }}>
           <div className="film-frame" style={{ paddingTop: framePad }}>
@@ -208,6 +208,10 @@ const HighlightVideo = ({ background }) => {
             }
           </div>
           </div>
+          <p className="soft-note">
+            <span className="cn">完整版婚礼影片（约10分钟）将在答谢宴上与大家一同观看。</span><br />
+            The full film (about 10 minutes) will be shown at the banquets.
+          </p>
         </Reveal>
       </div>
     </section>);
