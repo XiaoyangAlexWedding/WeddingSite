@@ -54,8 +54,8 @@ const BANQUETS = [
     address: "",
     mapKeyword: "忻州泛华大酒店",
     mapCity: "忻州",
-    meaningCn: "父亲的故乡",
-    meaningEn: "Dad's hometown",
+    meaningCn: "晓扬父亲的故乡",
+    meaningEn: "Tian's hometown",
     rsvpOption: "山西忻州 · 12月11日（周五）中午",
   },
   {
@@ -74,8 +74,8 @@ const BANQUETS = [
     address: "",
     mapKeyword: "姜堰宾馆",
     mapCity: "泰州",
-    meaningCn: "母亲的故乡",
-    meaningEn: "Mom's hometown",
+    meaningCn: "晓扬母亲的故乡",
+    meaningEn: "Feng's hometown",
     rsvpOption: "江苏泰州 · 12月13日（周日）晚上",
   },
 ];
