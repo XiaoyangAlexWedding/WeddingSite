@@ -48,7 +48,9 @@ const Memories = () => {
   const photos = WEDDING_PHOTOS || [];
   return (
     <>
-      <section id="memories">
+      <HighlightVideo />
+
+      <section id="memories" style={{ background: "var(--bg-deep)" }}>
         <div className="shell">
           <SectionHead eyebrow="Portland · 17 October 2026" title="Memories" cn="婚 礼 回 顾" />
           <Reveal>
@@ -73,7 +75,6 @@ const Memories = () => {
         </div>
       </section>
 
-      <HighlightVideo background="var(--bg-deep)" />
     </>);
 };
 
