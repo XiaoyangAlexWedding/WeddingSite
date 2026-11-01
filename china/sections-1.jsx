@@ -209,8 +209,8 @@ const HighlightVideo = ({ background }) => {
           </div>
           </div>
           <p className="soft-note">
-            <span className="cn">完整版婚礼影片（约10分钟）将在答谢宴上与大家一同观看。</span><br />
-            The full film (about 10 minutes) will be shown at the banquets.
+            <span className="cn">完整版婚礼影片将在答谢宴上与大家一同观看。</span><br />
+            The full film will be shown at the banquets.
           </p>
         </Reveal>
       </div>
