@@ -7,11 +7,11 @@ const PAGES = {
   home: (p) => (
     <>
       <Hero />
-      <HighlightVideo />
       <HeroPhoto />
       <Intro />
       <Journey onNavigate={p.onNavigate} />
       <RsvpSection />
+      <HighlightVideo />
     </>
   ),
   story: () => <Story />,
