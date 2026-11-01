@@ -70,7 +70,7 @@
       var OPTIONS = {
         beijing: "北京 · 12月19日（周六）中午",
         shanxi: "山西忻州 · 12月11日（周五）中午",
-        jiangsu: "江苏泰州 · 12月13日（周日）晚上"
+        jiangsu: "江苏泰州 · 12月13日（周日）中午"
       };
       var m = /[?&]city=([a-z]+)/i.exec(location.search);
       var city = m && OPTIONS[m[1].toLowerCase()] ? m[1].toLowerCase() : "beijing";

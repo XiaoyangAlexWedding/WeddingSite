@@ -67,8 +67,8 @@ const BANQUETS = [
     dateCn: "2026年12月13日",
     weekdayCn: "周日",
     dateEn: "Sunday, 13 December 2026",
-    mealCn: "晚上",
-    mealEn: "Dinner",
+    mealCn: "中午",
+    mealEn: "Lunch",
     venueCn: "姜堰宾馆",
     venueEn: "Jiangyan Hotel",
     address: "",
@@ -76,7 +76,7 @@ const BANQUETS = [
     mapCity: "泰州",
     meaningCn: "晓扬母亲的故乡",
     meaningEn: "Hometown of Xiaoyang's mother, Feng",
-    rsvpOption: "江苏泰州 · 12月13日（周日）晚上",
+    rsvpOption: "江苏泰州 · 12月13日（周日）中午",
   },
 ];
 
