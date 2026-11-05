@@ -414,4 +414,75 @@ const Footer = ({ onNavigate }) =>
   </footer>;
 
 
-Object.assign(window, { Schedule, Travel, Gallery, Registry, FAQ, RSVP, Footer });
+/* ---------- Wedding Memories: film + photos (same as /china/#memories) ---------- */
+const MEMORY_FILM = { src: "assets/video/highlight-720.mp4", poster: "assets/video/highlight-poster.jpg" };
+const MEMORY_PHOTOS = [
+  { src: "assets/web/wedding-12.jpg", cap: "Providence Academy · 仪式" },
+  { src: "assets/web/wedding-25.jpg", cap: "Just married · 礼成" },
+  { src: "assets/web/wedding-19.jpg", cap: "Groomsmen · 伴郎" },
+  { src: "assets/web/wedding-16.jpg", cap: "Bridesmaids · 伴娘" },
+  { src: "assets/web/wedding-33.jpg", cap: "Lan Su Chinese Garden · 兰苏园" },
+  { src: "assets/web/wedding-35.jpg", cap: "Lan Su Chinese Garden · 兰苏园" },
+  { src: "assets/web/wedding-42.jpg", cap: "" },
+  { src: "assets/web/wedding-44.jpg", cap: "Silk ball toss · 抛绣球" },
+  { src: "assets/web/wedding-47.jpg", cap: "Family · 家人" },
+];
+
+const WeddingMemories = () => {
+  const videoRef = React.useRef(null);
+  const [started, setStarted] = React.useState(false);
+  const start = () => {
+    setStarted(true);
+    const el = videoRef.current;
+    if (el) { const p = el.play(); if (p && p.catch) p.catch(() => {}); }
+  };
+  return (
+    <>
+      <section id="film">
+        <div className="shell">
+          <Reveal>
+            <div className="eyebrow" style={{ textAlign: "center" }}>A 2-minute preview</div>
+            <h2 className="section-title">Wedding Film</h2>
+            <div className="section-title-cn">婚 礼 短 片</div>
+          </Reveal>
+          <Reveal>
+            <div style={{ maxWidth: 560, margin: "0 auto" }}>
+              <div className="film-frame" style={{ paddingTop: "100%" }}>
+                <video ref={videoRef} className="film-video" controls={started} preload="none"
+                  poster={MEMORY_FILM.poster} playsInline>
+                  <source src={MEMORY_FILM.src} type="video/mp4" />
+                </video>
+                {!started &&
+                  <button className="film-play" onClick={start} aria-label="Play">
+                    <span><svg viewBox="0 0 24 24" width="28" height="28"><path d="M8 5v14l11-7z" fill="currentColor" /></svg></span>
+                  </button>}
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section id="weddingmemories" style={{ background: "var(--bg-deep)" }}>
+        <div className="shell">
+          <Reveal>
+            <div className="eyebrow" style={{ textAlign: "center" }}>Portland · 17 October 2026</div>
+            <h2 className="section-title">Memories</h2>
+            <div className="section-title-cn">婚 礼 回 顾</div>
+          </Reveal>
+          <Reveal>
+            <div className="gallery">
+              {MEMORY_PHOTOS.map((p, i) =>
+                <div className="g-cell" key={i}>
+                  <img src={p.src} alt={p.cap || "Wedding photo"} loading="lazy" />
+                  {p.cap && <span className="g-cap">{p.cap}</span>}
+                </div>
+              )}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+    </>
+  );
+};
+
+Object.assign(window, { WeddingMemories, Schedule, Travel, Gallery, Registry, FAQ, RSVP, Footer });

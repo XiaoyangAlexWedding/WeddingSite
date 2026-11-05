@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { id: "dress", label: "Dress" },
  // { id: "schedule", label: "Schedule" },
   { id: "travel", label: "Travel" },
+  { id: "weddingmemories", label: "Memories" },
   { id: "gallery", label: "Gallery" },
   { id: "registry", label: "Registry" },
  // { id: "faq", label: "FAQ" },
