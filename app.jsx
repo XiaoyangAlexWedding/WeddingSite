@@ -76,6 +76,7 @@ const PAGES = {
   schedule: () => <Schedule />,
   travel:   () => <Travel />,
   gallery:  () => <Gallery />,
+  weddingmemories: () => <WeddingMemories />,
   registry: () => <Registry />,
   faq:      () => <FAQ />,
   rsvp:     () => <RSVP />,
